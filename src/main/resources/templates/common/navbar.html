@@ -1,0 +1,47 @@
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<meta charset="utf-8">
+<div th:fragment="navbar">
+<!-- ヘッダー -->
+<header class="py-4">
+<div class="container text-center">
+    <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/construction-contract/list}" th:text="CostDatabaseApp"></a></h1>
+</div>
+</header>
+<!-- ナビゲーションバー -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <!-- サブコンポーネント -->
+    <div class="container">
+        <!-- ブランド -->
+        <a class="navbar-brand" th:href="@{/construction-contract/list}" th:text="CostDatabaseApp"></a>
+        <!-- 切り替えボタン -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- ナビゲーション -->
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <!-- ナビゲーションメニュー -->
+            <ul class="navbar-nav me-auto">
+                <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                    <a class="nav-link" th:href="@{/employee/list}" th:text="従業員契約一覧"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
+                </li>
+            </ul>
+            <!-- ログアウト -->
+            <ul class="navbar-nav">
+                <li class="nav-item text-center">
+                    <form th:action="@{/logout}" method="post">
+                        <input type="submit" value="ログアウト" class="btn btn-info text-dark">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</div>
+</html>
