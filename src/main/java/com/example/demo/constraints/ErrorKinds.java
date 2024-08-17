@@ -5,7 +5,7 @@ package com.example.demo.constraints;
  */
 public enum ErrorKinds {
 
-    // ユーザーコード重複チェックエラー
+    // 従業員コード重複チェックエラー
     CODE_DUPLICATE_ERROR,
 
     // 空白チェックエラー

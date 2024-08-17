@@ -15,7 +15,7 @@ import com.example.demo.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
 /**
-* ユーザーサービス実装クラス
+* 従業員サービス実装クラス
 */
 @Service
 @Transactional

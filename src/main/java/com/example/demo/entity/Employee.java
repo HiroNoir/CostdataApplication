@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* ユーザーエンティティクラス
+* 従業員エンティティクラス
 */
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Employee {
 
     /** 主キー
-     *  ユーザーコード
+     *  従業員コード
      *  */
     private String code;
 
