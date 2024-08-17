@@ -25,7 +25,7 @@ public class TopController {
     public String top() {
         // return "login/menu"; ログイン後のトップページを工事契約一覧へ変更（リダイレクトでアクセス必要）
         // return "redirect:/construction-contract/list";
-        return "login/main";
+        return "login/menu";
     }
 
 }
