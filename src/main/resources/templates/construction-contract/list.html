@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>ログイン</title>
@@ -51,36 +51,42 @@
     </nav>
     <!-- メイン -->
     <main>
-        <div class="container">
-            <h2>メニュー</h2>
-            <hr>
-            <table border="1">
+        <h2>工事契約一覧</h2>
+        <!-- Flashメッセージの表示 -->
+        <p th:if="${message}" th:text="${message}" style="color: blue;">
+            完了メッセージ
+        </p>
+        <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;">
+            エラーメッセージ
+        </p>
+        <table border="1">
+            <thead>
                 <tr>
-                    <th>ログインユーザー名</th>
-                        <td th:text="${#authentication.principal.lastName} + ' ' + ${#authentication.principal.firstName}">
-                            カスタム属性として追加したlastName値とfirstName値に書き換わる
-                        </td>
-                    </tr>
-            </table>
-            <div sec:authorize="hasAuthority('ADMIN')">
-                【管理者権限で表示される部分】
-            </div>
-            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/employee/list}">従業員一覧へ</a>
-            <br>
-            <div sec:authorize="hasAuthority('EDITOR')">
-                【編集者権限で表示される部分】
-            </div>
-            <div sec:authorize="hasAuthority('GENERAL')">
-                【一般権限で表示される部分】
-            </div>
-            <a sec:authorize="hasAuthority('GENERAL')" th:href="@{/design-contract/list}">設計契約一覧へ</a>
-            <br>
-            <a sec:authorize="hasAuthority('GENERAL')" th:href="@{/construction-contract/list}">工事契約一覧へ</a>
-            <br>
-            <div sec:authorize="isAuthenticated()">
-                認証されたユーザーにのみ表示
-            </div>
-       </div>
+                    <th>業務番号</th>
+                    <th>発注工期</th>
+                    <th>工事名称</th>
+                    <th>内訳</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="constructionContract : ${constructionContract}">
+                    <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
+                    <td th:text="${constructionContract.constructionPeriod}"></td>
+                    <td th:text="${constructionContract.projectName}"></td>
+                    <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
+                    <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>画面遷移表示</h3>
+        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
+        <a th:href="@{/}">メニューへ戻る</a>
+        <br>
+        <!-- ログアウト -->
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="ログアウト">
+        </form>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
