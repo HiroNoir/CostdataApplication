@@ -266,6 +266,21 @@ public class BreakdownCdController {
                        @PathVariable("id2") Integer bcdBcoId,
             Model model, RedirectAttributes redirectAttributes) {
 
+        /** 内訳種目区分設定Mapを取得 */
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap();
+        // Modelに格納
+        model.addAttribute("categoryDetailMap", categoryDetailMap);
+
+        /** 用途概略区分設定Mapを取得 */
+        Map<String, Integer> purposeOutlineMap = purposeOutlineService.getPurposeOutlineMap();
+        // Modelに格納
+        model.addAttribute("purposeOutlineMap", purposeOutlineMap);
+
+        /** 用途詳細区分設定Mapを取得 */
+        Map<String, Integer> purposeDetailMap = purposeDetailService.getPurposeDetailMap();
+        // Modelに格納
+        model.addAttribute("purposeDetailMap", purposeDetailMap);
+
         /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度更新画面へ遷移する
         if(bcdId == null) {

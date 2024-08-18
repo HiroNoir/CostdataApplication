@@ -13,7 +13,7 @@ import com.example.demo.service.ConstructionContractService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 設計契約サービス実装クラス
+* 工事契約サービス実装クラス
 */
 @Service
 @Transactional

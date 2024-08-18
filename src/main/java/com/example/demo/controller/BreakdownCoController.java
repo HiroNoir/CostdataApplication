@@ -330,11 +330,6 @@ public class BreakdownCoController {
             return "breakdown-co/form";
         }
 
-        /** 内訳頭紙区分設定Mapを取得 */
-        Map<String, Integer> categoryOutlineMap = categoryOutlineService.getCategoryOutlineMap();
-        // Modelに格納
-        model.addAttribute("categoryOutlineMap", categoryOutlineMap);
-
         /** 更新画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
         // 対象データを取得

@@ -203,17 +203,18 @@ public class ConstructionContractController {
     public String edit(@PathVariable("id") Integer ccId,
             Model model, RedirectAttributes redirectAttributes) {
 
+
+        /** 内訳種別区分設定Mapを取得 */
+        Map<String, Integer> estimateTypeMap = estimateTypeService.getEstimateTypeMap();
+        // Modelに格納
+        model.addAttribute("estimateTypeMap", estimateTypeMap);
+
         /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度form.htmlへ遷移する
         if(ccId == null) {
             // 画面遷移（アドレス指定）
             return "construction-contract/form";
         }
-
-        /** 内訳種別区分設定Mapを取得 */
-        Map<String, Integer> estimateTypeMap = estimateTypeService.getEstimateTypeMap();
-        // Modelに格納
-        model.addAttribute("estimateTypeMap", estimateTypeMap);
 
         /** 更新画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う

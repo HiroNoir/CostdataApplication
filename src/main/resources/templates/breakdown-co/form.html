@@ -72,7 +72,7 @@
                     <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
                 </div>
                 <!-- 新規登録時の内訳頭紙区分びidはセレクトボックスで選択して仕込み -->
-                <label for="bcoCoId">内訳頭紙</label>
+                <label for="bcoCoId">内訳頭紙区分</label>
                 <div th:if="${breakdownCoForm.isNew}">
                     <select th:field="*{bcoCoId}" id="bcoCoId">
                         <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->

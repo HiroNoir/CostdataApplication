@@ -86,10 +86,10 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み -->
+                                    <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <label for="ccEtId" class="form-label">内訳種別区分</label>
                                     <div th:if="${constructionContractForm.isNew}">
-                                        <select th:field="*{ccEtId}" id="ccEtId">
+                                        <select th:field="*{ccEtId}" id="ccEtId" class="form-select">
                                             <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
                                             <option th:value="null"></option>
                                             <!-- 有効な値が入ったセレクトボックス -->
@@ -97,11 +97,12 @@
                                         </select>
                                         <span th:if="${#fields.hasErrors('ccEtId')}" th:errors="*{ccEtId}" class="text-danger"></span>
                                     </div>
-                                    <!-- 更新処理時の内訳種別区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                                    <!-- 更新処理時の内訳種別区分のetTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <!-- 更新処理時の内訳種別区分のidはセレクトボックスで選択して仕込みみ（nullチェック無し） -->
                                     <div th:unless="${constructionContractForm.isNew}">
-                                        <input type="hidden" th:field="*{ccEtId}" id="ccEtId">
-                                        <input type="hidden" th:text="*{estimateType.etTypeName}" th:field="*{estimateType.etTypeName}" id="estimateType.etTypeName">
+                                        <select th:field="*{ccEtId}" id="ccEtId" class="form-select">
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${estimateTypeMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!-- 以下は、上記以外のinput -->
@@ -211,7 +212,8 @@
                                     <div>※「1回目入札不調。○○円増額の上再公告。2回目で落札。」など金額には表れない経緯を残してください。</div>
                                     <div>※特になければ「特に無し」などと記録に残してください。</div>
                                     <div>
-                                        <input type="text" th:field="*{remarksSection}" id="remarksSection" class="form-control">
+                                        <textarea style="height: 300px" th:field="*{remarksSection}" id="remarksSection" class="form-control"></textarea>
+                                        <!-- <input type="text" th:field="*{remarksSection}" id="remarksSection" class="form-control"> -->
                                         <span th:if="${#fields.hasErrors('remarksSection')}" th:errors="*{remarksSection}" class="text-danger"></span>
                                     </div>
                                 </div>
