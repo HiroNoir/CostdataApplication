@@ -75,7 +75,7 @@ public class ConstructionContract {
     /** 経緯等コメント */
     private String remarksSection;
 
-    /** 発注図（抜粋）保存先 */
+    /** 発注図（抜粋） */
     private String blueprintAddress;
 
     /** 作成日時 */

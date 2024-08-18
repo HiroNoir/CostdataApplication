@@ -65,29 +65,29 @@ public class ConstructionContractForm {
     private Double siteArea;
 
     /** 別途工事 */
-    @NotBlank(message = "別途工事は必須です。特になければ「特に無し」などと記録に残してください。")
+    @NotBlank(message = "別途工事は必須です。")
     @Size(max = 100, message = "{max}文字以下で入力してください。")
     private String separeteConstruction;
 
     /** 予定価格 */
-    @NotNull(message = "予定価格は必須です。不明の場合は「0」を入力し、経緯等コメント欄にその理由を入力してください。")
+    @NotNull(message = "予定価格は必須です。")
     private Long plannedPrice;
 
     /** 落札価格 */
-    @NotNull(message = "落札価格は必須です。不明の場合は「0」を入力し、経緯等コメント欄にその理由を入力してください。")
+    @NotNull(message = "落札価格は必須です。")
     private Long contractPrice;
 
     /** 施工業者 */
-    @NotBlank(message = "施工業者は必須です。不明の場合は「不明」を入力し、経緯等コメント欄にその理由を入力してください。")
+    @NotBlank(message = "施工業者は必須です。")
     @Size(max = 30, message = "{max}文字以下で入力してください。")
     private String contractorName;
 
     /** 経緯等コメント */
-    @NotBlank(message = "経緯等コメントは必須です。特になければ「特に無し」などと記録に残してください。")
+    @NotBlank(message = "経緯等コメントは必須です。")
     private String remarksSection;
 
-    /** 発注図（抜粋）保存先 */
-    @NotBlank(message = "発注図（抜粋）保存先は必須です。未定の場合は「決まり次第更新」など記録を残してください。")
+    /** 発注図（抜粋） */
+    @NotBlank(message = "発注図（抜粋）は必須です。")
     private String blueprintAddress;
 
     /** 新規判定 */

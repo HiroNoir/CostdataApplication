@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>工事契約一覧</title>
+    <!-- レイアウトを確認するためのスタイル　（不要になったらコメントアウト）
+    <style> * { outline: 1px solid #f00; }</style> -->
 </head>
 <body>
     <!-- ヘッダー -->
@@ -29,13 +31,13 @@
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員"></a>
+                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
+                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約">現在位置</a>
+                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）">現在位置</a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -50,38 +52,62 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <h2>工事契約一覧</h2>
-        <!-- Flashメッセージの表示 -->
-        <p th:if="${message}" th:text="${message}" class="text-primary">
-            完了メッセージ
-        </p>
-        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
-            エラーメッセージ
-        </p>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>業務番号</th>
-                    <th>発注工期</th>
-                    <th>工事名称</th>
-                    <th>内訳</th>
-                    <th>詳細</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="constructionContract : ${constructionContract}">
-                    <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
-                    <td th:text="${constructionContract.constructionPeriod}"></td>
-                    <td th:text="${constructionContract.projectName}"></td>
-                    <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
-                    <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>画面遷移表示</h3>
-        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
-        <a th:href="@{/}">ホームへ戻る</a>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="h2 text-center mb-5">工事契約一覧</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Flashメッセージの表示 -->
+                    <p th:if="${message}" th:text="${message}" class="text-primary">
+                        完了メッセージ
+                    </p>
+                    <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
+                        エラーメッセージ
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th>業務番号</th>
+                                <th>発注工期</th>
+                                <th>工事名称</th>
+                                <th>内訳</th>
+                                <th>詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="constructionContract : ${constructionContract}">
+                                <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
+                                <td th:text="${constructionContract.constructionPeriod}"></td>
+                                <td th:text="${constructionContract.projectName}"></td>
+                                <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
+                                <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div sec:authorize="hasAuthority('EDITOR')" class="alert alert-info">
+                        工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「登録」より実行してください。<br>
+                    </div>
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+            </div>
+       </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

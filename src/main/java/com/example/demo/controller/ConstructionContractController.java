@@ -59,6 +59,7 @@ public class ConstructionContractController {
         /** 一覧画面へ遷移 */
         // Modelに格納
         model.addAttribute("constructionContract", service.findAll());
+        model.addAttribute("listSize", service.findAll().size());
         // 画面遷移（アドレス指定）
         return "construction-contract/list";
 
@@ -79,6 +80,7 @@ public class ConstructionContractController {
             // Modelに格納
             model.addAttribute("contractName", designContractService.findById(ccDcId).getContractName());
             model.addAttribute("constructionContract", service.findAllById(ccDcId));
+            model.addAttribute("listSize", service.findAllById(ccDcId).size());
             model.addAttribute("dcId", ccDcId);
             // 画面遷移（アドレス指定）
             return "construction-contract/specify";

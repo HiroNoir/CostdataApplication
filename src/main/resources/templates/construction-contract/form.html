@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>工事契約フォーム</title>
+    <!-- レイアウトを確認するためのスタイル　（不要になったらコメントアウト）
+    <style> * { outline: 1px solid #f00; }</style> -->
 </head>
 <body>
     <!-- ヘッダー -->
@@ -29,13 +31,13 @@
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員"></a>
+                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
+                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -50,118 +52,188 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <!-- タイトル：新規登録 or 更新処理 -->
-        <h2 th:if="${constructionContractForm.isNew}">工事契約新規登録</h2>
-        <h2 th:unless="${constructionContractForm.isNew}">工事契約更新処理</h2>
-        <!-- アクション：新規登録 or 更新処理 -->
-        <form th:action="${constructionContractForm.isNew} ? @{/construction-contract/add} : @{/construction-contract/{id}/revice(id=${constructionContractForm.ccId})}"
-            th:object="${constructionContractForm}" method="post">
-                <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
-                <!-- 更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <div th:unless="${constructionContractForm.isNew}">
-                    <input type="hidden" th:field="*{ccId}" id="ccId">
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- タイトル：新規登録 or 更新処理 -->
+                    <h2 th:if="${constructionContractForm.isNew}"  class="h2 text-center mb-5">工事契約新規登録</h2>
+                    <h2 th:unless="${constructionContractForm.isNew}"  class="h2 text-center mb-5">工事契約更新処理</h2>
                 </div>
-                <!-- 新規登録・更新処理時の設計契約のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <!-- 新規登録・更新処理時の設計契約のcontracttNameはhiddenで仕込み、文字はth:textで表示する -->
-                <label for="ccDcId">設計契約</label>
-                <div>
-                    <input type="hidden" th:field="*{ccDcId}" id="ccDcId">
-                    <input type="hidden" th:text="*{designContract.contractName}" th:field="*{designContract.contractName}" id="designContract.contractName">
+            </div>
+            <!-- フォーム -->
+            <!-- アクション：新規登録 or 更新処理 -->
+            <form th:action="${constructionContractForm.isNew} ? @{/construction-contract/add} : @{/construction-contract/{id}/revice(id=${constructionContractForm.ccId})}"
+                th:object="${constructionContractForm}" method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
+                                    <!-- 更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <div th:unless="${constructionContractForm.isNew}">
+                                        <input type="hidden" th:field="*{ccId}" id="ccId">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <!-- 新規登録・更新処理時の設計契約のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <!-- 新規登録・更新処理時の設計契約のcontracttNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <label for="ccDcId" class="form-label">設計契約</label>
+                                    <div>
+                                        <input type="hidden" th:field="*{ccDcId}" id="ccDcId">
+                                        <input type="hidden" th:text="*{designContract.contractName}" th:field="*{designContract.contractName}" id="designContract.contractName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み -->
+                                    <label for="ccEtId" class="form-label">内訳種別区分</label>
+                                    <div th:if="${constructionContractForm.isNew}">
+                                        <select th:field="*{ccEtId}" id="ccEtId">
+                                            <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${estimateTypeMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                        <span th:if="${#fields.hasErrors('ccEtId')}" th:errors="*{ccEtId}" class="text-danger"></span>
+                                    </div>
+                                    <!-- 更新処理時の内訳種別区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <!-- 更新処理時の内訳種別区分のetTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div th:unless="${constructionContractForm.isNew}">
+                                        <input type="hidden" th:field="*{ccEtId}" id="ccEtId">
+                                        <input type="hidden" th:text="*{estimateType.etTypeName}" th:field="*{estimateType.etTypeName}" id="estimateType.etTypeName">
+                                    </div>
+                                </div>
+                                <!-- 以下は、上記以外のinput -->
+                                <div class="mb-3">
+                                    <label for="estimateYear" class="form-label">積算時期（年）</label>
+                                    <div>※西暦で「2000年」のように末尾に「年」を記入して入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{estimateYear}" id="estimateYear" class="form-control">
+                                        <span th:if="${#fields.hasErrors('estimateYear')}" th:errors="*{estimateYear}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="estimateMonth" class="form-label">積算時期（月）</label>
+                                    <div>※「1月」「12月」のように末尾に「月」を記入して入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{estimateMonth}" id="estimateMonth" class="form-control">
+                                        <span th:if="${#fields.hasErrors('estimateMonth')}" th:errors="*{estimateMonth}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="constructionPeriod" class="form-label">発注工期</label>
+                                    <div>※「1期」のように末尾に「期」を記入して入力してください。</div>
+                                    <div>※同じ期でも分離発注の様に発注区分が判れている場合は「1期-1」の様に枝番を入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{constructionPeriod}" id="constructionPeriod" class="form-control">
+                                        <span th:if="${#fields.hasErrors('constructionPeriod')}" th:errors="*{constructionPeriod}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="projectName" class="form-label">工事名称</label>
+                                    <div>
+                                        <input type="text" th:field="*{projectName}" id="projectName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="siteAddress" class="form-label">工事場所</label>
+                                    <div>
+                                        <input type="text" th:field="*{siteAddress}" id="siteAddress" class="form-control">
+                                        <span th:if="${#fields.hasErrors('siteAddress')}" th:errors="*{siteAddress}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="siteArea" class="form-label">敷地面積（㎡）</label>
+                                    <div>※㎡単位で小数第二位まで入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{siteArea}" id="siteArea" class="form-control">
+                                        <span th:if="${#fields.hasErrors('siteArea')}" th:errors="*{siteArea}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                           </div>
+                       </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="plannedPrice" class="form-label">予定価格（円）</label>
+                                    <div>※不明の場合は「0」を入力し、経緯等コメント欄にその理由を入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{plannedPrice}" id="plannedPrice" class="form-control">
+                                        <span th:if="${#fields.hasErrors('plannedPrice')}" th:errors="*{plannedPrice}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contractPrice" class="form-label">落札価格（円）</label>
+                                    <div>※不明の場合は「0」を入力し、経緯等コメント欄にその理由を入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{contractPrice}" id="contractPrice" class="form-control">
+                                        <span th:if="${#fields.hasErrors('contractPrice')}" th:errors="*{contractPrice}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contractorName" class="form-label">施工業者</label>
+                                    <div>※不明の場合は「不明」を入力し、経緯等コメント欄にその理由を入力してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{contractorName}" id="contractorName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('contractorName')}" th:errors="*{contractorName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="blueprintAddress" class="form-label">発注図（抜粋）</label>
+                                    <div>※楽々CDM等の保存先が決まったら、そのURLをリンク先として残してください。</div>
+                                    <div>※未定の場合は「決まり次第更新」など記録を残してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{blueprintAddress}" id="blueprintAddress" class="form-control">
+                                        <span th:if="${#fields.hasErrors('blueprintAddress')}" th:errors="*{blueprintAddress}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="separeteConstruction" class="form-label">別途工事</label>
+                                    <div>※建築のみの発注区分で設備が分離発注の場合は「電気設備、機械設備、昇降機設備」のように別途工事を入力してください。</div>
+                                    <div>※特になければ「特に無し」などと記録に残してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{separeteConstruction}" id="separeteConstruction" class="form-control">
+                                        <span th:if="${#fields.hasErrors('separeteConstruction')}" th:errors="*{separeteConstruction}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="remarksSection" class="form-label">経緯等コメント</label>
+                                    <div>※「1回目入札不調。○○円増額の上再公告。2回目で落札。」など金額には表れない経緯を残してください。</div>
+                                    <div>※特になければ「特に無し」などと記録に残してください。</div>
+                                    <div>
+                                        <input type="text" th:field="*{remarksSection}" id="remarksSection" class="form-control">
+                                        <span th:if="${#fields.hasErrors('remarksSection')}" th:errors="*{remarksSection}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p class="mt-5">
+                                    <!-- ボタン：新規登録 or 更新処理 -->
+                                    <input th:if="${constructionContractForm.isNew}" type="submit" value="登録" class="btn btn-primary">
+                                    <input th:unless="${constructionContractForm.isNew}" type="submit" value="更新" class="btn btn-primary">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み -->
-                <label for="ccEtId">内訳種別区分</label>
-                <div th:if="${constructionContractForm.isNew}">
-                    <select th:field="*{ccEtId}" id="ccEtId">
-                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
-                        <option th:value="null"></option>
-                        <!-- 有効な値が入ったセレクトボックス -->
-                        <option th:each="item : ${estimateTypeMap}" th:value="${item.value}" th:text="${item.key}"></option>
-                    </select>
-                    <span th:if="${#fields.hasErrors('ccEtId')}" th:errors="*{ccEtId}" class="text-danger"></span>
+            </form>
+            <div class="row">
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
-                <!-- 更新処理時の内訳種別区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <!-- 更新処理時の内訳種別区分のetTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div th:unless="${constructionContractForm.isNew}">
-                    <input type="hidden" th:field="*{ccEtId}" id="ccEtId">
-                    <input type="hidden" th:text="*{estimateType.etTypeName}" th:field="*{estimateType.etTypeName}" id="estimateType.etTypeName">
+                <div class="col-auto">
+                    <a th:href="@{/construction-contract/list}" class="btn btn-primary">戻る</a>
                 </div>
-                <!-- 以下は、上記以外のinput -->
-                <label for="estimateYear">積算時期（年）</label>
-                <div>※西暦で「2000年」のように末尾に「年」を記入して入力</div>
-                <div>
-                    <input type="text" th:field="*{estimateYear}" id="estimateYear">
-                    <span th:if="${#fields.hasErrors('estimateYear')}" th:errors="*{estimateYear}" class="text-danger"></span>
-                </div>
-                <label for="estimateMonth">積算時期（月）</label>
-                <div>※「1月」「12月」のように末尾に「月」を記入して入力</div>
-                <div>
-                    <input type="text" th:field="*{estimateMonth}" id="estimateMonth">
-                    <span th:if="${#fields.hasErrors('estimateMonth')}" th:errors="*{estimateMonth}" class="text-danger"></span>
-                </div>
-                <label for="constructionPeriod">発注工期</label>
-                <div>※「1期」のように末尾に「期」を記入して入力</div>
-                <div>※同じ期でも分離発注の様に発注区分が判れている場合は「1期-1」の様に枝番を入力</div>
-                <div>
-                    <input type="text" th:field="*{constructionPeriod}" id="constructionPeriod">
-                    <span th:if="${#fields.hasErrors('constructionPeriod')}" th:errors="*{constructionPeriod}" class="text-danger"></span>
-                </div>
-                <label for="projectName">工事名称</label>
-                <div>
-                    <input type="text" th:field="*{projectName}" id="projectName">
-                    <span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}" class="text-danger"></span>
-                </div>
-                <label for="siteAddress">工事場所</label>
-                <div>
-                    <input type="text" th:field="*{siteAddress}" id="siteAddress">
-                    <span th:if="${#fields.hasErrors('siteAddress')}" th:errors="*{siteAddress}" class="text-danger"></span>
-                </div>
-                <label for="siteArea">敷地面積（㎡）</label>
-                <div>※㎡単位で小数第二位まで入力</div>
-                <div>
-                    <input type="text" th:field="*{siteArea}" id="siteArea">
-                    <span th:if="${#fields.hasErrors('siteArea')}" th:errors="*{siteArea}" class="text-danger"></span>
-                </div>
-                <label for="separeteConstruction">別途工事</label>
-                <div>※建築のみの発注区分で設備が分離発注の場合は「電気設備、機械設備、昇降機設備」のように別途工事を入力</div>
-                <div>
-                    <input type="text" th:field="*{separeteConstruction}" id="separeteConstruction">
-                    <span th:if="${#fields.hasErrors('separeteConstruction')}" th:errors="*{separeteConstruction}" class="text-danger"></span>
-                </div>
-                <label for="plannedPrice">予定価格（円）</label>
-                <div>
-                    <input type="text" th:field="*{plannedPrice}" id="plannedPrice">
-                    <span th:if="${#fields.hasErrors('plannedPrice')}" th:errors="*{plannedPrice}" class="text-danger"></span>
-                </div>
-                <label for="contractPrice">落札価格（円）</label>
-                <div>
-                    <input type="text" th:field="*{contractPrice}" id="contractPrice">
-                    <span th:if="${#fields.hasErrors('contractPrice')}" th:errors="*{contractPrice}" class="text-danger"></span>
-                </div>
-                <label for="contractorName">施工業者</label>
-                <div>
-                    <input type="text" th:field="*{contractorName}" id="contractorName">
-                    <span th:if="${#fields.hasErrors('contractorName')}" th:errors="*{contractorName}" class="text-danger"></span>
-                </div>
-                <label for="remarksSection">経緯等コメント</label>
-                <div>※「1回目入札不調。○○円増額の上再公告。2回目で落札。」など金額には表れない経緯を残す</div>
-                <div>
-                    <input type="text" th:field="*{remarksSection}" id="remarksSection">
-                    <span th:if="${#fields.hasErrors('remarksSection')}" th:errors="*{remarksSection}" class="text-danger"></span>
-                </div>
-                <label for="blueprintAddress">発注図（抜粋）保存先</label>
-                <div>※楽々CDM等の保存先が決まったら、そのURLをリンク先として残してください</div>
-                <div>
-                    <input type="text" th:field="*{blueprintAddress}" id="blueprintAddress">
-                    <span th:if="${#fields.hasErrors('blueprintAddress')}" th:errors="*{blueprintAddress}" class="text-danger"></span>
-                </div>
-            <!-- ボタン：新規登録 or 更新処理 -->
-            <input th:if="${constructionContractForm.isNew}" type="submit" value="登録">
-            <input th:unless="${constructionContractForm.isNew}" type="submit" value="更新">
-        </form>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/construction-contract/list}">工事契約一覧へ戻る</a>
+            </div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

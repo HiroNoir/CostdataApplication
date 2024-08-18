@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>従業員フォーム</title>
+    <!-- レイアウトを確認するためのスタイル　（不要になったらコメントアウト）
+    <style> * { outline: 1px solid #f00; }</style> -->
 </head>
 <body>
     <!-- ヘッダー -->
@@ -28,13 +30,13 @@
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員"></a>
+                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
+                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
