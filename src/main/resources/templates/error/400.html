@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>400</title>
+</head>
+<body>
+    <h2>400 - リクエスト処理不可</h2>
+    <div>
+        サーバーがリクエストを処理できません。
+    </div>
+    <a th:href="@{/}">ホームへ戻る</a>
+    <br>
+    <!-- ログアウト -->
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="ログアウト">
+    </form>
+</body>
+</html>

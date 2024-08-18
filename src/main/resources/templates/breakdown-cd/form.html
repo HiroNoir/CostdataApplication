@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>内訳種目フォーム</title>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="py-4">
+    <div class="container text-center">
+        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a></h1>
+    </div>
+    </header>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark d-print sticky-top">
+        <!-- サブコンポーネント -->
+        <div class="container">
+            <!-- 切り替えボタン -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- ブランド -->
+            <a class="navbar-brand" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a>
+        　　　<!-- ナビゲーション -->
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <!-- ナビゲーションメニュー -->
+                <ul class="navbar-nav me-auto">
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
+                    </li>
+                </ul>
+                <!-- ログアウト -->
+                <ul class="navbar-nav">
+                    <li class="nav-item text-center">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="ログアウト" class="btn btn-info text-dark">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- メイン -->
+    <main>
+        <!-- タイトル：新規登録 or 更新処理 -->
+        <h2 th:if="${breakdownCdForm.isNew}">内訳種目新規登録</h2>
+        <h2 th:unless="${breakdownCdForm.isNew}">内訳種目更新処理</h2>
+        <!-- アクション：新規登録 or 更新処理 -->
+        <form th:action="${breakdownCdForm.isNew} ? @{/breakdown-cd/add} : @{/breakdown-cd/{id1}/{id2}/revice(id1=${breakdownCdForm.bcdId}, id2=${breakdownCdForm.bcdBcoId})}"
+            th:object="${breakdownCdForm}" method="post">
+                <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
+                <!-- 更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                <div th:unless="${breakdownCdForm.isNew}">
+                    <input type="hidden" th:field="*{bcdId}" id="bcdId">
+                </div>
+                <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
+                <label>工事契約</label>
+                <div>
+                    <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
+                </div>
+                <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                <label>内訳頭紙区分</label>
+                <div>
+                    <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
+                </div>
+                <!-- 新規登録更・新処理時の内訳頭紙のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                <div>
+                    <input type="hidden" th:field="*{bcdBcoId}" id="bcdBcoId">
+                </div>
+                <!-- 新規登録時の内訳種目区分びidはセレクトボックスで選択して仕込み -->
+                <label for="bcdCdId">内訳種目区分</label>
+                <div th:if="${breakdownCdForm.isNew}">
+                    <select th:field="*{bcdCdId}" id="bcdCdId">
+                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                        <option th:value="null"></option>
+                        <!-- 有効な値が入ったセレクトボックス -->
+                        <option th:each="item : ${categoryDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('bcdCdId')}" th:errors="*{bcdCdId}" style="color: red;"></span>
+                </div>
+                <!-- 更新処理時の内訳種目区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                <!-- 更新処理時の内訳種目区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                <div th:unless="${breakdownCdForm.isNew}">
+                    <input type="hidden" th:field="*{bcdCdId}" id="bcdCdId">
+                    <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
+                </div>
+                <!-- 新規登録時の用途概略区分びidはセレクトボックスで選択して仕込み -->
+                <label for="bcdPoId">用途概略区分</label>
+                <div th:if="${breakdownCdForm.isNew}">
+                    <select th:field="*{bcdPoId}" id="bcdPoId">
+                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                        <option th:value="null"></option>
+                        <!-- 有効な値が入ったセレクトボックス -->
+                        <option th:each="item : ${purposeOutlineMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('bcdPoId')}" th:errors="*{bcdPoId}" style="color: red;"></span>
+                </div>
+                <!-- 更新処理時の用途概略区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                <!-- 更新処理時の用途概略区分のpoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                <div th:unless="${breakdownCdForm.isNew}">
+                    <input type="hidden" th:field="*{bcdPoId}" id="bcdPoId">
+                    <input type="hidden" th:text="*{purposeOutline.poTypeName}" th:field="*{purposeOutline.poTypeName}" id="purposeOutline.poTypeName">
+                </div>
+                <!-- 新規登録時の用途詳細区分びidはセレクトボックスで選択して仕込み -->
+                <label for="bcdPdId">用途詳細区分</label>
+                <div th:if="${breakdownCdForm.isNew}">
+                    <select th:field="*{bcdPdId}" id="bcdPdId">
+                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                        <option th:value="null"></option>
+                        <!-- 有効な値が入ったセレクトボックス -->
+                        <option th:each="item : ${purposeDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                    </select>
+                    <span th:if="${#fields.hasErrors('bcdPdId')}" th:errors="*{bcdPdId}" style="color: red;"></span>
+                    <span th:if="${purposeMatchError} neq null" th:text="${purposeMatchError}" style="color: red;"></span>
+                </div>
+                <!-- 更新処理時の用途詳細区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                <!-- 更新処理時の用途詳細区分のpdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                <div th:unless="${breakdownCdForm.isNew}">
+                    <input type="hidden" th:field="*{bcdPdId}" id="bcdPdId">
+                    <input type="hidden" th:text="*{purposeDetail.pdTypeName}" th:field="*{purposeDetail.pdTypeName}" id="purposeDetail.pdTypeName">
+                </div>
+                <!-- 以下は、上記以外のinput -->
+                <label for="bcdOrder">整列番号</label>
+                <div>
+                    <input type="text" th:field="*{bcdOrder}" id="bcdOrder">
+                    <span th:if="${#fields.hasErrors('bcdOrder')}" th:errors="*{bcdOrder}" style="color: red;"></span>
+                </div>
+                <label for="bcdTypeName">種目名称</label>
+                <div>
+                    <input type="text" th:field="*{bcdTypeName}" id="bcdTypeName">
+                    <span th:if="${#fields.hasErrors('bcdTypeName')}" th:errors="*{bcdTypeName}" style="color: red;"></span>
+                </div>
+                <label for="bcdPrice">金額</label>
+                <div>
+                    <input type="text" th:field="*{bcdPrice}" id="bcdPrice">
+                    <span th:if="${#fields.hasErrors('bcdPrice')}" th:errors="*{bcdPrice}" style="color: red;"></span>
+                </div>
+                <label for="bcdAreaBuilding">建築面積</label>
+                <div>
+                    <input type="text" th:field="*{bcdAreaBuilding}" id="bcdAreaBuilding">
+                    <span th:if="${#fields.hasErrors('bcdAreaBuilding')}" th:errors="*{bcdAreaBuilding}" style="color: red;"></span>
+                    <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" style="color: red;"></span>
+                </div>
+                <label for="bcdAreaTotalfloor">延床面積</label>
+                <div>
+                    <input type="text" th:field="*{bcdAreaTotalfloor}" id="bcdAreaTotalfloor">
+                    <span th:if="${#fields.hasErrors('bcdAreaTotalfloor')}" th:errors="*{bcdAreaTotalfloor}" style="color: red;"></span>
+                    <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" style="color: red;"></span>
+                </div>
+                <label for="bcdAreaRenovation">改修面積</label>
+                <div>
+                    <input type="text" th:field="*{bcdAreaRenovation}" id="bcdAreaRenovation">
+                    <span th:if="${#fields.hasErrors('bcdAreaRenovation')}" th:errors="*{bcdAreaRenovation}" style="color: red;"></span>
+                    <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" style="color: red;"></span>
+                 </div>
+                <label for="bcdAreaExterior">外構面積</label>
+                <div>
+                    <input type="text" th:field="*{bcdAreaExterior}" id="bcdAreaExterior">
+                    <span th:if="${#fields.hasErrors('bcdAreaExterior')}" th:errors="*{bcdAreaExterior}" style="color: red;"></span>
+                    <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" style="color: red;"></span>
+                </div>
+            <!-- ボタン：新規登録 or 更新処理 -->
+            <input th:if="${breakdownCdForm.isNew}" type="submit" value="登録">
+            <input th:unless="${breakdownCdForm.isNew}" type="submit" value="更新">
+        </form>
+        <h3>画面遷移表示</h3>
+        <a th:href="@{/}">ホームへ戻る</a>
+        <a th:href="@{/breakdown-cd/{id}/specify(id=${breakdownCdForm.bcdBcoId})}">内訳種目一覧へ戻る</a>
+        </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

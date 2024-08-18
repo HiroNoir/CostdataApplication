@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <title>工事契約一覧</title>
+    <title>従業員一覧</title>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -28,14 +27,14 @@
             <div class="collapse navbar-collapse" id="navbar-content">
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
-                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
-                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員"></a>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/employee/list}" th:text="従業員">現在位置</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約">現在位置</a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -51,7 +50,7 @@
     </nav>
     <!-- メイン -->
     <main>
-        <h2>工事契約一覧</h2>
+        <h2>従業員一覧</h2>
         <!-- Flashメッセージの表示 -->
         <p th:if="${message}" th:text="${message}" style="color: blue;">
             完了メッセージ
@@ -62,25 +61,21 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>業務番号</th>
-                    <th>発注工期</th>
-                    <th>工事名称</th>
-                    <th>内訳</th>
+                    <th>社員番号</th>
+                    <th>名前</th>
                     <th>詳細</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="constructionContract : ${constructionContract}">
-                    <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
-                    <td th:text="${constructionContract.constructionPeriod}"></td>
-                    <td th:text="${constructionContract.projectName}"></td>
-                    <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
-                    <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
+                <tr th:each="employee : ${employee}">
+                    <td th:text="${employee.code}"></td>
+                    <td th:text="${employee.lastName} + ' ' + ${employee.firstName}"></td>
+                    <td><a th:href="@{/employee/{code}/detail(code=${employee.code})}">詳細</a></td>
                 </tr>
             </tbody>
         </table>
         <h3>画面遷移表示</h3>
-        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
+        <a th:href="@{/employee/create}">新規登録</a>
         <a th:href="@{/}">ホームへ戻る</a>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>

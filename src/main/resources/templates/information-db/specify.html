@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <title>工事契約一覧</title>
+    <title>内訳情報一覧</title>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -35,7 +35,7 @@
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約">現在位置</a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -51,7 +51,6 @@
     </nav>
     <!-- メイン -->
     <main>
-        <h2>工事契約一覧</h2>
         <!-- Flashメッセージの表示 -->
         <p th:if="${message}" th:text="${message}" style="color: blue;">
             完了メッセージ
@@ -59,29 +58,47 @@
         <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;">
             エラーメッセージ
         </p>
+        <h3>工事契約</h3>
+        <p th:text="${projectName}"></p>
+        <h3>内訳頭紙区分</h3>
+        <p th:text="${coTypeName}"></p>
+        <h3>内訳種目区分</h3>
+        <p th:text="${cdTypeName}"></p>
+        <h3>内訳種目</h3>
+        <p th:text="${bcdTypeName}"></p>
         <table border="1">
             <thead>
                 <tr>
-                    <th>業務番号</th>
-                    <th>発注工期</th>
-                    <th>工事名称</th>
-                    <th>内訳</th>
+                    <th>項目</th>
+                    <th>文字情報</th>
+                    <th>数量情報</th>
+                    <th>金額情報</th>
                     <th>詳細</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="constructionContract : ${constructionContract}">
-                    <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
-                    <td th:text="${constructionContract.constructionPeriod}"></td>
-                    <td th:text="${constructionContract.projectName}"></td>
-                    <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
-                    <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
+                <tr th:each="informationDb : ${informationDb}">
+                    <td th:text="${informationDb.InformationItem.iiItemName}"></td>
+                    <td th:text="${informationDb.idbDataText}"></td>
+                    <td th:if="${informationDb.idbDataDouble == 0}" style="text-align: center;">-</td>
+                    <td th:if="${informationDb.idbDataDouble != 0}" style="text-align: right;" th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')}"></td>
+                    <td th:if="${informationDb.idbDataBigint == 0}" style="text-align: center;">-</td>
+                    <td th:if="${informationDb.idbDataBigint != 0}" style="text-align: right;" th:text="${#numbers.formatInteger(informationDb.idbDataBigint, 3, 'COMMA')} + '円'"></td>
+                    <td><a th:href="@{/information-db/{id1}/{id2}/detail(id1=${informationDb.idbBcdId}, id2=${informationDb.idbIiId})}">詳細</a></td>
                 </tr>
             </tbody>
         </table>
+        <!-- <h3 sec:authorize="hasAuthority('EDITOR')">入力金額チェック用検算（差額計算）</h3>
+        <table sec:authorize="hasAuthority('EDITOR')">
+            <tr>
+                <th style="text-align: left;">内訳頭紙の直接工事費－内訳種目の合計金額＝</th>
+                <td style="text-align: right;" th:text="${#numbers.formatInteger(defDirectConstructionPrice, 3, 'COMMA')} + '円'"></td>
+            </tr>
+        </table> -->
         <h3>画面遷移表示</h3>
-        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
+        <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/information-db/{id}/create(id=${bcdId})}">新規登録</a>
         <a th:href="@{/}">ホームへ戻る</a>
+        <a th:href="@{/breakdown-cd/{id}/specify(id=${bcdBcoId})}">内訳種目一覧へ戻る</a>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

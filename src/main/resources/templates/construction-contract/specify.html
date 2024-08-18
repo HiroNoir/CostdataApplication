@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約">現在位置</a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -59,13 +59,17 @@
         <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;">
             エラーメッセージ
         </p>
+        <h3>設計契約</h3>
+        <p th:text="${contractName}">
+            設計契約
+        </p>
         <table border="1">
             <thead>
                 <tr>
                     <th>業務番号</th>
                     <th>発注工期</th>
                     <th>工事名称</th>
-                    <th>内訳</th>
+                    <th>頭紙</th>
                     <th>詳細</th>
                 </tr>
             </thead>
@@ -80,8 +84,10 @@
             </tbody>
         </table>
         <h3>画面遷移表示</h3>
-        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
+        <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/construction-contract/{id}/create(id=${dcId})}">新規登録</a>
         <a th:href="@{/}">ホームへ戻る</a>
+        <a th:href="@{/design-contract/list}">設計契約一覧へ戻る</a>
+        <a th:href="@{/construction-contract/list}">工事契約一覧へ戻る</a>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

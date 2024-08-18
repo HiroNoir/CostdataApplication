@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <title>工事契約一覧</title>
+    <title>内訳頭紙一覧</title>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -35,7 +35,7 @@
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/list}" th:text="工事契約">現在位置</a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -51,7 +51,7 @@
     </nav>
     <!-- メイン -->
     <main>
-        <h2>工事契約一覧</h2>
+        <h2>内訳頭紙一覧</h2>
         <!-- Flashメッセージの表示 -->
         <p th:if="${message}" th:text="${message}" style="color: blue;">
             完了メッセージ
@@ -59,29 +59,56 @@
         <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;">
             エラーメッセージ
         </p>
+        <h3>工事契約</h3>
+        <p th:text="${projectName}"></p>
         <table border="1">
             <thead>
                 <tr>
-                    <th>業務番号</th>
-                    <th>発注工期</th>
-                    <th>工事名称</th>
+                    <th>名称</th>
+                    <th>金額</th>
+                    <th>割合</th>
                     <th>内訳</th>
                     <th>詳細</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="constructionContract : ${constructionContract}">
-                    <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
-                    <td th:text="${constructionContract.constructionPeriod}"></td>
-                    <td th:text="${constructionContract.projectName}"></td>
-                    <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
-                    <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
+                <tr th:each="breakdownCo : ${breakdownCo}">
+                    <td th:text="${breakdownCo.categoryOutline.coTypeName}"></td>
+                    <td style="text-align: right;" th:text="${#numbers.formatInteger(breakdownCo.bcoPrice, 3, 'COMMA')} + '円'"></td>
+                    <td style="text-align: right;" th:text="${breakdownCo.ratio}"></td>
+                    <td th:switch="${breakdownCo.bcoCoId}">
+                        <a th:case="1010" th:href="@{/breakdown-cd/{id}/specify(id=${breakdownCo.bcoId})}">種目</a>
+                        <a th:case="1020" th:href="@{/breakdown-cd/{id}/specify(id=${breakdownCo.bcoId})}">種目</a>
+                        <a th:case="1030" th:href="@{/breakdown-cd/{id}/specify(id=${breakdownCo.bcoId})}">種目</a>
+                        <a th:case="1040" th:href="@{/breakdown-cd/{id}/specify(id=${breakdownCo.bcoId})}">種目</a>
+                    </td>
+                    <td><a th:href="@{/breakdown-co/{id1}/{id2}/detail(id1=${breakdownCo.bcoId}, id2=${breakdownCo.bcoCcId})}">詳細</a></td>
                 </tr>
             </tbody>
         </table>
+        <h3 sec:authorize="hasAuthority('EDITOR')">入力金額チェック用検算（差額計算）</h3>
+        <table sec:authorize="hasAuthority('EDITOR')">
+            <tr>
+                <th style="text-align: left;">直接工事費－（建築+電気設備+機械設備+昇降機設備）＝</th>
+                <td style="text-align: right;" th:text="${#numbers.formatInteger(defDirectConstructionPrice, 3, 'COMMA')} + '円'"></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;">共通費－（共通仮設費+現場管理費+一般管理費等）＝</th>
+                <td style="text-align: right;" th:text="${#numbers.formatInteger(defSumCommonExpensePrice, 3, 'COMMA')} + '円'"></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;">工事価格－（直接工事費+共通費）＝</th>
+                <td style="text-align: right;" th:text="${#numbers.formatInteger(defTotalConstructionPrice, 3, 'COMMA')} + '円'"></td>
+            </tr>
+            <tr>
+                <th style="text-align: left;">工事費－（工事価格+消費税相当額）＝</th>
+                <td style="text-align: right;" th:text="${#numbers.formatInteger(defTotalPriceWithTax, 3, 'COMMA')} + '円'"></td>
+            </tr>
+        </table>
         <h3>画面遷移表示</h3>
-        <p sec:authorize="hasAuthority('EDITOR')">工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「新規登録」より実行してください。</p>
+        <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/breakdown-co/{id}/create(id=${ccId})}">新規登録</a>
         <a th:href="@{/}">ホームへ戻る</a>
+        <a th:href="@{/construction-contract/list}">工事契約一覧へ戻る</a>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
