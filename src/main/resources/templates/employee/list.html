@@ -52,10 +52,10 @@
     <main>
         <h2>従業員一覧</h2>
         <!-- Flashメッセージの表示 -->
-        <p th:if="${message}" th:text="${message}" style="color: blue;">
+        <p th:if="${message}" th:text="${message}" class="text-primary">
             完了メッセージ
         </p>
-        <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;">
+        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
             エラーメッセージ
         </p>
         <table border="1">

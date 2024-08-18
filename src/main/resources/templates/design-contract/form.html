@@ -66,17 +66,17 @@
                 <label for="contractNumber">業務番号</label>
                 <div>
                     <input type="text" th:field="*{contractNumber}" id="contractNumber">
-                    <span th:if="${#fields.hasErrors('contractNumber')}" th:errors="*{contractNumber}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('contractNumber')}" th:errors="*{contractNumber}" class="text-danger"></span>
                 </div>
                 <label for="contractName">業務名称</label>
                 <div>
                     <input type="text" th:field="*{contractName}" id="contractName">
-                    <span th:if="${#fields.hasErrors('contractName')}" th:errors="*{contractName}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('contractName')}" th:errors="*{contractName}" class="text-danger"></span>
                 </div>
                 <label for="customerName">発注者名</label>
                 <div>
                     <input type="text" th:field="*{customerName}" id="customerName">
-                    <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="text-danger"></span>
                 </div>
             <!-- ボタン：新規登録 or 更新処理 -->
             <input th:if="${designContractForm.isNew}" type="submit" value="登録">

@@ -60,8 +60,8 @@
                 <div th:if="${employeeForm.isNew}">
                     <!-- 新規登録時のcodeはtextで入力欄を表示する -->
                     <input type="text" th:field="*{code}" id="code">
-                    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" style="color: red;"></span>
-                    <span th:if="${codeError} neq null" th:text="${codeError}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
+                    <span th:if="${codeError} neq null" th:text="${codeError}" class="text-danger"></span>
                 </div>
                 <div th:unless="${employeeForm.isNew}">
                     <!-- 更新処理時のcodeはhiddenで仕込み、文字はth:textで表示する -->
@@ -71,19 +71,19 @@
                 <label for="lastName">名字</label>
                 <div>
                     <input type="text" th:field="*{lastName}" id="lastName">
-                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
                 </div>
                 <label for="firstName">名前</label>
                 <div>
                     <input type="text" th:field="*{firstName}" id="firstName">
-                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
                 </div>
                 <label for="password">パスワード</label>
                 <div th:unless="${employeeForm.isNew}">※変更する場合のみ入力</div>
                 <div>
                     <input type="password" th:field="*{password}" id="password">
-                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red;"></span>
-                    <span th:if="${passwordError} neq null" th:text="${passwordError}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+                    <span th:if="${passwordError} neq null" th:text="${passwordError}" class="text-danger"></span>
                 </div>
                 <label for="role">権限</label>
                 <div>
@@ -93,7 +93,7 @@
                         <!-- 有効な値が入ったセレクトボックス -->
                         <option th:each="item:${T(com.example.demo.entity.Role).values()}" th:value="${item}" th:text="${item.getValue()}" th:selected="*{role} == ${item}">
                     </select>
-                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></span>
                 </div>
             <!-- ボタン：新規登録 or 更新処理 -->
             <input th:if="${employeeForm.isNew}" type="submit" value="登録">

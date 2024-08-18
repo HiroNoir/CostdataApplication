@@ -88,8 +88,8 @@
                         <!-- 有効な値が入ったセレクトボックス -->
                         <option th:each="item : ${informationItemlMap}" th:value="${item.value}" th:text="${item.key}"></option>
                     </select>
-                    <span th:if="${#fields.hasErrors('idbIiId')}" th:errors="*{idbIiId}" style="color: red;"></span>
-                    <span th:if="${idbIiIdError} neq null" th:text="${idbIiIdError}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('idbIiId')}" th:errors="*{idbIiId}" class="text-danger"></span>
+                    <span th:if="${idbIiIdError} neq null" th:text="${idbIiIdError}" class="text-danger"></span>
                 </div>
                 <!-- 更新処理時の内訳情報区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                 <!-- 更新処理時の内訳情報区分のiiItemNameはhiddenで仕込み、文字はth:textで表示する -->
@@ -101,17 +101,17 @@
                 <label for="idbDataText">文字情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataText}" id="idbDataText">
-                    <span th:if="${#fields.hasErrors('idbDataText')}" th:errors="*{idbDataText}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('idbDataText')}" th:errors="*{idbDataText}" class="text-danger"></span>
                 </div>
                 <label for="idbDataDouble">数量情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataDouble}" id="idbDataDouble">
-                    <span th:if="${#fields.hasErrors('idbDataDouble')}" th:errors="*{idbDataDouble}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('idbDataDouble')}" th:errors="*{idbDataDouble}" class="text-danger"></span>
                 </div>
                 <label for="idbDataBigint">金額情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataBigint}" id="idbDataBigint">
-                    <span th:if="${#fields.hasErrors('idbDataBigint')}" th:errors="*{idbDataBigint}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('idbDataBigint')}" th:errors="*{idbDataBigint}" class="text-danger"></span>
                 </div>
             <!-- ボタン：新規登録 or 更新処理 -->
             <input th:if="${informationDbForm.isNew}" type="submit" value="登録">

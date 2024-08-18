@@ -78,8 +78,8 @@
                         <!-- 有効な値が入ったセレクトボックス -->
                         <option th:each="item : ${categoryOutlineMap}" th:value="${item.value}" th:text="${item.key}"></option>
                     </select>
-                    <span th:if="${#fields.hasErrors('bcoCoId')}" th:errors="*{bcoCoId}" style="color: red;"></span>
-                    <span th:if="${bcoCoIdError} neq null" th:text="${bcoCoIdError}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('bcoCoId')}" th:errors="*{bcoCoId}" class="text-danger"></span>
+                    <span th:if="${bcoCoIdError} neq null" th:text="${bcoCoIdError}" class="text-danger"></span>
                 </div>
                 <!-- 更新処理時の内訳頭紙区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                 <!-- 更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
@@ -91,7 +91,7 @@
                 <label for="bcoPrice">金額</label>
                 <div>
                     <input type="text" th:field="*{bcoPrice}" id="bcoPrice">
-                    <span th:if="${#fields.hasErrors('bcoPrice')}" th:errors="*{bcoPrice}" style="color: red;"></span>
+                    <span th:if="${#fields.hasErrors('bcoPrice')}" th:errors="*{bcoPrice}" class="text-danger"></span>
                 </div>
             <!-- ボタン：新規登録 or 更新処理 -->
             <input th:if="${breakdownCoForm.isNew}" type="submit" value="登録">
