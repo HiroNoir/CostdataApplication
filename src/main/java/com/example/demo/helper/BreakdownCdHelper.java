@@ -17,11 +17,8 @@ public class BreakdownCdHelper {
         entity.setBcdBcoId(form.getBcdBcoId());
         entity.setBreakdownCo(form.getBreakdownCo());
         entity.setBcdCdId(form.getBcdCdId());
-        entity.setCategoryDetail(form.getCategoryDetail());
         entity.setBcdPoId(form.getBcdPoId());
-        entity.setPurposeOutline(form.getPurposeOutline());
         entity.setBcdPdId(form.getBcdPdId());
-        entity.setPurposeDetail(form.getPurposeDetail());
         entity.setBcdOrder(form.getBcdOrder());
         entity.setBcdTypeName(form.getBcdTypeName());
         entity.setBcdPrice(form.getBcdPrice());
@@ -41,11 +38,8 @@ public class BreakdownCdHelper {
         form.setBcdBcoId(entity.getBcdBcoId());
         form.setBreakdownCo(entity.getBreakdownCo());
         form.setBcdCdId(entity.getBcdCdId());
-        form.setCategoryDetail(entity.getCategoryDetail());
         form.setBcdPoId(entity.getBcdPoId());
-        form.setPurposeOutline(entity.getPurposeOutline());
         form.setBcdPdId(entity.getBcdPdId());
-        form.setPurposeDetail(entity.getPurposeDetail());
         form.setBcdOrder(entity.getBcdOrder());
         form.setBcdTypeName(entity.getBcdTypeName());
         form.setBcdPrice(entity.getBcdPrice());

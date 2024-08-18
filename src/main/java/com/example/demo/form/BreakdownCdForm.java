@@ -42,22 +42,13 @@ public class BreakdownCdForm {
     @NotNull(message = "内訳種目区分を選択してください。")
     private Integer bcdCdId;
 
-    /** 内訳種目区分（更新処理時form.html表示用） */
-    private CategoryDetail categoryDetail;
-
     /** 用途概略区分 */
     @NotNull(message = "用途概略区分を選択してください。")
     private Integer bcdPoId;
 
-    /**　用途概略区分（更新処理時form.html表示用） */
-    private PurposeOutline purposeOutline;
-
     /**　用途詳細区分 */
     @NotNull(message = "用途詳細区分を選択してください。")
     private Integer bcdPdId;
-
-    /**　用途詳細区分（更新処理時form.html表示用） */
-    private PurposeDetail purposeDetail;
 
     /** 整列番号 */
     @NotNull(message = "整列番号は必須です。種目の並び順に反映されます。")

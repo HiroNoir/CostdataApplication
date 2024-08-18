@@ -231,7 +231,6 @@ public class ConstructionContractController {
             // form.htmlに引き継ぐべきパラメータをformに格納
             DesignContract targetDesignContract = designContractService.findById(targetConstructionContract.getCcDcId());
             form.setDesignContract(targetDesignContract);
-            form.setEstimateType(targetConstructionContract.getEstimateType());
             // 更新画面としてform.htmlが実行されるよう設定
             form.setIsNew(false);
             // 画面遷移（アドレス指定）
