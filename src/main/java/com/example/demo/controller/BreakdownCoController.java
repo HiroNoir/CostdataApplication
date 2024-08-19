@@ -199,6 +199,8 @@ public class BreakdownCoController {
             model.addAttribute("projectName", constructionContractService.findById(bcoCcId).getProjectName());
             model.addAttribute("breakdownCo", service.findAllById(bcoCcId,
                     longDirectConstructionPrice, longTotalConstructionPrice));
+            model.addAttribute("listSize", service.findAllById(bcoCcId,
+                    longDirectConstructionPrice, longTotalConstructionPrice).size());
             model.addAttribute("ccId", bcoCcId);
             // 画面遷移（アドレス指定）
             return "breakdown-co/specify";

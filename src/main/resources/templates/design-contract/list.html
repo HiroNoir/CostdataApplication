@@ -98,12 +98,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
                 <div class="col-auto">
                     <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/design-contract/create}" class="btn btn-primary">登録</a>
                 </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
             </div>
        </div>
     </main>

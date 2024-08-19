@@ -52,43 +52,65 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <h2>内訳頭紙詳細</h2>
-        <table border="1">
-            <tr>
-                <th>工事契約</th>
-                 <td th:text="${breakdownCo.constructionContract.projectName}"></td>
-            </tr>
-            <tr>
-                <th>内訳頭紙区分</th>
-                <td th:text="${breakdownCo.categoryOutline.coTypeName}"></td>
-            </tr>
-            <tr>
-                <th>金額</th>
-                <td style="text-align: right;" th:text="${#numbers.formatInteger(breakdownCo.bcoPrice, 3, 'COMMA')} + '円'"></td>
-            </tr>
-            <tr>
-                <th>登録日時</th>
-                <td th:text="${#temporals.format(breakdownCo.bcoCreatedAt, 'yyyy-MM-dd hh:mm:ss')}"></td>
-            </tr>
-            <tr>
-                <th>更新日時</th>
-                <td th:text="${#temporals.format(breakdownCo.bcoUpdatedAt, 'yyyy-MM-dd hh:mm:ss')}"></td>
-            </tr>
-            <tr>
-                <th>最終編集者</th>
-                <td th:text="${breakdownCo.employee.lastName} + ' '+ ${breakdownCo.employee.firstName}"></td>
-            </tr>
-        </table>
-        <h3>画面遷移表示</h3>
-        <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/breakdown-co/{id1}/{id2}/edit(id1=${breakdownCo.bcoId}, id2=${breakdownCo.bcoCcId})}">更新</a>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/breakdown-co/{id}/specify(id=${breakdownCo.bcoCcId})}">内訳頭紙一覧へ戻る</a>
-        <br>
-            <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/breakdown-co/{id1}/{id2}/remove(id1=${breakdownCo.bcoId}, id2=${breakdownCo.bcoCcId})}" method="post">
-            <input type="submit" value="削除">
-        </form>
-        <span th:if="${deleteError} neq null" th:text="${deleteError}" class="text-danger"></span>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="h2 text-center mb-5">内訳頭紙詳細</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th scope="col" style="width: 30%">工事契約</th>
+                             <td th:text="${breakdownCo.constructionContract.projectName}"></td>
+                        </tr>
+                        <tr>
+                            <th>内訳頭紙区分</th>
+                            <td th:text="${breakdownCo.categoryOutline.coTypeName}"></td>
+                        </tr>
+                        <tr>
+                            <th>金額</th>
+                            <td th:text="${#numbers.formatInteger(breakdownCo.bcoPrice, 3, 'COMMA')} + '円'"></td>
+                        </tr>
+                        <tr>
+                            <th>登録日時</th>
+                            <td th:text="${#temporals.format(breakdownCo.bcoCreatedAt, 'yyyy-MM-dd hh:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th>更新日時</th>
+                            <td th:text="${#temporals.format(breakdownCo.bcoUpdatedAt, 'yyyy-MM-dd hh:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th>最終編集者</th>
+                            <td th:text="${breakdownCo.employee.lastName} + ' '+ ${breakdownCo.employee.firstName}"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/breakdown-co/{id}/specify(id=${breakdownCo.bcoCcId})}" class="btn btn-primary">戻る</a>
+                </div>
+                <div class="col-auto">
+                    <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/breakdown-co/{id1}/{id2}/edit(id1=${breakdownCo.bcoId}, id2=${breakdownCo.bcoCcId})}" class="btn btn-primary">更新</a>
+                </div>
+                <div class="col-auto">
+                    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/breakdown-co/{id1}/{id2}/remove(id1=${breakdownCo.bcoId}, id2=${breakdownCo.bcoCcId})}" method="post">
+                        <input type="submit" value="削除" class="btn btn-danger">
+                    </form>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <span th:if="${deleteError} neq null" th:text="${deleteError}" class="text-danger"></span>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

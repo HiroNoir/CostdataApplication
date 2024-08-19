@@ -146,6 +146,7 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
@@ -157,6 +158,7 @@
                         <input type="submit" value="削除" class="btn btn-danger">
                     </form>
                 </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
             </div>
             <span th:if="${deleteError} neq null" th:text="${deleteError}" class="text-danger"></span>
        </div>
