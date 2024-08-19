@@ -51,59 +51,95 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <!-- タイトル：新規登録 or 更新処理 -->
-        <h2 th:if="${employeeForm.isNew}">従業員新規登録</h2>
-        <h2 th:unless="${employeeForm.isNew}">従業員更新処理</h2>
-        <!-- アクション：新規登録 or 更新処理 -->
-        <form th:action="${employeeForm.isNew} ? @{/employee/add} : @{/employee/{code}/revice(code=${employeeForm.code})}"
-            th:object="${employeeForm}" method="post">
-                <label for="code">従業員コード</label>
-                <div th:if="${employeeForm.isNew}">
-                    <!-- 新規登録時のcodeはtextで入力欄を表示する -->
-                    <input type="text" th:field="*{code}" id="code">
-                    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
-                    <span th:if="${codeError} neq null" th:text="${codeError}" class="text-danger"></span>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- タイトル：新規登録 or 更新処理 -->
+                    <h2 th:if="${employeeForm.isNew}" class="h2 text-center mb-5">従業員新規登録</h2>
+                    <h2 th:unless="${employeeForm.isNew}" class="h2 text-center mb-5">従業員更新処理</h2>
                 </div>
-                <div th:unless="${employeeForm.isNew}">
-                    <!-- 更新処理時のcodeはhiddenで仕込み、文字はth:textで表示する -->
-                    <input type="hidden" th:text="*{code}" th:field="*{code}" id="code">
+            </div>
+            <!-- フォーム -->
+            <!-- アクション：新規登録 or 更新処理 -->
+            <form th:action="${employeeForm.isNew} ? @{/employee/add} : @{/employee/{code}/revice(code=${employeeForm.code})}"
+                        th:object="${employeeForm}" method="post">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <!-- 新規登録時のcodeはtextで入力欄を表示する -->
+                                    <label for="code" class="form-label">従業員コード</label>
+                                    <div th:if="${employeeForm.isNew}">
+                                        <input type="text" th:field="*{code}" id="code" class="form-control">
+                                        <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
+                                        <span th:if="${codeError} neq null" th:text="${codeError}" class="text-danger"></span>
+                                    </div>
+                                    <!-- 更新処理時のcodeはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div th:unless="${employeeForm.isNew}">
+                                        <input type="hidden" th:text="*{code}" th:field="*{code}" id="code">
+                                    </div>
+                                </div>
+                                <!-- 以下は、code以外のinput -->
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">名字</label>
+                                    <div>
+                                        <input type="text" th:field="*{lastName}" id="lastName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">名前</label>
+                                    <div>
+                                        <input type="text" th:field="*{firstName}" id="firstName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">パスワード</label>
+                                    <div th:unless="${employeeForm.isNew}">※変更する場合のみ入力</div>
+                                    <div>
+                                        <input type="password" th:field="*{password}" id="password" class="form-control">
+                                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+                                        <span th:if="${passwordError} neq null" th:text="${passwordError}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">権限</label>
+                                    <div>
+                                        <select th:field="*{role}" id="role" class="form-select">
+                                            <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item:${T(com.example.demo.entity.Role).values()}" th:value="${item}" th:text="${item.getValue()}" th:selected="*{role} == ${item}">
+                                        </select>
+                                        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p class="mb-5">
+                                    <!-- ボタン：新規登録 or 更新処理 -->
+                                    <input th:if="${employeeForm.isNew}" type="submit" value="登録" class="btn btn-primary">
+                                    <input th:unless="${employeeForm.isNew}" type="submit" value="更新" class="btn btn-primary">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
                 </div>
-                <!-- 以下は、code以外のinput -->
-                <label for="lastName">名字</label>
-                <div>
-                    <input type="text" th:field="*{lastName}" id="lastName">
-                    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+            </form>
+            <div class="row">
+            <div class="col-md-4"></div>
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
-                <label for="firstName">名前</label>
-                <div>
-                    <input type="text" th:field="*{firstName}" id="firstName">
-                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                    <div class="col-auto">
+                    <a th:href="@{/employee/list}" class="btn btn-primary">戻る</a>
                 </div>
-                <label for="password">パスワード</label>
-                <div th:unless="${employeeForm.isNew}">※変更する場合のみ入力</div>
-                <div>
-                    <input type="password" th:field="*{password}" id="password">
-                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
-                    <span th:if="${passwordError} neq null" th:text="${passwordError}" class="text-danger"></span>
-                </div>
-                <label for="role">権限</label>
-                <div>
-                    <select th:field="*{role}" id="role">
-                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
-                        <option th:value="null"></option>
-                        <!-- 有効な値が入ったセレクトボックス -->
-                        <option th:each="item:${T(com.example.demo.entity.Role).values()}" th:value="${item}" th:text="${item.getValue()}" th:selected="*{role} == ${item}">
-                    </select>
-                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></span>
-                </div>
-            <!-- ボタン：新規登録 or 更新処理 -->
-            <input th:if="${employeeForm.isNew}" type="submit" value="登録">
-            <input th:unless="${employeeForm.isNew}" type="submit" value="更新">
-        </form>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/employee/list}">従業員一覧へ戻る</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

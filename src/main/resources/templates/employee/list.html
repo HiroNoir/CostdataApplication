@@ -51,34 +51,58 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <h2>従業員一覧</h2>
-        <!-- Flashメッセージの表示 -->
-        <p th:if="${message}" th:text="${message}" class="text-primary">
-            完了メッセージ
-        </p>
-        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
-            エラーメッセージ
-        </p>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>社員番号</th>
-                    <th>名前</th>
-                    <th>詳細</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="employee : ${employee}">
-                    <td th:text="${employee.code}"></td>
-                    <td th:text="${employee.lastName} + ' ' + ${employee.firstName}"></td>
-                    <td><a th:href="@{/employee/{code}/detail(code=${employee.code})}">詳細</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/employee/create}">新規登録</a>
-        <a th:href="@{/}">ホームへ戻る</a>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="h2 text-center mb-5">従業員一覧</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Flashメッセージの表示 -->
+                    <p th:if="${message}" th:text="${message}" class="text-primary">
+                        完了メッセージ
+                    </p>
+                    <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
+                        エラーメッセージ
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th>従業員コード</th>
+                                <th>名前</th>
+                                <th>詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="employee : ${employee}">
+                                <td th:text="${employee.code}"></td>
+                                <td th:text="${employee.lastName} + ' ' + ${employee.firstName}"></td>
+                                <td><a th:href="@{/employee/{code}/detail(code=${employee.code})}">詳細</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/employee/create}" class="btn btn-primary">登録</a>
+                </div>
+            </div>
+       </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
