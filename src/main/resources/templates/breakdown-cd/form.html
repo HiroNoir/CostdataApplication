@@ -83,28 +83,21 @@
                                     <div>
                                         <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
                                     <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
                                     <label class="form-label">内訳頭紙区分</label>
                                     <div>
                                         <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
                                     <!-- 新規登録更・新処理時の内訳頭紙のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                                     <div>
                                         <input type="hidden" th:field="*{bcdBcoId}" id="bcdBcoId">
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
-
                                     <!-- 新規登録時の内訳種目区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <label for="bcdCdId" class="form-label">内訳種目区分</label>
                                     <div th:if="${breakdownCdForm.isNew}">
@@ -123,11 +116,8 @@
                                             <option th:each="item : ${categoryDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
                                         </select>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
-
                                     <!-- 新規登録時の用途概略区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <label for="bcdPoId" class="form-label">用途概略区分</label>
                                     <div th:if="${breakdownCdForm.isNew}">
@@ -146,12 +136,8 @@
                                             <option th:each="item : ${purposeOutlineMap}" th:value="${item.value}" th:text="${item.key}"></option>
                                         </select>
                                     </div>
-
-
                                 </div>
                                 <div class="mb-3">
-
-
                                     <!-- 新規登録時の用途詳細区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <label for="bcdPdId" class="form-label">用途詳細区分</label>
                                     <div th:if="${breakdownCdForm.isNew}">
@@ -171,40 +157,28 @@
                                             <option th:each="item : ${purposeDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
                                         </select>
                                     </div>
-
-
                                 </div>
                                 <div class="mb-3">
-
-
                                     <!-- 以下は、上記以外のinput -->
                                     <label for="bcdOrder" class="form-label">整列番号</label>
                                     <div>
                                         <input type="text" th:field="*{bcdOrder}" id="bcdOrder" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdOrder')}" th:errors="*{bcdOrder}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
-
-
                                     <label for="bcdTypeName" class="form-label">種目名称</label>
                                     <div>
                                         <input type="text" th:field="*{bcdTypeName}" id="bcdTypeName" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdTypeName')}" th:errors="*{bcdTypeName}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
-
                                     <label for="bcdPrice" class="form-label">金額</label>
                                     <div>
                                         <input type="text" th:field="*{bcdPrice}" id="bcdPrice" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdPrice')}" th:errors="*{bcdPrice}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -212,46 +186,37 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-
                                 <div class="mb-3">
-
                                     <label for="bcdAreaBuilding" class="form-label">建築面積</label>
                                     <div>
                                         <input type="text" th:field="*{bcdAreaBuilding}" id="bcdAreaBuilding" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdAreaBuilding')}" th:errors="*{bcdAreaBuilding}" class="text-danger"></span>
                                         <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
                                     <label for="bcdAreaTotalfloor" class="form-label">延床面積</label>
                                     <div>
                                         <input type="text" th:field="*{bcdAreaTotalfloor}" id="bcdAreaTotalfloor" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdAreaTotalfloor')}" th:errors="*{bcdAreaTotalfloor}" class="text-danger"></span>
                                         <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                                 <div class="mb-3">
-
                                     <label for="bcdAreaRenovation" class="form-label">改修面積</label>
                                     <div>
                                         <input type="text" th:field="*{bcdAreaRenovation}" id="bcdAreaRenovation" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdAreaRenovation')}" th:errors="*{bcdAreaRenovation}" class="text-danger"></span>
                                         <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" class="text-danger"></span>
                                      </div>
-
                                 </div>
                                 <div class="mb-3">
-
                                     <label for="bcdAreaExterior" class="form-label">外構面積</label>
                                     <div>
                                         <input type="text" th:field="*{bcdAreaExterior}" id="bcdAreaExterior" class="form-control">
                                         <span th:if="${#fields.hasErrors('bcdAreaExterior')}" th:errors="*{bcdAreaExterior}" class="text-danger"></span>
                                         <span th:if="${areaMatchError} neq null" th:text="${areaMatchError}" class="text-danger"></span>
                                     </div>
-
                                 </div>
                                 <p class="mt-5">
                                     <!-- ボタン：新規登録 or 更新処理 -->

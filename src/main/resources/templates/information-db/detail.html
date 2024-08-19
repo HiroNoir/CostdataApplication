@@ -84,11 +84,11 @@
                         </tr>
                         <tr>
                             <th>数量情報</th>
-                            <td style="text-align: right;" th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')} + '㎡'"></td>
+                            <td th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')} + '㎡'"></td>
                         </tr>
                         <tr>
                             <th>金額情報</th>
-                            <td style="text-align: right;" th:text="${#numbers.formatInteger(informationDb.idbDataBigint, 3, 'COMMA')} + '円'"></td>
+                            <td th:text="${#numbers.formatInteger(informationDb.idbDataBigint, 3, 'COMMA')} + '円'"></td>
                         </tr>
                         <tr>
                             <th>登録日時</th>

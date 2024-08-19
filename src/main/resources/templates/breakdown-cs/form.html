@@ -52,84 +52,116 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <!-- タイトル：新規登録 or 更新処理 -->
-        <h2 th:if="${breakdownCsForm.isNew}">内訳科目新規登録</h2>
-        <h2 th:unless="${breakdownCsForm.isNew}">内訳科目更新処理</h2>
-
-        <!-- アクション：新規登録 or 更新処理 -->
-        <form th:action="${breakdownCsForm.isNew} ? @{/breakdown-cs/add} : @{/breakdown-cs/{id1}/{id2}/revice(id1=${breakdownCsForm.bcsBcdId}, id2=${breakdownCsForm.bcsCsId})}"
-            th:object="${breakdownCsForm}" method="post">
-
-                <!-- 新規登録時・更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <div>
-                    <input type="hidden" th:field="*{bcsBcdId}" id="bcsBcdId">
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- タイトル：新規登録 or 更新処理 -->
+                    <h2 th:if="${breakdownCsForm.isNew}" class="h2 text-center mb-5">内訳科目新規登録</h2>
+                    <h2 th:unless="${breakdownCsForm.isNew}" class="h2 text-center mb-5">内訳科目更新処理</h2>
                 </div>
+            </div>
+            <!-- フォーム -->
+            <!-- アクション：新規登録 or 更新処理 -->
+            <form th:action="${breakdownCsForm.isNew} ? @{/breakdown-cs/add} : @{/breakdown-cs/{id1}/{id2}/revice(id1=${breakdownCsForm.bcsBcdId}, id2=${breakdownCsForm.bcsCsId})}"
+                th:object="${breakdownCsForm}" method="post">
+                <div class="row">
+                    <div class="col"></div> <!-- 中心揃え用 -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <!-- 新規登録時・更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <div>
+                                        <input type="hidden" th:field="*{bcsBcdId}" id="bcsBcdId">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <label class="form-label">工事契約</label>
+                                    <div>
+                                        <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">内訳頭紙区分</label>
+                                    <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">内訳種目区分</label>
+                                    <!-- 新規登録・更新処理時の内訳種目区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">内訳種目</label>
+                                    <!-- 新規登録・更新処理時の内訳種目のbcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{breakdownCd.bcdTypeName}" th:field="*{breakdownCd.bcdTypeName}" id="breakdownCd.bcdTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bcsCsId" class="form-label">内訳科目区分</label>
+                                    <!-- 新規登録時の内訳科目区分びidはセレクトボックスで選択して仕込み -->
+                                    <div th:if="${breakdownCsForm.isNew}">
+                                        <select th:field="*{bcsCsId}" id="bcsCsId" class="form-select">
+                                            <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${categorySubjectMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                        <span th:if="${#fields.hasErrors('bcsCsId')}" th:errors="*{bcsCsId}" class="text-danger"></span>
+                                        <span th:if="${bcsCsIdError} neq null" th:text="${bcsCsIdError}" class="text-danger"></span>
+                                    </div>
+                                    <!-- 更新処理時の内訳種目区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <!-- 更新処理時の内訳種目区分のiiItemNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div th:unless="${breakdownCsForm.isNew}">
+                                        <input type="hidden" th:field="*{bcsCsId}" id="bcsCsId">
+                                        <input type="hidden" th:text="*{CategorySubject.csTypeName}" th:field="*{CategorySubject.csTypeName}" id="CategorySubject.csTypeName">
+                                    </div>
+                                </div>
+                                <!-- 以下は、上記以外のinput -->
+                                <div class="mb-3">
 
-                <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
-                <label>工事契約</label>
-                <div>
-                    <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
+                                    <label for="bcsDataText" class="form-label">文字情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{bcsDataText}" id="bcsDataText" class="form-control">
+                                        <span th:if="${#fields.hasErrors('bcsDataText')}" th:errors="*{bcsDataText}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bcsDataBigint" class="form-label">金額情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{bcsDataBigint}" id="bcsDataBigint" class="form-control">
+                                        <span th:if="${#fields.hasErrors('bcsDataBigint')}" th:errors="*{bcsDataBigint}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p class="mt-5">
+                                    <!-- ボタン：新規登録 or 更新処理 -->
+                                    <input th:if="${breakdownCsForm.isNew}" type="submit" value="登録" class="btn btn-primary">
+                                    <input th:unless="${breakdownCsForm.isNew}" type="submit" value="更新" class="btn btn-primary">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div> <!-- 中心揃え用 -->
                 </div>
-
-                <label>内訳頭紙区分</label>
-                <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
+            </form>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-auto">
+                            <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
-
-                <label>内訳種目区分</label>
-                <!-- 新規登録・更新処理時の内訳種目区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
+                <div class="col-auto">
+                            <a th:href="@{/breakdown-cs/{id}/specify(id=${breakdownCsForm.bcsBcdId})}" class="btn btn-primary">戻る</a>
                 </div>
-
-                <label>内訳種目</label>
-                <!-- 新規登録・更新処理時の内訳種目のbcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{breakdownCd.bcdTypeName}" th:field="*{breakdownCd.bcdTypeName}" id="breakdownCd.bcdTypeName">
-                </div>
-
-                <label for="bcsCsId">内訳科目区分</label>
-                <!-- 新規登録時の内訳科目区分びidはセレクトボックスで選択して仕込み -->
-                <div th:if="${breakdownCsForm.isNew}">
-                    <select th:field="*{bcsCsId}" id="bcsCsId">
-                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
-                        <option th:value="null"></option>
-                        <!-- 有効な値が入ったセレクトボックス -->
-                        <option th:each="item : ${categorySubjectMap}" th:value="${item.value}" th:text="${item.key}"></option>
-                    </select>
-                    <span th:if="${#fields.hasErrors('bcsCsId')}" th:errors="*{bcsCsId}" class="text-danger"></span>
-                    <span th:if="${bcsCsIdError} neq null" th:text="${bcsCsIdError}" class="text-danger"></span>
-                </div>
-                <!-- 更新処理時の内訳種目区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <!-- 更新処理時の内訳種目区分のiiItemNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div th:unless="${breakdownCsForm.isNew}">
-                    <input type="hidden" th:field="*{bcsCsId}" id="bcsCsId">
-                    <input type="hidden" th:text="*{CategorySubject.csTypeName}" th:field="*{CategorySubject.csTypeName}" id="CategorySubject.csTypeName">
-                </div>
-
-                <!-- 以下は、上記以外のinput -->
-
-                <label for="bcsDataText">文字情報</label>
-                <div>
-                    <input type="text" th:field="*{bcsDataText}" id="bcsDataText">
-                    <span th:if="${#fields.hasErrors('bcsDataText')}" th:errors="*{bcsDataText}" class="text-danger"></span>
-                </div>
-
-                <label for="bcsDataBigint">金額情報</label>
-                <div>
-                    <input type="text" th:field="*{bcsDataBigint}" id="bcsDataBigint">
-                    <span th:if="${#fields.hasErrors('bcsDataBigint')}" th:errors="*{bcsDataBigint}" class="text-danger"></span>
-                </div>
-
-            <!-- ボタン：新規登録 or 更新処理 -->
-            <input th:if="${breakdownCsForm.isNew}" type="submit" value="登録">
-            <input th:unless="${breakdownCsForm.isNew}" type="submit" value="更新">
-        </form>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/breakdown-cs/{id}/specify(id=${breakdownCsForm.bcsBcdId})}">内訳情報一覧へ戻る</a>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

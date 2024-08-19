@@ -124,6 +124,7 @@ public class BreakdownCsController {
             model.addAttribute("cdTypeName", categoryDetail.getCdTypeName());
             model.addAttribute("bcdTypeName", targetBreakdownCd.getBcdTypeName());
             model.addAttribute("breakdownCs", service.findAllById(bcsBcdId));
+            model.addAttribute("listSize", service.findAllById(bcsBcdId).size());
             model.addAttribute("bcdId", bcsBcdId);
             model.addAttribute("bcdBcoId", targetBreakdownCd.getBcdBcoId());
             // 画面遷移（アドレス指定）
