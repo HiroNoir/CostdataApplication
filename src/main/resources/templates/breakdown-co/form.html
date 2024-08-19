@@ -78,17 +78,17 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="bcoCcId" class="form-label">工事契約</label>
                                     <!-- 新規登録・更新処理時の工事契約のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                                     <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
-                                    <label for="bcoCcId" class="form-label">工事契約</label>
                                     <div>
                                         <input type="hidden" th:field="*{bcoCcId}" id="bcoCcId">
                                         <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <!-- 新規登録時の内訳頭紙区分びidはセレクトボックスで選択して仕込み -->
                                     <label for="bcoCoId" class="form-label">内訳頭紙区分</label>
+                                    <!-- 新規登録時の内訳頭紙区分びidはセレクトボックスで選択して仕込み -->
                                     <div th:if="${breakdownCoForm.isNew}">
                                         <select th:field="*{bcoCoId}" id="bcoCoId" class="form-select">
                                             <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <p class="mt-5">
-                                <!-- ボタン：新規登録 or 更新処理 -->
+                                    <!-- ボタン：新規登録 or 更新処理 -->
                                     <input th:if="${breakdownCoForm.isNew}" type="submit" value="登録" class="btn btn-primary">
                                     <input th:unless="${breakdownCoForm.isNew}" type="submit" value="更新" class="btn btn-primary">
                                 </p>

@@ -56,33 +56,39 @@
         <!-- タイトル：新規登録 or 更新処理 -->
         <h2 th:if="${informationDbForm.isNew}">内訳情報新規登録</h2>
         <h2 th:unless="${informationDbForm.isNew}">内訳情報更新処理</h2>
+
         <!-- アクション：新規登録 or 更新処理 -->
         <form th:action="${informationDbForm.isNew} ? @{/information-db/add} : @{/information-db/{id1}/{id2}/revice(id1=${informationDbForm.idbBcdId}, id2=${informationDbForm.idbIiId})}"
             th:object="${informationDbForm}" method="post">
-                <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
+
                 <label>工事契約</label>
+                <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
                 <div>
                     <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
                 </div>
-                <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+
                 <label>内訳頭紙区分</label>
+                <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
                 <div>
                     <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
                 </div>
-                <!-- 新規登録・更新処理時の内訳頭紙区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+
                 <label>内訳種目区分</label>
+                <!-- 新規登録・更新処理時の内訳頭紙区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
                 <div>
                     <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
                 </div>
+
+                <label for="idbBcdId">内訳種目</label>
                 <!-- 新規登録・更新処理時の内訳種目のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                 <!-- 新規登録・更新処理時の内訳種目のbcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <label for="idbBcdId">内訳種目</label>
                 <div>
                     <input type="hidden" th:field="*{idbBcdId}" id="idbBcdId">
                     <input type="hidden" th:text="*{breakdownCd.bcdTypeName}" th:field="*{breakdownCd.bcdTypeName}" id="breakdownCd.bcdTypeName">
                 </div>
-                <!-- 新規登録時の内訳情報区分びidはセレクトボックスで選択して仕込み -->
+
                 <label for="idbIiId">内訳情報区分</label>
+                <!-- 新規登録時の内訳情報区分びidはセレクトボックスで選択して仕込み -->
                 <div th:if="${informationDbForm.isNew}">
                     <select th:field="*{idbIiId}" id="idbIiId">
                         <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
@@ -99,22 +105,27 @@
                     <input type="hidden" th:field="*{idbIiId}" id="idbIiId">
                     <input type="hidden" th:text="*{informationItem.iiItemName}" th:field="*{informationItem.iiItemName}" id="informationItem.iiItemName">
                 </div>
+
                 <!-- 以下は、上記以外のinput -->
+
                 <label for="idbDataText">文字情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataText}" id="idbDataText">
                     <span th:if="${#fields.hasErrors('idbDataText')}" th:errors="*{idbDataText}" class="text-danger"></span>
                 </div>
+
                 <label for="idbDataDouble">数量情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataDouble}" id="idbDataDouble">
                     <span th:if="${#fields.hasErrors('idbDataDouble')}" th:errors="*{idbDataDouble}" class="text-danger"></span>
                 </div>
+
                 <label for="idbDataBigint">金額情報</label>
                 <div>
                     <input type="text" th:field="*{idbDataBigint}" id="idbDataBigint">
                     <span th:if="${#fields.hasErrors('idbDataBigint')}" th:errors="*{idbDataBigint}" class="text-danger"></span>
                 </div>
+
             <!-- ボタン：新規登録 or 更新処理 -->
             <input th:if="${informationDbForm.isNew}" type="submit" value="登録">
             <input th:unless="${informationDbForm.isNew}" type="submit" value="更新">

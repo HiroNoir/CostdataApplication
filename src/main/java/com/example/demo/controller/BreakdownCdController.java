@@ -130,6 +130,7 @@ public class BreakdownCdController {
             model.addAttribute("projectName", constructionContract.getProjectName());
             model.addAttribute("coTypeName", categoryOutline.getCoTypeName());
             model.addAttribute("breakdownCd", service.findAllById(bcdBcoId));
+            model.addAttribute("listSize", service.findAllById(bcdBcoId).size());
             model.addAttribute("ccId", constructionContract.getCcId());
             model.addAttribute("bcoId", bcdBcoId);
             // model.addAttribute("coId", categoryOutline.getCoId());

@@ -77,17 +77,17 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="ccDcId" class="form-label">設計契約</label>
                                     <!-- 新規登録・更新処理時の設計契約のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
                                     <!-- 新規登録・更新処理時の設計契約のcontracttNameはhiddenで仕込み、文字はth:textで表示する -->
-                                    <label for="ccDcId" class="form-label">設計契約</label>
                                     <div>
                                         <input type="hidden" th:field="*{ccDcId}" id="ccDcId">
                                         <input type="hidden" th:text="*{designContract.contractName}" th:field="*{designContract.contractName}" id="designContract.contractName">
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <label for="ccEtId" class="form-label">内訳種別区分</label>
+                                    <!-- 新規登録時の内訳種別区分びidはセレクトボックスで選択して仕込み（nullチェック有り） -->
                                     <div th:if="${constructionContractForm.isNew}">
                                         <select th:field="*{ccEtId}" id="ccEtId" class="form-select">
                                             <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->

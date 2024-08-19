@@ -52,56 +52,100 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <h2>内訳種目一覧</h2>
-        <!-- Flashメッセージの表示 -->
-        <p th:if="${message}" th:text="${message}" class="text-primary">
-            完了メッセージ
-        </p>
-        <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
-            エラーメッセージ
-        </p>
-        <h3>工事契約</h3>
-        <p th:text="${projectName}"></p>
-        <h3>内訳頭紙区分</h3>
-        <p th:text="${coTypeName}"></p>
-        <h3>合計</h3>
-        <p th:text="${#numbers.formatInteger(longTargetPrice, 3, 'COMMA')} + '円'"></p>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>整列番号</th>
-                    <th>種目名称</th>
-                    <th>金額</th>
-                    <th>㎡単価</th>
-                    <th>内訳</th>
-                    <th>情報</th>
-                    <th>詳細</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="breakdownCd : ${breakdownCd}">
-                    <td style="text-align: center;" th:text="${breakdownCd.bcdOrder}"></td>
-                    <td th:text="${breakdownCd.bcdTypeName}"></td>
-                    <td style="text-align: right;" th:text="${#numbers.formatInteger(breakdownCd.bcdPrice, 3, 'COMMA')} + '円'"></td>
-                    <td style="text-align: right;" th:text="${breakdownCd.unitPricePerSquareMeter}"></td>
-                    <td><a th:href="@{/breakdown-cs/{id}/specify(id=${breakdownCd.bcdId})}">科目</a></td>
-                    <td><a th:href="@{/information-db/{id}/specify(id=${breakdownCd.bcdId})}">情報</a></td>
-                    <td><a th:href="@{/breakdown-cd/{id1}/{id2}/detail(id1=${breakdownCd.bcdId}, id2=${breakdownCd.bcdBcoId})}">詳細</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <h3 sec:authorize="hasAuthority('EDITOR')">入力金額チェック用検算（差額計算）</h3>
-        <table sec:authorize="hasAuthority('EDITOR')">
-            <tr>
-                <th style="text-align: left;">内訳頭紙の直接工事費－内訳種目の合計金額＝</th>
-                <td style="text-align: right;" th:text="${#numbers.formatInteger(defDirectConstructionPrice, 3, 'COMMA')} + '円'"></td>
-            </tr>
-        </table>
-        <h3>画面遷移表示</h3>
-        <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/breakdown-cd/{id}/create(id=${bcoId})}">新規登録</a>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/breakdown-co/{id}/specify(id=${ccId})}">内訳頭紙一覧へ戻る</a>
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="h2 text-center mb-5">内訳種目一覧</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Flashメッセージの表示 -->
+                    <p th:if="${message}" th:text="${message}" class="text-primary">
+                        完了メッセージ
+                    </p>
+                    <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
+                        エラーメッセージ
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <h4 class="h4">工事契約</h4 >
+                    <p th:text="${projectName}"></p>
+                    <h4 class="h4">内訳頭紙区分</h4>
+                    <p th:text="${coTypeName}"></p>
+                    <h4 class="h4">合計</h4>
+                    <p th:text="${#numbers.formatInteger(longTargetPrice, 3, 'COMMA')} + '円'"></p>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th>整列番号</th>
+                                <th>種目名称</th>
+                                <th>金額</th>
+                                <th>㎡単価</th>
+                                <th>内訳</th>
+                                <th>情報</th>
+                                <th>詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="breakdownCd : ${breakdownCd}">
+                                <td style="text-align: center;" th:text="${breakdownCd.bcdOrder}"></td>
+                                <td th:text="${breakdownCd.bcdTypeName}"></td>
+                                <td style="text-align: right;" th:text="${#numbers.formatInteger(breakdownCd.bcdPrice, 3, 'COMMA')} + '円'"></td>
+                                <td style="text-align: right;" th:text="${breakdownCd.unitPricePerSquareMeter}"></td>
+                                <td><a th:href="@{/breakdown-cs/{id}/specify(id=${breakdownCd.bcdId})}">科目</a></td>
+                                <td><a th:href="@{/information-db/{id}/specify(id=${breakdownCd.bcdId})}">情報</a></td>
+                                <td><a th:href="@{/breakdown-cd/{id1}/{id2}/detail(id1=${breakdownCd.bcdId}, id2=${breakdownCd.bcdBcoId})}">詳細</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-sm-10 col-md-8 col-lg-6">
+                    <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">入力金額チェック用検算（差額計算）</h3>
+                    <table sec:authorize="hasAuthority('EDITOR')">
+                        <tr>
+                            <th style="text-align: left;">内訳頭紙の直接工事費－内訳種目の合計金額＝</th>
+                            <td style="text-align: right;" th:text="${#numbers.formatInteger(defDirectConstructionPrice, 3, 'COMMA')} + '円'"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/breakdown-co/{id}/specify(id=${ccId})}" class="btn btn-primary">戻る</a>
+                </div>
+                <div class="col-auto">
+                    <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/breakdown-cd/{id}/create(id=${bcoId})}" class="btn btn-primary">登録</a>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

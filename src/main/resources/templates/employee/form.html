@@ -70,8 +70,8 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <!-- 新規登録時のcodeはtextで入力欄を表示する -->
                                     <label for="code" class="form-label">従業員コード</label>
+                                    <!-- 新規登録時のcodeはtextで入力欄を表示する -->
                                     <div th:if="${employeeForm.isNew}">
                                         <input type="text" th:field="*{code}" id="code" class="form-control">
                                         <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="text-danger"></span>
