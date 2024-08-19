@@ -106,9 +106,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/construction-contract/{id}/create(id=${dcId})}" class="btn btn-primary">登録</a>
+                <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col-auto">
+                    <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/construction-contract/{id}/create(id=${dcId})}" class="btn btn-primary">登録</a>
                 </div>
             </div>
         </div>

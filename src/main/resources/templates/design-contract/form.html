@@ -52,41 +52,75 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <!-- タイトル：新規登録 or 更新処理 -->
-        <h2 th:if="${designContractForm.isNew}">設計契約新規登録</h2>
-        <h2 th:unless="${designContractForm.isNew}">設計契約更新処理</h2>
-        <!-- アクション：新規登録 or 更新処理 -->
-        <form th:action="${designContractForm.isNew} ? @{/design-contract/add} : @{/design-contract/{id}/revice(id=${designContractForm.dcId})}"
-            th:object="${designContractForm}" method="post">
-                <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
-                <!-- 更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <div th:unless="${designContractForm.isNew}">
-                    <input type="hidden" th:field="*{dcId}" id="dcId">
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- タイトル：新規登録 or 更新処理 -->
+                    <h2 th:if="${designContractForm.isNew}" class="h2 text-center mb-5">設計契約新規登録</h2>
+                    <h2 th:unless="${designContractForm.isNew}" class="h2 text-center mb-5">設計契約更新処理</h2>
                 </div>
-                <!-- 以下は、上記以外のinput -->
-                <label for="contractNumber">業務番号</label>
-                <div>
-                    <input type="text" th:field="*{contractNumber}" id="contractNumber">
-                    <span th:if="${#fields.hasErrors('contractNumber')}" th:errors="*{contractNumber}" class="text-danger"></span>
+            </div>
+            <!-- フォーム -->
+            <!-- アクション：新規登録 or 更新処理 -->
+            <form th:action="${designContractForm.isNew} ? @{/design-contract/add} : @{/design-contract/{id}/revice(id=${designContractForm.dcId})}"
+                th:object="${designContractForm}" method="post">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div>
+                                    <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
+                                    <!-- 更新処理時のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <div th:unless="${designContractForm.isNew}">
+                                        <input type="hidden" th:field="*{dcId}" id="dcId">
+                                    </div>
+                                </div>
+                                <!-- 以下は、上記以外のinput -->
+                                <div class="mb-3">
+                                    <label for="contractNumber" class="form-label">業務番号</label>
+                                    <div>
+                                        <input type="text" th:field="*{contractNumber}" id="contractNumber" class="form-control">
+                                        <span th:if="${#fields.hasErrors('contractNumber')}" th:errors="*{contractNumber}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contractName" class="form-label">業務名称</label>
+                                    <div>
+                                        <input type="text" th:field="*{contractName}" id="contractName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('contractName')}" th:errors="*{contractName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customerName" class="form-label">発注者名</label>
+                                    <div>
+                                        <input type="text" th:field="*{customerName}" id="customerName" class="form-control">
+                                        <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p class="mb-5">
+                                    <!-- ボタン：新規登録 or 更新処理 -->
+                                    <input th:if="${designContractForm.isNew}" type="submit" value="登録" class="btn btn-primary">
+                                    <input th:unless="${designContractForm.isNew}" type="submit" value="更新" class="btn btn-primary">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
                 </div>
-                <label for="contractName">業務名称</label>
-                <div>
-                    <input type="text" th:field="*{contractName}" id="contractName">
-                    <span th:if="${#fields.hasErrors('contractName')}" th:errors="*{contractName}" class="text-danger"></span>
+            </form>
+            <div class="row">
+            <div class="col-md-4"></div>
+                <div class="col-auto">
+                <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
-                <label for="customerName">発注者名</label>
-                <div>
-                    <input type="text" th:field="*{customerName}" id="customerName">
-                    <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="text-danger"></span>
+                    <div class="col-auto">
+                    <a th:href="@{/design-contract/list}" class="btn btn-primary">戻る</a>
                 </div>
-            <!-- ボタン：新規登録 or 更新処理 -->
-            <input th:if="${designContractForm.isNew}" type="submit" value="登録">
-            <input th:unless="${designContractForm.isNew}" type="submit" value="更新">
-        </form>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/design-contract/list}">設計契約一覧へ戻る</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

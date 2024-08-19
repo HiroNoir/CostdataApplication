@@ -52,6 +52,7 @@ public class DesignContractController {
         /** 一覧画面へ遷移 */
         // Modelに格納
         model.addAttribute("designContract", service.findAll());
+        model.addAttribute("listSize", service.findAll().size());
         // 画面遷移（アドレス指定）
         return "design-contract/list";
 
