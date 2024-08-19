@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col"></div> <!-- 中心揃え用 -->
                     <div class="col-sm-10 col-md-8 col-lg-6">
-                        <div class="card">
+                        <div class="card　mb-5">
                             <div class="card-body">
                                 <div>
                                     <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
@@ -80,6 +80,7 @@
                                 <!-- 以下は、上記以外のinput -->
                                 <div class="mb-3">
                                     <label for="contractNumber" class="form-label">業務番号</label>
+                                    <div>※X2024-001のように、半角英数とハイフンを使って入力してください。</div>
                                     <div>
                                         <input type="text" th:field="*{contractNumber}" id="contractNumber" class="form-control">
                                         <span th:if="${#fields.hasErrors('contractNumber')}" th:errors="*{contractNumber}" class="text-danger"></span>
@@ -87,6 +88,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="contractName" class="form-label">業務名称</label>
+                                    <div>※正式な受注名で入力してください。</div>
                                     <div>
                                         <input type="text" th:field="*{contractName}" id="contractName" class="form-control">
                                         <span th:if="${#fields.hasErrors('contractName')}" th:errors="*{contractName}" class="text-danger"></span>
@@ -94,6 +96,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="customerName" class="form-label">発注者名</label>
+                                    <div>※契約上の発注者名で入力してください。</div>
                                     <div>
                                         <input type="text" th:field="*{customerName}" id="customerName" class="form-control">
                                         <span th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}" class="text-danger"></span>
