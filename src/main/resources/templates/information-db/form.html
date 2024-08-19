@@ -52,87 +52,119 @@
         </div>
     </nav>
     <!-- メイン -->
-    <main>
-        <!-- タイトル：新規登録 or 更新処理 -->
-        <h2 th:if="${informationDbForm.isNew}">内訳情報新規登録</h2>
-        <h2 th:unless="${informationDbForm.isNew}">内訳情報更新処理</h2>
-
-        <!-- アクション：新規登録 or 更新処理 -->
-        <form th:action="${informationDbForm.isNew} ? @{/information-db/add} : @{/information-db/{id1}/{id2}/revice(id1=${informationDbForm.idbBcdId}, id2=${informationDbForm.idbIiId})}"
+    <main class="py-4">
+       <div class="container">
+            <div class="row">
+                <div class="col">
+                    <!-- タイトル：新規登録 or 更新処理 -->
+                    <h2 th:if="${informationDbForm.isNew}" class="h2 text-center mb-5">内訳情報新規登録</h2>
+                    <h2 th:unless="${informationDbForm.isNew}" class="h2 text-center mb-5">内訳情報更新処理</h2>
+                </div>
+            </div>
+            <!-- フォーム -->
+            <!-- アクション：新規登録 or 更新処理 -->
+            <form th:action="${informationDbForm.isNew} ? @{/information-db/add} : @{/information-db/{id1}/{id2}/revice(id1=${informationDbForm.idbBcdId}, id2=${informationDbForm.idbIiId})}"
             th:object="${informationDbForm}" method="post">
+                <div class="row">
+                    <div class="col"></div> <!-- 中心揃え用 -->
+                    <div class="col-sm-10 col-md-8 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">工事契約</label>
+                                    <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">内訳頭紙区分</label>
+                                    <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">内訳種目区分</label>
+                                    <!-- 新規登録・更新処理時の内訳頭紙区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idbBcdId" class="form-label">内訳種目</label>
+                                    <!-- 新規登録・更新処理時の内訳種目のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <!-- 新規登録・更新処理時の内訳種目のbcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div>
+                                        <input type="hidden" th:field="*{idbBcdId}" id="idbBcdId">
+                                        <input type="hidden" th:text="*{breakdownCd.bcdTypeName}" th:field="*{breakdownCd.bcdTypeName}" id="breakdownCd.bcdTypeName">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idbIiId" class="form-label">内訳情報区分</label>
+                                    <!-- 新規登録時の内訳情報区分びidはセレクトボックスで選択して仕込み -->
+                                    <div th:if="${informationDbForm.isNew}">
+                                        <select th:field="*{idbIiId}" id="idbIiId" class="form-select">
+                                            <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${informationItemlMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                        <span th:if="${#fields.hasErrors('idbIiId')}" th:errors="*{idbIiId}" class="text-danger"></span>
+                                        <span th:if="${idbIiIdError} neq null" th:text="${idbIiIdError}" class="text-danger"></span>
+                                    </div>
+                                    <!-- 更新処理時の内訳情報区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
+                                    <!-- 更新処理時の内訳情報区分のiiItemNameはhiddenで仕込み、文字はth:textで表示する -->
+                                    <div th:unless="${informationDbForm.isNew}">
+                                        <input type="hidden" th:field="*{idbIiId}" id="idbIiId">
+                                        <input type="hidden" th:text="*{informationItem.iiItemName}" th:field="*{informationItem.iiItemName}" id="informationItem.iiItemName">
+                                    </div>
+                                </div>
+                                <!-- 以下は、上記以外のinput -->
+                                <div class="mb-3">
 
-                <label>工事契約</label>
-                <!-- 新規登録・更新処理時の工事契約のprojectNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{constructionContract.projectName}" th:field="*{constructionContract.projectName}" id="constructionContract.projectName">
+                                    <label for="idbDataText" class="form-label">文字情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{idbDataText}" id="idbDataText" class="form-control">
+                                        <span th:if="${#fields.hasErrors('idbDataText')}" th:errors="*{idbDataText}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idbDataDouble" class="form-label">数量情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{idbDataDouble}" id="idbDataDouble" class="form-control">
+                                        <span th:if="${#fields.hasErrors('idbDataDouble')}" th:errors="*{idbDataDouble}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idbDataBigint" class="form-label">金額情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{idbDataBigint}" id="idbDataBigint" class="form-control">
+                                        <span th:if="${#fields.hasErrors('idbDataBigint')}" th:errors="*{idbDataBigint}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <p class="mt-5">
+                                    <!-- ボタン：新規登録 or 更新処理 -->
+                                    <input th:if="${informationDbForm.isNew}" type="submit" value="登録" class="btn btn-primary">
+                                    <input th:unless="${informationDbForm.isNew}" type="submit" value="更新" class="btn btn-primary">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div> <!-- 中心揃え用 -->
                 </div>
-
-                <label>内訳頭紙区分</label>
-                <!-- 新規登録・更新処理時の内訳頭紙区分のcoTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{categoryOutline.coTypeName}" th:field="*{categoryOutline.coTypeName}" id="categoryOutline.coTypeName">
+            </form>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">戻る</a>
                 </div>
-
-                <label>内訳種目区分</label>
-                <!-- 新規登録・更新処理時の内訳頭紙区分のcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:text="*{categoryDetail.cdTypeName}" th:field="*{categoryDetail.cdTypeName}" id="categoryDetail.cdTypeName">
+                <div class="col-auto">
+                    <a th:href="@{/information-db/{id}/specify(id=${informationDbForm.idbBcdId})}" class="btn btn-primary">戻る</a>
                 </div>
-
-                <label for="idbBcdId">内訳種目</label>
-                <!-- 新規登録・更新処理時の内訳種目のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <!-- 新規登録・更新処理時の内訳種目のbcdTypeNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div>
-                    <input type="hidden" th:field="*{idbBcdId}" id="idbBcdId">
-                    <input type="hidden" th:text="*{breakdownCd.bcdTypeName}" th:field="*{breakdownCd.bcdTypeName}" id="breakdownCd.bcdTypeName">
-                </div>
-
-                <label for="idbIiId">内訳情報区分</label>
-                <!-- 新規登録時の内訳情報区分びidはセレクトボックスで選択して仕込み -->
-                <div th:if="${informationDbForm.isNew}">
-                    <select th:field="*{idbIiId}" id="idbIiId">
-                        <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
-                        <option th:value="null"></option>
-                        <!-- 有効な値が入ったセレクトボックス -->
-                        <option th:each="item : ${informationItemlMap}" th:value="${item.value}" th:text="${item.key}"></option>
-                    </select>
-                    <span th:if="${#fields.hasErrors('idbIiId')}" th:errors="*{idbIiId}" class="text-danger"></span>
-                    <span th:if="${idbIiIdError} neq null" th:text="${idbIiIdError}" class="text-danger"></span>
-                </div>
-                <!-- 更新処理時の内訳情報区分のidはhiddenで仕込み、文字はth:textでも表示しない(th:text文を削除) -->
-                <!-- 更新処理時の内訳情報区分のiiItemNameはhiddenで仕込み、文字はth:textで表示する -->
-                <div th:unless="${informationDbForm.isNew}">
-                    <input type="hidden" th:field="*{idbIiId}" id="idbIiId">
-                    <input type="hidden" th:text="*{informationItem.iiItemName}" th:field="*{informationItem.iiItemName}" id="informationItem.iiItemName">
-                </div>
-
-                <!-- 以下は、上記以外のinput -->
-
-                <label for="idbDataText">文字情報</label>
-                <div>
-                    <input type="text" th:field="*{idbDataText}" id="idbDataText">
-                    <span th:if="${#fields.hasErrors('idbDataText')}" th:errors="*{idbDataText}" class="text-danger"></span>
-                </div>
-
-                <label for="idbDataDouble">数量情報</label>
-                <div>
-                    <input type="text" th:field="*{idbDataDouble}" id="idbDataDouble">
-                    <span th:if="${#fields.hasErrors('idbDataDouble')}" th:errors="*{idbDataDouble}" class="text-danger"></span>
-                </div>
-
-                <label for="idbDataBigint">金額情報</label>
-                <div>
-                    <input type="text" th:field="*{idbDataBigint}" id="idbDataBigint">
-                    <span th:if="${#fields.hasErrors('idbDataBigint')}" th:errors="*{idbDataBigint}" class="text-danger"></span>
-                </div>
-
-            <!-- ボタン：新規登録 or 更新処理 -->
-            <input th:if="${informationDbForm.isNew}" type="submit" value="登録">
-            <input th:unless="${informationDbForm.isNew}" type="submit" value="更新">
-        </form>
-        <h3>画面遷移表示</h3>
-        <a th:href="@{/}">ホームへ戻る</a>
-        <a th:href="@{/information-db/{id}/specify(id=${informationDbForm.idbBcdId})}">内訳情報一覧へ戻る</a>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+        </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

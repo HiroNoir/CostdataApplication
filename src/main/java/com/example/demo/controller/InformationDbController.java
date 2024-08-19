@@ -86,6 +86,7 @@ public class InformationDbController {
             model.addAttribute("cdTypeName", categoryDetail.getCdTypeName());
             model.addAttribute("bcdTypeName", targetBreakdownCd.getBcdTypeName());
             model.addAttribute("informationDb", service.findAllById(idbBcdId));
+            model.addAttribute("listSize", service.findAllById(idbBcdId).size());
             model.addAttribute("bcdId", targetBreakdownCd.getBcdId());
             model.addAttribute("bcdBcoId", targetBreakdownCd.getBcdBcoId());
             // model.addAttribute("idbBcdId", idbBcdId);
