@@ -151,6 +151,9 @@
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
                 </div>
                 <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">戻る</a>
+                </div>
+                <div class="col-auto">
                     <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/construction-contract/{id}/edit(id=${constructionContract.ccId})}" class="btn btn-primary">更新</a>
                 </div>
                 <div class="col-auto">
