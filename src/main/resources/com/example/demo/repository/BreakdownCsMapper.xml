@@ -90,7 +90,7 @@
         </association>
     </resultMap>
     <!-- 合計取得 -->
-    <select id="selectSumById" resultMap="breakdownCsResult">
+    <select id="sumSelectById" resultMap="breakdownCsResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT SUM(bcs_data_bigint) AS sum_bcs_price
         FROM breakdown_cs

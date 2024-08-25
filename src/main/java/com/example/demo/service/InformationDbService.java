@@ -11,8 +11,8 @@ import com.example.demo.service.impl.LoginUserDetails;
  */
 public interface InformationDbService {
 
-    /** 【合計取得】 */
-    InformationDb findSumById(Integer idbBcdId);
+    /** 【合計取得 ※建築+電気設備+機械設備+昇降機設備】 */
+    InformationDb sumFindById(Integer idbBcdId);
 
     /** 【特定取得】 */
     List<InformationDb> findAllById(Integer idbBcdId);

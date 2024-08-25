@@ -85,7 +85,7 @@
         </association>
     </resultMap>
     <!-- 合計取得 -->
-    <select id="selectSumById" resultMap="breakdownCdResult">
+    <select id="sumSelectById" resultMap="breakdownCdResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT SUM(bcd_price) AS sum_bcd_price
         FROM breakdown_cd

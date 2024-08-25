@@ -89,7 +89,7 @@ public class BreakdownCdController {
 
         /** 「内訳頭紙の直接工事費－内訳種目の合計金額」の検算結果を取得 */
         // 対象データを取得
-        BreakdownCd sumDirectConstructionPrice = service.findSumById(bcdBcoId);
+        BreakdownCd sumDirectConstructionPrice = service.sumFindById(bcdBcoId);
         // 対象データの有無確認
         if (sumDirectConstructionPrice != null) {
             // 対象データがある場合

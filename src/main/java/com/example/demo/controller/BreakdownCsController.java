@@ -90,7 +90,7 @@ public class BreakdownCsController {
 
         /** 「内訳種目の直接工事費－内訳科目の合計金額」の検算結果を取得 */
         // 対象データを取得
-        BreakdownCs sumDirectConstructionPrice = service.findSumById(bcsBcdId);
+        BreakdownCs sumDirectConstructionPrice = service.sumFindById(bcsBcdId);
         // 対象データの有無確認
         if (sumDirectConstructionPrice != null) {
             // 対象データがある場合

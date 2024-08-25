@@ -27,8 +27,8 @@ public class BreakdownCsServiceImpl implements BreakdownCsService {
 
     /** 【合計取得】 */
     @Override
-    public BreakdownCs findSumById(Integer bcsBcdId) {
-        return mapper.selectSumById(bcsBcdId);
+    public BreakdownCs sumFindById(Integer bcsBcdId) {
+        return mapper.sumSelectById(bcsBcdId);
     }
 
     /** 【特定取得】 */

@@ -138,7 +138,7 @@ public class BreakdownCoController {
         /** 「直接工事費－（建築+電気設備+機械設備+昇降機設備）」の検算結果を取得 */
         // 現在表示している工事契約の「建築+電気設備+機械設備+昇降機設備」の合計金額を取得
         // 対象データを取得
-        BreakdownCo sumDirectConstructionPrice = service.findSumById(bcoCcId, (Integer) 1010, (Integer) 1040);
+        BreakdownCo sumDirectConstructionPrice = service.sumFindById(bcoCcId, (Integer) 1010, (Integer) 1040);
         // 対象データの有無確認
         if (sumDirectConstructionPrice != null) {
             // 対象データがある場合
@@ -156,7 +156,7 @@ public class BreakdownCoController {
 
         /** 「共通費－（共通仮設費+現場管理費+一般管理費等）」の検算結果を取得 */
         // 現在表示している工事契約の「共通仮設費+現場管理費+一般管理費等」の合計金額を取得
-        BreakdownCo sumCommonExpensePrice = service.findSumById(bcoCcId, (Integer) 1060, (Integer) 1080);
+        BreakdownCo sumCommonExpensePrice = service.sumFindById(bcoCcId, (Integer) 1060, (Integer) 1080);
         // 対象データの有無確認
         if (sumCommonExpensePrice != null) {
             // 対象データがある場合

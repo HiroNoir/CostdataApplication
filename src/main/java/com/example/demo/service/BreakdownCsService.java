@@ -12,7 +12,7 @@ import com.example.demo.service.impl.LoginUserDetails;
 public interface BreakdownCsService {
 
     /** 【合計取得】 */
-    BreakdownCs findSumById(Integer bcsBcdId);
+    BreakdownCs sumFindById(Integer bcsBcdId);
 
     /** 【特定取得】 */
     List<BreakdownCs> findAllById(Integer bcsBcdId);

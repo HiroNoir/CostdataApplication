@@ -33,8 +33,8 @@ public class BreakdownCoServiceImpl implements BreakdownCoService {
 
     /** 【合計取得】 */
     @Override
-    public BreakdownCo findSumById(Integer bcoCcId, Integer bcoCoId1, Integer bcoCoId2) {
-        return mapper.selectSumById(bcoCcId, bcoCoId1, bcoCoId2);
+    public BreakdownCo sumFindById(Integer bcoCcId, Integer bcoCoId1, Integer bcoCoId2) {
+        return mapper.sumSelectById(bcoCcId, bcoCoId1, bcoCoId2);
     }
 
     /** 【特定取得】 */

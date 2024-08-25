@@ -58,7 +58,7 @@
         WHERE bco_delete_flg = 0 AND bco_cc_id = #{bcoCcId} AND bco_co_id = #{bcoCoId};
     </select>
     <!-- 合計取得 -->
-    <select id="selectSumById" resultMap="breakdownCoResult">
+    <select id="sumSelectById" resultMap="breakdownCoResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT SUM(bco_price) AS sum_bco_price
         FROM breakdown_co

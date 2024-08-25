@@ -31,8 +31,8 @@ public class BreakdownCdServiceImpl implements BreakdownCdService {
 
     /** 【合計取得】 */
     @Override
-    public BreakdownCd findSumById(Integer bcdBcoId) {
-        return mapper.selectSumById(bcdBcoId);
+    public BreakdownCd sumFindById(Integer bcdBcoId) {
+        return mapper.sumSelectById(bcdBcoId);
     }
 
     /** 【特定取得】 */

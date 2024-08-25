@@ -89,12 +89,12 @@
             <result column="co_type_name" property="coTypeName" />
         </association>
     </resultMap>
-    <!-- 合計取得 -->
-    <select id="selectSumById" resultMap="informationDbResult">
+    <!-- 合計取得 ※建築+電気設備+機械設備+昇降機設備 -->
+    <select id="sumSelectById" resultMap="informationDbResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
-        <!-- SELECT SUM(idb_data_bigint) AS sum_idb_price
+        SELECT SUM(idb_data_bigint) AS sum_idb_price
         FROM information_db
-        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId}; -->
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 101 OR idb_ii_id = 201 OR idb_ii_id = 301 OR idb_ii_id = 401);
     </select>
     <!-- 特定取得 -->
     <select id="selectAllById" resultMap="informationDbResult">

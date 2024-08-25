@@ -13,7 +13,7 @@ import com.example.demo.entity.BreakdownCs;
 public interface BreakdownCsMapper {
 
     /** 【合計取得】 */
-    BreakdownCs selectSumById(Integer bcsBcdId);
+    BreakdownCs sumSelectById(Integer bcsBcdId);
 
     /** 【特定取得】 */
     List<BreakdownCs> selectAllById(Integer bcsBcdId);
