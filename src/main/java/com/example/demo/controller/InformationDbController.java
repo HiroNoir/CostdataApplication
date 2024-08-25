@@ -78,6 +78,8 @@ public class InformationDbController {
         Long longPriceOfElevatorSystems = null; // 昇降機設備の直接工事費
 
         /** 現在表示している内訳種目の金額をbreakdown_cdテーブルより取得 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
         // 対象データを取得
         BreakdownCd beakdownCdPriceOfArchitecture = breakdownCdService.findById(idbBcdId);
         // 対象データの有無確認
