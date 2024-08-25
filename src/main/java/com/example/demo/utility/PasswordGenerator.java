@@ -3,8 +3,8 @@ package com.example.demo.utility;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
-* ハッシュ化した文字列を返すユーティリティクラス
-*/
+ * ハッシュ化した文字列を返すユーティリティクラス
+ */
 public class PasswordGenerator {
     public static void main(String[] args) {
 

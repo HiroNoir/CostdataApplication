@@ -3,13 +3,15 @@ package com.example.demo.entity;
 import lombok.Data;
 
 /**
-* 内訳科目区分設定エンティティクラス
-*/
+ * 内訳科目区分設定エンティティクラス
+ */
 @Data
 public class CategorySubject {
 
-    /** 主キー
-     * 内訳科目ID */
+    /**
+     * 主キー
+     * 内訳科目ID
+     */
     private Integer csId;
 
     /** 内訳頭紙区分 */

@@ -1,8 +1,8 @@
 package com.example.demo.entity;
 
 /**
-* カスタム認証権限クラス（列挙型）
-* */
+ * カスタム認証権限クラス（列挙型）
+ */
 public enum Role {
 
     /** 列挙型権限の定義 */
@@ -12,7 +12,7 @@ public enum Role {
     // 列挙型権限の文字列を定義
     private String name;
 
-    //　列挙型権限の文字列を格納
+    // 列挙型権限の文字列を格納
     private Role(String name) {
         this.name = name;
     }

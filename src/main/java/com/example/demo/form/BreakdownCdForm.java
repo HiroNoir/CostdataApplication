@@ -15,15 +15,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 内訳種目フォームクラス
-*/
+ * 内訳種目フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BreakdownCdForm {
 
-    /** 主キー
-     * 内訳種目ID */
+    /**
+     * 主キー
+     * 内訳種目ID
+     */
     private Integer bcdId;
 
     /** 工事契約（新規登録・更新処理時form.html表示用） */
@@ -32,10 +34,10 @@ public class BreakdownCdForm {
     /** 内訳頭紙区分（新規登録・更新処理時form.html表示用） */
     private CategoryOutline categoryOutline;
 
-    /**　内訳頭紙　*/
+    /** 内訳頭紙 */
     private Integer bcdBcoId;
 
-    /**　内訳頭紙（更新処理時form.html表示用）　*/
+    /** 内訳頭紙（更新処理時form.html表示用） */
     private BreakdownCo breakdownCo;
 
     /** 内訳種目区分 */
@@ -46,7 +48,7 @@ public class BreakdownCdForm {
     @NotNull(message = "用途概略区分を選択してください。")
     private Integer bcdPoId;
 
-    /**　用途詳細区分 */
+    /** 用途詳細区分 */
     @NotNull(message = "用途詳細区分を選択してください。")
     private Integer bcdPdId;
 

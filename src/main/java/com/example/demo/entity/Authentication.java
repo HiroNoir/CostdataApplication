@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* カスタム認証エンティティクラス
-*/
+ * カスタム認証エンティティクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

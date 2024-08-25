@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.ConstructionContract;
 
 /**
-* 工事契約リポジトリインターフェース（MyBatis用マッパー）
-*/
+ * 工事契約リポジトリインターフェース（MyBatis用マッパー）
+ */
 @Mapper
 public interface ConstructionContractMapper {
 
@@ -21,10 +21,10 @@ public interface ConstructionContractMapper {
     /** 【一件取得】 */
     ConstructionContract selectById(Integer ccId);
 
-    /**　【登録実行】 */
+    /** 【登録実行】 */
     void insert(ConstructionContract constructionContract);
 
-    /**　【更新実行】 */
+    /** 【更新実行】 */
     void update(ConstructionContract constructionContract);
 
     /** 【削除実行】 */

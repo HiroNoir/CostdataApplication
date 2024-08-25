@@ -10,16 +10,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 従業員フォームクラス
-*/
+ * 従業員フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeForm {
 
-    /** 主キー
+    /**
+     * 主キー
      * 従業員コード
-     *  */
+     */
     @NotBlank(message = "従業員コード（ログイン時のユーザー名）は必須です。")
     @Size(max = 10, message = "{max}文字以下で入力してください。")
     private String code;

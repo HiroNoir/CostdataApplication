@@ -13,8 +13,8 @@ import com.example.demo.service.InformationDbService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳情報サービス実装クラス
-*/
+ * 内訳情報サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor

@@ -7,8 +7,8 @@ import com.example.demo.entity.Employee;
 import com.example.demo.service.impl.LoginUserDetails;
 
 /**
-* 従業員サービスインターフェース
-*/
+ * 従業員サービスインターフェース
+ */
 public interface EmployeeService {
 
     /** 【全件取得】 */

@@ -4,8 +4,8 @@ import com.example.demo.entity.InformationDb;
 import com.example.demo.form.InformationDbForm;
 
 /**
-* 内訳情報サービスヘルパークラス
-*/
+ * 内訳情報サービスヘルパークラス
+ */
 public class InformationDbHelper {
 
     /** 【FormからEntityへ変換】 */

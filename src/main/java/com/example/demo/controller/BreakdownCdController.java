@@ -35,8 +35,8 @@ import com.example.demo.service.impl.LoginUserDetails;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳種目コントローラークラス
-*/
+ * 内訳種目コントローラークラス
+ */
 @Controller
 @RequestMapping("/breakdown-cd")
 @RequiredArgsConstructor
@@ -44,9 +44,9 @@ public class BreakdownCdController {
 
     /** メソッド認可メモ */
     // 下記メソッドには@PreAuthorize("hasAuthority('EDITOR')")を付し、編集者権限を有するユーザーのみ実行可能とする
-    // 　【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
+    // 【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
     // 下記メソッドには@PreAuthorize("hasAuthority('ADMIN')")を付し、管理者権限を有するユーザーのみ実行可能とする
-    // 　【削除処理実行】
+    // 【削除処理実行】
     // これらのメソッド認可を設定しておかないと、URLにメソッド名で実行可能となってしまう。よって、権限による認可を付す
     // 権限のないユーザーがURLにメソッド名を書いてで実行すると、405エラーが発生し、405.htmlに画面遷移する
 
@@ -64,12 +64,11 @@ public class BreakdownCdController {
 
     /** 【特定取得】 */
     @GetMapping("/{id}/specify")
-    public String specify(@PathVariable("id") Integer bcdBcoId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String specify(@PathVariable("id") Integer bcdBcoId, Model model, RedirectAttributes redirectAttributes) {
 
         /** ローカルフィールド定義、及び、初期化 */
-        Long longDirectConstructionPrice = null;     // breakdown_coテーブルより取得した各種目の直接工事費
-        Long longSumDirectConstructionPrice = null;  // breakdown_cdテーブルより取得した各種目の直接工事費
+        Long longDirectConstructionPrice = null; // breakdown_coテーブルより取得した各種目の直接工事費
+        Long longSumDirectConstructionPrice = null; // breakdown_cdテーブルより取得した各種目の直接工事費
 
         /** 現在表示している内訳頭紙の各金額をbreakdown_coテーブルより取得 */
         // 対象データを取得
@@ -78,10 +77,11 @@ public class BreakdownCdController {
         if (directConstructionPrice != null) {
             // 対象データがある場合
             // ローカルフィールドに格納
-            longDirectConstructionPrice = directConstructionPrice.getBcoPrice();;
+            longDirectConstructionPrice = directConstructionPrice.getBcoPrice();
+            ;
         } else {
             // 対象データがない場合
-            //Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
             longDirectConstructionPrice = 0L;
         }
         // Modelに格納
@@ -97,7 +97,7 @@ public class BreakdownCdController {
             longSumDirectConstructionPrice = sumDirectConstructionPrice.getSumBcdPrice();
         } else {
             // 対象データがない場合
-            //Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
             longSumDirectConstructionPrice = 0L;
         }
         Long defDirectConstructionPrice = longSumDirectConstructionPrice - longDirectConstructionPrice;
@@ -112,19 +112,21 @@ public class BreakdownCdController {
         if (targetBreakdownCo != null) {
             // 対象データがある場合
             /** 内訳頭紙区分が建築、電気設備、機械設備、昇降機設備以外の場合は内訳種目入力不可として内訳頭紙へリダイレクト */
-                // 内訳頭紙区分を取得
-                Integer coId = targetBreakdownCo.getBcoCoId();
-                // 対象データの値によりリダイレクト
-                if (coId != 1010 && coId != 1020 && coId != 1030 && coId != 1040) {
-                    // リダイレクト先のidを取得
-                    Integer bcoCcId = breakdownCoservice.findById(bcdBcoId).getBcoCcId();
-                    //　エラーのフラッシュメッセージをRedirectAttributesに格納し一覧画面へ戻る
-                    redirectAttributes.addFlashAttribute("errorMessage", "建築・電気設備・機械設備・昇降機設備以外には種目を登録できないため、内訳頭紙の画面へ遷移しました");
-                    // 特定画面へリダイレクト（アドレス指定）
-                    return "redirect:/breakdown-co/" + bcoCcId + "/specify";
-                }
+            // 内訳頭紙区分を取得
+            Integer coId = targetBreakdownCo.getBcoCoId();
+            // 対象データの値によりリダイレクト
+            if (coId != 1010 && coId != 1020 && coId != 1030 && coId != 1040) {
+                // リダイレクト先のidを取得
+                Integer bcoCcId = breakdownCoservice.findById(bcdBcoId).getBcoCcId();
+                // エラーのフラッシュメッセージをRedirectAttributesに格納し一覧画面へ戻る
+                redirectAttributes.addFlashAttribute("errorMessage",
+                        "建築・電気設備・機械設備・昇降機設備以外には種目を登録できないため、内訳頭紙の画面へ遷移しました");
+                // 特定画面へリダイレクト（アドレス指定）
+                return "redirect:/breakdown-co/" + bcoCcId + "/specify";
+            }
             // 工事契約と内訳頭紙区分を取得
-            ConstructionContract constructionContract = constructionContractService.findById(targetBreakdownCo.getBcoCcId());
+            ConstructionContract constructionContract = constructionContractService
+                    .findById(targetBreakdownCo.getBcoCcId());
             CategoryOutline categoryOutline = categoryOutlineService.findById(targetBreakdownCo.getBcoCoId());
             // Modelに格納
             model.addAttribute("projectName", constructionContract.getProjectName());
@@ -133,12 +135,11 @@ public class BreakdownCdController {
             model.addAttribute("listSize", service.findAllById(bcdBcoId).size());
             model.addAttribute("ccId", constructionContract.getCcId());
             model.addAttribute("bcoId", bcdBcoId);
-            // model.addAttribute("coId", categoryOutline.getCoId());
             // 画面遷移（アドレス指定）
             return "breakdown-cd/specify";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/construction-contract/list";
@@ -146,11 +147,10 @@ public class BreakdownCdController {
 
     }
 
-    /**　【一件取得】 */
+    /** 【一件取得】 */
     @GetMapping("/{id1}/{id2}/detail")
-    public String detail(@PathVariable("id1") Integer bcdId,
-                         @PathVariable("id2") Integer bcdBcoId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("id1") Integer bcdId, @PathVariable("id2") Integer bcdBcoId, Model model,
+            RedirectAttributes redirectAttributes) {
 
         /** 詳細画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
@@ -165,7 +165,7 @@ public class BreakdownCdController {
             return "breakdown-cd/detail";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/breakdown-cd/" + bcdBcoId + "/specify";
@@ -173,15 +173,14 @@ public class BreakdownCdController {
 
     }
 
-    /** 【登録画面表示】　*/
+    /** 【登録画面表示】 */
     @GetMapping("/{id}/create")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String create(@PathVariable("id") Integer bcdBcoId,
-            @ModelAttribute BreakdownCdForm form,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String create(@PathVariable("id") Integer bcdBcoId, @ModelAttribute BreakdownCdForm form, Model model,
+            RedirectAttributes redirectAttributes) {
 
         // @ModelAttributeの引数省略型を利用しているため、下記のように、Model名はクラス名のローワーキャメルケースとなる
-        // model.addAttribute("breakdownCdForm", form);　→form.htmlへ引き継ぐModel名となる
+        // model.addAttribute("breakdownCdForm", form); →form.htmlへ引き継ぐModel名となる
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 内訳種目区分設定Mapを取得 */
@@ -216,7 +215,7 @@ public class BreakdownCdController {
             return "breakdown-cd/form";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/breakdown-cd/" + bcdBcoId + "/specify";
@@ -227,14 +226,13 @@ public class BreakdownCdController {
     /** 【登録処理実行】 */
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String add(@Validated BreakdownCdForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+    public String add(@Validated BreakdownCdForm form, BindingResult bindingRusult, Model model,
+            RedirectAttributes redirectAttributes, @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
         /** 引き継ぐべきパラメータをformより取得 */
         Integer bcdBcoId = form.getBcdBcoId();
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため登録画面へ遷移してエラー内容を表示させる
             // 画面遷移（メソッド指定）
@@ -249,8 +247,7 @@ public class BreakdownCdController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 画面遷移（メソッド指定）
             return create(bcdBcoId, form, model, redirectAttributes);
         }
@@ -263,9 +260,8 @@ public class BreakdownCdController {
     /** 【更新画面表示】 */
     @GetMapping("/{id1}/{id2}/edit")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String edit(@PathVariable("id1") Integer bcdId,
-                       @PathVariable("id2") Integer bcdBcoId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String edit(@PathVariable("id1") Integer bcdId, @PathVariable("id2") Integer bcdBcoId, Model model,
+            RedirectAttributes redirectAttributes) {
 
         /** 内訳種目区分設定Mapを取得 */
         Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap();
@@ -282,9 +278,9 @@ public class BreakdownCdController {
         // Modelに格納
         model.addAttribute("purposeDetailMap", purposeDetailMap);
 
-        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
+        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理 */
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度更新画面へ遷移する
-        if(bcdId == null) {
+        if (bcdId == null) {
             // 画面遷移（アドレス指定）
             return "breakdown-cd/form";
         }
@@ -299,7 +295,7 @@ public class BreakdownCdController {
             // EntityクラスからFormクラスへ変換
             BreakdownCdForm form = BreakdownCdHelper.convertForm(targetBreakdownCd);
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("breakdownCdForm", form);
             // form.htmlに引き継ぐべきパラメータをformに格納
             form.setBcdBcoId(bcdBcoId);
@@ -312,25 +308,23 @@ public class BreakdownCdController {
             // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
-            return "redirect:/breakdown-cd/" + bcdBcoId +"/specify";
+            return "redirect:/breakdown-cd/" + bcdBcoId + "/specify";
         }
 
     }
 
-    /**　【更新処理実行】 */
+    /** 【更新処理実行】 */
     @PostMapping("/{id1}/{id2}/revice")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String revice(@PathVariable("id1") Integer bcdId,
-                         @PathVariable("id2") Integer bcdBcoId,
-            @Validated BreakdownCdForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+    public String revice(@PathVariable("id1") Integer bcdId, @PathVariable("id2") Integer bcdBcoId,
+            @Validated BreakdownCdForm form, BindingResult bindingRusult, Model model,
+            RedirectAttributes redirectAttributes, @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため更新画面へ遷移してエラー内容を表示させる
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("breakdownCdForm", form);
             // 画面遷移（メソッド指定）
             return edit(null, bcdBcoId, model, redirectAttributes);
@@ -344,8 +338,7 @@ public class BreakdownCdController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 更新画面へ引き継ぐデータをModelに格納
             model.addAttribute("breakdownCdForm", service.findById(bcdId));
             // 画面遷移（メソッド指定）
@@ -354,16 +347,15 @@ public class BreakdownCdController {
         // フラッシュメッセージをRedirectAttributesに格納
         redirectAttributes.addFlashAttribute("message", "データが更新されました");
         // PRGパターン：リダイレクト（アドレス指定）
-        return "redirect:/breakdown-cd/" + bcdBcoId +"/specify";
+        return "redirect:/breakdown-cd/" + bcdBcoId + "/specify";
 
     }
 
     /** 【削除処理実行】 */
     @PostMapping("/{id1}/{id2}/remove")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String remove(@PathVariable("id1") Integer bcdId,
-                         @PathVariable("id2") Integer bcdBcoId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String remove(@PathVariable("id1") Integer bcdId, @PathVariable("id2") Integer bcdBcoId, Model model,
+            RedirectAttributes redirectAttributes) {
 
         /** 削除処理実行（ErrorKindsクラスによる入力チェック共） */
         // 削除処理をしてErrorKindsクラスで定義された種別の結果を受け取る
@@ -371,8 +363,7 @@ public class BreakdownCdController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 詳細画面へ引き継ぐデータをModelに格納
             model.addAttribute("breakdownCdForm", service.findById(bcdId));
             // 画面遷移（メソッド指定）
@@ -381,7 +372,7 @@ public class BreakdownCdController {
         // フラッシュメッセージをRedirectAttributesに格納
         redirectAttributes.addFlashAttribute("message", "データが削除されました（論理削除）");
         // PRGパターン：リダイレクト（アドレス指定）
-        return "redirect:/breakdown-cd/" + bcdBcoId +"/specify";
+        return "redirect:/breakdown-cd/" + bcdBcoId + "/specify";
 
     }
 

@@ -14,9 +14,10 @@ import com.example.demo.repository.EmployeeMapper;
 import com.example.demo.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
+
 /**
-* 従業員サービス実装クラス
-*/
+ * 従業員サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -77,13 +78,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         /** パスワードチェック */
         // 更新画面におけるパスワードの画面入力値が空でない場合は画面入力値が暗号化された値で登録
         if (!("".equals(employee.getPassword()))) {
-        ErrorKinds result = employeePasswordCheck(employee);
-        if (ErrorKinds.CHECK_OK != result) {
-            return result;
-        }
-        }else {
-        // 更新画面におけるパスワードの画面入力値が空の場合はデータベースに設定済みの値画面入力値が暗号化された値を代入
-        employee.setPassword(this.findByCode(employee.getCode()).getPassword());
+            ErrorKinds result = employeePasswordCheck(employee);
+            if (ErrorKinds.CHECK_OK != result) {
+                return result;
+            }
+        } else {
+            // 更新画面におけるパスワードの画面入力値が空の場合はデータベースに設定済みの値画面入力値が暗号化された値を代入
+            employee.setPassword(this.findByCode(employee.getCode()).getPassword());
         }
 
         /** 更新に必要な情報をEntityに格納 */
@@ -105,7 +106,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         /** ログイン中のユーザー自身を削除しようとした場合はエラーメッセージを表示 */
         if (code.equals(loginUserDetails.getUsername())) {
-         // ErrorKindsクラスのLOGINCHECK_ERRORを返す
+            // ErrorKindsクラスのLOGINCHECK_ERRORを返す
             return ErrorKinds.LOGINCHECK_ERROR;
         }
 
@@ -122,7 +123,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         /** パスワードの半角英数字チェック */
         if (isHarfSizeCheckError(employee)) {
-         // 入力チェックにかかったらErrorKindsクラスのHALFSIZE_ERRORを返す
+            // 入力チェックにかかったらErrorKindsクラスのHALFSIZE_ERRORを返す
             return ErrorKinds.HALFSIZE_ERROR;
         }
 

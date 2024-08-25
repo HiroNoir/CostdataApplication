@@ -14,8 +14,8 @@ import com.example.demo.service.InformationItemService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳情報区分設定サービス実装クラス
-*/
+ * 内訳情報区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class InformationItemServiceImpl implements InformationItemService {
         Map<String, Integer> informationItemMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(InformationItem row : informationItem) {
+        for (InformationItem row : informationItem) {
             String iiItemName = row.getIiItemName();
             Integer iiId = row.getIiId();
             informationItemMap.put(iiItemName, iiId);

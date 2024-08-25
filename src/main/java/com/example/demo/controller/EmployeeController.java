@@ -23,8 +23,8 @@ import com.example.demo.service.impl.LoginUserDetails;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 従業員コントローラークラス
-*/
+ * 従業員コントローラークラス
+ */
 @Controller
 @RequestMapping("/employee")
 @RequiredArgsConstructor
@@ -55,10 +55,9 @@ public class EmployeeController {
 
     }
 
-    /**　【一件取得】 */
+    /** 【一件取得】 */
     @GetMapping("/{code}/detail")
-    public String detail(@PathVariable("code") String code,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("code") String code, Model model, RedirectAttributes redirectAttributes) {
 
         /** 詳細画面へ遷移 */
         // GETメソッドでcode入力可能のため、URLでcodeを直入力された場合の、対象データの有無チェックを行う
@@ -73,7 +72,7 @@ public class EmployeeController {
             return "employee/detail";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/employee/list";
@@ -81,12 +80,12 @@ public class EmployeeController {
 
     }
 
-    /** 【登録画面表示】　*/
+    /** 【登録画面表示】 */
     @GetMapping("/create")
     public String create(@ModelAttribute EmployeeForm form) {
 
         // @ModelAttributeの引数省略型を利用しているため、下記のように、Model名はクラス名のローワーキャメルケースとなる
-        // model.addAttribute("employeeForm", form);　→form.htmlへ引き継ぐModel名となる
+        // model.addAttribute("employeeForm", form); →form.htmlへ引き継ぐModel名となる
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 登録画面へ遷移 */
@@ -99,11 +98,11 @@ public class EmployeeController {
 
     /** 【登録処理実行】 */
     @PostMapping("/add")
-    public String add(@Validated EmployeeForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String add(@Validated EmployeeForm form, BindingResult bindingRusult, Model model,
+            RedirectAttributes redirectAttributes) {
 
-        /** パスワード空白チェック
-         * エンティティ側の入力チェックでも実装は行えるが、更新の方でパスワードが空白でもチェックエラーを出さずに
+        /**
+         * パスワード空白チェック エンティティ側の入力チェックでも実装は行えるが、更新の方でパスワードが空白でもチェックエラーを出さずに
          * 更新出来る仕様となっているため上記を考慮した場合に別でエラーメッセージを出す方法が簡単だと判断
          */
         if ("".equals(form.getPassword())) {
@@ -114,7 +113,7 @@ public class EmployeeController {
             return create(form);
         }
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため登録画面へ遷移してエラー内容を表示させる
             // 画面遷移（メソッド指定）
@@ -129,8 +128,7 @@ public class EmployeeController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 画面遷移（メソッド指定）
             return create(form);
         }
@@ -143,12 +141,11 @@ public class EmployeeController {
 
     /** 【更新画面表示】 */
     @GetMapping("/{code}/edit")
-    public String edit(@PathVariable String code,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String edit(@PathVariable String code, Model model, RedirectAttributes redirectAttributes) {
 
-        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
+        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理 */
         // codeがnullの場合は更新処理実行時の入力チェックでひっかかったため再度form.htmlへ遷移する
-        if(code == null) {
+        if (code == null) {
             // 画面遷移（アドレス指定）
             return "employee/form";
         }
@@ -163,7 +160,7 @@ public class EmployeeController {
             // EntityクラスからFormクラスへ変換
             EmployeeForm form = EmployeeHelper.convertForm(targetEmployee);
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("employeeForm", form);
             // 更新画面としてform.htmlが実行されるよう設定
             form.setIsNew(false);
@@ -179,17 +176,16 @@ public class EmployeeController {
 
     }
 
-    /**　【更新処理実行】 */
+    /** 【更新処理実行】 */
     @PostMapping("/{code}/revice")
-    public String revice(@PathVariable String code,
-            @Validated EmployeeForm form, BindingResult bindingRusult,
+    public String revice(@PathVariable String code, @Validated EmployeeForm form, BindingResult bindingRusult,
             Model model, RedirectAttributes redirectAttributes) {
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため更新画面へ遷移してエラー内容を表示させる
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("employeeForm", form);
             // 画面遷移（メソッド指定）
             return edit(null, model, redirectAttributes);
@@ -203,8 +199,7 @@ public class EmployeeController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 更新画面へ引き継ぐデータをModelに格納
             model.addAttribute("employeeForm", service.findByCode(code));
             // 画面遷移（メソッド指定）
@@ -219,8 +214,7 @@ public class EmployeeController {
 
     /** 【削除処理実行】 */
     @PostMapping("/{code}/remove")
-    public String remove(@PathVariable String code,
-            @AuthenticationPrincipal LoginUserDetails loginUserDetails,
+    public String remove(@PathVariable String code, @AuthenticationPrincipal LoginUserDetails loginUserDetails,
             Model model, RedirectAttributes redirectAttributes) {
 
         /** 削除処理実行（ErrorKindsクラスによる入力チェック共） */
@@ -229,8 +223,7 @@ public class EmployeeController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 詳細画面へ引き継ぐデータをModelに格納
             model.addAttribute("employeeForm", service.findByCode(code));
             // 画面遷移（メソッド指定）

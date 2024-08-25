@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.Employee;
 
 /**
-* 従業員リポジトリインターフェース（MyBatis用マッパー）
-*/
+ * 従業員リポジトリインターフェース（MyBatis用マッパー）
+ */
 @Mapper
 public interface EmployeeMapper {
 
@@ -18,10 +18,10 @@ public interface EmployeeMapper {
     /** 【一件取得】 */
     Employee selectByCode(String code);
 
-    /**　【登録実行】 */
+    /** 【登録実行】 */
     void insert(Employee employee);
 
-    /**　【更新実行】 */
+    /** 【更新実行】 */
     void update(Employee employee);
 
     /** 【削除実行】 */

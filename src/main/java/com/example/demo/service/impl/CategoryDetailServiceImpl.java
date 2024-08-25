@@ -14,8 +14,8 @@ import com.example.demo.service.CategoryDetailService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳種目区分設定サービス実装クラス
-*/
+ * 内訳種目区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
         Map<String, Integer> categoryDetailMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(CategoryDetail row : categoryDetail) {
+        for (CategoryDetail row : categoryDetail) {
             String cdTypeName = row.getCdTypeName();
             Integer cdId = row.getCdId();
             categoryDetailMap.put(cdTypeName, cdId);

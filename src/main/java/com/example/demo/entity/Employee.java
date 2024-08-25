@@ -7,16 +7,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 従業員エンティティクラス
-*/
+ * 従業員エンティティクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
 
-    /** 主キー
-     *  従業員コード
-     *  */
+    /**
+     * 主キー
+     * 従業員コード
+     */
     private String code;
 
     /** 名前 */
@@ -40,7 +41,7 @@ public class Employee {
     /**
      * 削除フラグ
      * データベース保存用エンティティのため、Formクラス及びHelperクラスへの追記不要
-     *  */
+     */
     private boolean deleteFlg;
 
 }

@@ -13,8 +13,8 @@ import com.example.demo.service.BreakdownCsService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳科目サービス実装クラス
-*/
+ * 内訳科目サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor

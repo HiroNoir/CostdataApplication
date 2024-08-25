@@ -12,9 +12,10 @@ import com.example.demo.repository.CategorySubjectMapper;
 import com.example.demo.service.CategorySubjectService;
 
 import lombok.RequiredArgsConstructor;
+
 /**
-* 内訳科目区分設定サービス実装クラス
-*/
+ * 内訳科目区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -36,7 +37,7 @@ public class CategorySubjectServiceImpl implements CategorySubjectService {
         Map<String, Integer> categorySubjectMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(CategorySubject row : categorySubject) {
+        for (CategorySubject row : categorySubject) {
             String csTypeName = row.getCsTypeName();
             Integer csId = row.getCsId();
             categorySubjectMap.put(csTypeName, csId);

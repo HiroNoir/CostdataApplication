@@ -5,8 +5,8 @@ import org.springframework.core.SpringVersion;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
 /**
-* Spring Boot バージョン確認ユーティリティクラス
-*/
+ * Spring Boot バージョン確認ユーティリティクラス
+ */
 public class SpringVersionCheck {
     public static void main(String[] args) {
 

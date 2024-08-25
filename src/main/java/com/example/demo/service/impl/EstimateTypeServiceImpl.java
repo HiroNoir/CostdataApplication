@@ -14,8 +14,8 @@ import com.example.demo.service.EstimateTypeService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳種別区分設定サービス実装クラス
-*/
+ * 内訳種別区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class EstimateTypeServiceImpl implements EstimateTypeService {
         Map<String, Integer> estimateTypeMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(EstimateType row : estimateType) {
+        for (EstimateType row : estimateType) {
             String etTypeName = row.getEtTypeName();
             Integer etId = row.getEtId();
             estimateTypeMap.put(etTypeName, etId);

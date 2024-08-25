@@ -4,8 +4,8 @@ import com.example.demo.entity.Employee;
 import com.example.demo.form.EmployeeForm;
 
 /**
-* 従業員サービスヘルパークラス
-*/
+ * 従業員サービスヘルパークラス
+ */
 public class EmployeeHelper {
 
     /** 【FormからEntityへ変換】 */

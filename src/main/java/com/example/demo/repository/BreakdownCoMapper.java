@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.BreakdownCo;
 
 /**
-* 内訳頭紙リポジトリインターフェース（MyBatis用マッパー）
-*/
+ * 内訳頭紙リポジトリインターフェース（MyBatis用マッパー）
+ */
 @Mapper
 public interface BreakdownCoMapper {
 
@@ -19,16 +19,15 @@ public interface BreakdownCoMapper {
     BreakdownCo selectSumById(Integer bcoCcId, Integer bcoCoId1, Integer bcoCoId2);
 
     /** 【特定取得】 */
-    List<BreakdownCo> selectAllById(Integer bcoCcId,
-            Long directConstructionPrice, Long totalConstructionPrice);
+    List<BreakdownCo> selectAllById(Integer bcoCcId, Long directConstructionPrice, Long totalConstructionPrice);
 
     /** 【一件取得】 */
     BreakdownCo selectById(Integer bcoId);
 
-    /**　【登録実行】 */
+    /** 【登録実行】 */
     void insert(BreakdownCo breakdownCo);
 
-    /**　【更新実行】 */
+    /** 【更新実行】 */
     void update(BreakdownCo breakdownCo);
 
     /** 【削除実行】 */

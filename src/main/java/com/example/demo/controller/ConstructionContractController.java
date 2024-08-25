@@ -29,8 +29,8 @@ import com.example.demo.service.impl.LoginUserDetails;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 工事契約コントローラークラス
-*/
+ * 工事契約コントローラークラス
+ */
 @Controller
 @RequestMapping("/construction-contract")
 @RequiredArgsConstructor
@@ -38,9 +38,9 @@ public class ConstructionContractController {
 
     /** メソッド認可メモ */
     // 下記メソッドには@PreAuthorize("hasAuthority('EDITOR')")を付し、編集者権限を有するユーザーのみ実行可能とする
-    // 　【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
+    // 【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
     // 下記メソッドには@PreAuthorize("hasAuthority('ADMIN')")を付し、管理者権限を有するユーザーのみ実行可能とする
-    // 　【削除処理実行】
+    // 【削除処理実行】
     // これらのメソッド認可を設定しておかないと、URLにメソッド名で実行可能となってしまう。よって、権限による認可を付す
     // 権限のないユーザーがURLにメソッド名を書いてで実行すると、405エラーが発生し、405.htmlに画面遷移する
 
@@ -67,8 +67,7 @@ public class ConstructionContractController {
 
     /** 【特定取得】 */
     @GetMapping("/{id}/specify")
-    public String specify(@PathVariable("id") Integer ccDcId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String specify(@PathVariable("id") Integer ccDcId, Model model, RedirectAttributes redirectAttributes) {
 
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
@@ -86,7 +85,7 @@ public class ConstructionContractController {
             return "construction-contract/specify";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/design-contract/list";
@@ -94,10 +93,9 @@ public class ConstructionContractController {
 
     }
 
-    /**　【一件取得】 */
+    /** 【一件取得】 */
     @GetMapping("/{id}/detail")
-    public String detail(@PathVariable("id") Integer ccId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("id") Integer ccId, Model model, RedirectAttributes redirectAttributes) {
 
         /** 詳細画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
@@ -112,7 +110,7 @@ public class ConstructionContractController {
             return "construction-contract/detail";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/construction-contract/list";
@@ -120,15 +118,15 @@ public class ConstructionContractController {
 
     }
 
-    /** 【登録画面表示】　*/
+    /** 【登録画面表示】 */
     @GetMapping("/{id}/create")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String create(@PathVariable("id") Integer ccDcId,
-            @ModelAttribute ConstructionContractForm form,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String create(@PathVariable("id") Integer ccDcId, @ModelAttribute ConstructionContractForm form, Model model,
+            RedirectAttributes redirectAttributes) {
 
         // @ModelAttributeの引数省略型を利用しているため、下記のように、Model名はクラス名のローワーキャメルケースとなる
-        // model.addAttribute("constructionContractForm", form);　→form.htmlへ引き継ぐModel名となる
+        // model.addAttribute("constructionContractForm", form);
+        // →form.htmlへ引き継ぐModel名となる
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 内訳種別区分設定Mapを取得 */
@@ -152,7 +150,7 @@ public class ConstructionContractController {
             return "construction-contract/form";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/design-contract/list";
@@ -163,14 +161,13 @@ public class ConstructionContractController {
     /** 【登録処理実行】 */
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String add(@Validated ConstructionContractForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+    public String add(@Validated ConstructionContractForm form, BindingResult bindingRusult, Model model,
+            RedirectAttributes redirectAttributes, @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
         /** 引き継ぐべきパラメータをformより取得 */
         Integer ccDcId = form.getCcDcId();
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため登録画面へ遷移してエラー内容を表示させる
             // 画面遷移（メソッド指定）
@@ -185,8 +182,7 @@ public class ConstructionContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 画面遷移（メソッド指定）
             return create(ccDcId, form, model, redirectAttributes);
         }
@@ -200,18 +196,16 @@ public class ConstructionContractController {
     /** 【更新画面表示】 */
     @GetMapping("/{id}/edit")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String edit(@PathVariable("id") Integer ccId,
-            Model model, RedirectAttributes redirectAttributes) {
-
+    public String edit(@PathVariable("id") Integer ccId, Model model, RedirectAttributes redirectAttributes) {
 
         /** 内訳種別区分設定Mapを取得 */
         Map<String, Integer> estimateTypeMap = estimateTypeService.getEstimateTypeMap();
         // Modelに格納
         model.addAttribute("estimateTypeMap", estimateTypeMap);
 
-        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
+        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理 */
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度form.htmlへ遷移する
-        if(ccId == null) {
+        if (ccId == null) {
             // 画面遷移（アドレス指定）
             return "construction-contract/form";
         }
@@ -226,10 +220,11 @@ public class ConstructionContractController {
             // EntityクラスからFormクラスへ変換
             ConstructionContractForm form = ConstructionContractHelper.convertForm(targetConstructionContract);
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("constructionContractForm", form);
             // form.htmlに引き継ぐべきパラメータをformに格納
-            DesignContract targetDesignContract = designContractService.findById(targetConstructionContract.getCcDcId());
+            DesignContract targetDesignContract = designContractService
+                    .findById(targetConstructionContract.getCcDcId());
             form.setDesignContract(targetDesignContract);
             // 更新画面としてform.htmlが実行されるよう設定
             form.setIsNew(false);
@@ -245,22 +240,21 @@ public class ConstructionContractController {
 
     }
 
-    /**　【更新処理実行】 */
+    /** 【更新処理実行】 */
     @PostMapping("/{id}/revice")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String revice(@PathVariable("id") Integer ccId,
-            @Validated ConstructionContractForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
+    public String revice(@PathVariable("id") Integer ccId, @Validated ConstructionContractForm form,
+            BindingResult bindingRusult, Model model, RedirectAttributes redirectAttributes,
             @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
         /** 引き継ぐべきパラメータをformより取得 */
         Integer ccDcId = form.getCcDcId();
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため更新画面へ遷移してエラー内容を表示させる
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("constructionContractForm", form);
             // 画面遷移（メソッド指定）
             return edit(null, model, redirectAttributes);
@@ -274,8 +268,7 @@ public class ConstructionContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 更新画面へ引き継ぐデータをModelに格納
             model.addAttribute("constructionContractForm", service.findById(ccId));
             // 画面遷移（メソッド指定）
@@ -291,8 +284,7 @@ public class ConstructionContractController {
     /** 【削除処理実行】 */
     @PostMapping("/{id}/remove")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String remove(@PathVariable("id") Integer ccId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String remove(@PathVariable("id") Integer ccId, Model model, RedirectAttributes redirectAttributes) {
 
         /** リダイレクト先のidを取得 */
         Integer ccDcId = service.findById(ccId).getCcDcId();
@@ -303,8 +295,7 @@ public class ConstructionContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 詳細画面へ引き継ぐデータをModelに格納
             model.addAttribute("constructionContractForm", service.findById(ccId));
             // 画面遷移（メソッド指定）

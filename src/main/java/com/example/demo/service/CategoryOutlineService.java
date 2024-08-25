@@ -5,8 +5,8 @@ import java.util.Map;
 import com.example.demo.entity.CategoryOutline;
 
 /**
-* 内訳頭紙区分設定サービスインターフェース
-*/
+ * 内訳頭紙区分設定サービスインターフェース
+ */
 public interface CategoryOutlineService {
 
     /** 【一件取得】 */

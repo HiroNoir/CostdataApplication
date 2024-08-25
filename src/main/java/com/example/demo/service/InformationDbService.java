@@ -7,8 +7,8 @@ import com.example.demo.entity.InformationDb;
 import com.example.demo.service.impl.LoginUserDetails;
 
 /**
-* 内訳情報サービスインターフェース
-*/
+ * 内訳情報サービスインターフェース
+ */
 public interface InformationDbService {
 
     /** 【合計取得】 */
@@ -21,12 +21,10 @@ public interface InformationDbService {
     InformationDb findById(Integer idbBcdId, Integer idbIiId);
 
     /** 【登録実行】 */
-    ErrorKinds insert(InformationDb informationDb,
-            LoginUserDetails loginUserDetails);
+    ErrorKinds insert(InformationDb informationDb, LoginUserDetails loginUserDetails);
 
     /** 【更新実行】 */
-    ErrorKinds update(InformationDb informationDb,
-            LoginUserDetails loginUserDetails);
+    ErrorKinds update(InformationDb informationDb, LoginUserDetails loginUserDetails);
 
     /** 【削除実行】 */
     ErrorKinds delete(Integer idbBcdId, Integer idbIiId);

@@ -9,15 +9,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 内訳頭紙フォームクラス
-*/
+ * 内訳頭紙フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BreakdownCoForm {
 
-    /** 主キー
-     * 内訳頭紙ID */
+    /**
+     * 主キー
+     * 内訳頭紙ID
+     */
     private Integer bcoId;
 
     /** 工事契約 */

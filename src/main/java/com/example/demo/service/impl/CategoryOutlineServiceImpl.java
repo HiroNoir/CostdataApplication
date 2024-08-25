@@ -14,8 +14,8 @@ import com.example.demo.service.CategoryOutlineService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳頭紙区分設定サービス実装クラス
-*/
+ * 内訳頭紙区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class CategoryOutlineServiceImpl implements CategoryOutlineService {
         Map<String, Integer> categoryOutlineMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(CategoryOutline row : categoryOutline) {
+        for (CategoryOutline row : categoryOutline) {
             String coTypeName = row.getCoTypeName();
             Integer coId = row.getCoId();
             categoryOutlineMap.put(coTypeName, coId);
@@ -51,6 +51,5 @@ public class CategoryOutlineServiceImpl implements CategoryOutlineService {
         return categoryOutlineMap;
 
     }
-
 
 }

@@ -14,8 +14,8 @@ import com.example.demo.service.PurposeOutlineService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 用途概略ｒ区分設定サービス実装クラス
-*/
+ * 用途概略ｒ区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class PurposeOutlineServiceImpl implements PurposeOutlineService {
         Map<String, Integer> purposeOutlineMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(PurposeOutline row : purposeOutline) {
+        for (PurposeOutline row : purposeOutline) {
             String poTypeName = row.getPoTypeName();
             Integer poId = row.getPoId();
             purposeOutlineMap.put(poTypeName, poId);

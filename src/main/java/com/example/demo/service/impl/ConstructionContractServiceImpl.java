@@ -13,8 +13,8 @@ import com.example.demo.service.ConstructionContractService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 工事契約サービス実装クラス
-*/
+ * 工事契約サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -45,8 +45,7 @@ public class ConstructionContractServiceImpl implements ConstructionContractServ
 
     /** 【登録実行】 */
     @Override
-    public ErrorKinds insert(ConstructionContract constructionContract,
-            LoginUserDetails loginUserDetails) {
+    public ErrorKinds insert(ConstructionContract constructionContract, LoginUserDetails loginUserDetails) {
 
         /** 登録に必要な情報をEntityに格納 */
         // 最終編集者の格納
@@ -63,8 +62,7 @@ public class ConstructionContractServiceImpl implements ConstructionContractServ
 
     /** 【更新実行】 */
     @Override
-    public ErrorKinds update(ConstructionContract constructionContract,
-            LoginUserDetails loginUserDetails) {
+    public ErrorKinds update(ConstructionContract constructionContract, LoginUserDetails loginUserDetails) {
 
         /** 更新に必要な情報をEntityに格納 */
         // 最終編集者の格納

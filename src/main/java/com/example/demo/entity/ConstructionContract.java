@@ -7,22 +7,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 工事契約エンティティクラス
-*/
+ * 工事契約エンティティクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConstructionContract {
 
-    /** 主キー
-     * 工事契約ID */
+    /**
+     * 主キー
+     * 工事契約ID
+     */
     private Integer ccId;
 
     /**
      * 設計契約
      * 上段：データベース保存用エンティティ（SQLのINSERT文・UPDATE文で利用）
      * 下段：設計契約テーブル連携用エンティティ（SQLのSELECT文で利用）
-     *  */
+     */
     private Integer ccDcId;
     private DesignContract designContract;
 
@@ -30,7 +32,7 @@ public class ConstructionContract {
      * 内訳種別区分
      * 上段：データベース保存用エンティティ（SQLのINSERT文・UPDATE文で利用）
      * 下段：内訳種別区分設定テーブル連携用エンティティ（SQLのSELECT文で利用）
-     *  */
+     */
     private Integer ccEtId;
     private EstimateType estimateType;
 
@@ -63,10 +65,9 @@ public class ConstructionContract {
 
     /**
      * 落札率
-     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで
-     * 　計算した値を格納して、detail.htmlで表示されるために利用する。
-     * 　よって、FormクラスやHelperクラスではこのエンティティは不要とする。
-     *  */
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、detail.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
     private String turnoverRate;
 
     /** 施工業者 */
@@ -88,14 +89,14 @@ public class ConstructionContract {
      * 最終編集者
      * 上段：データベース保存用エンティティ（SQLのINSERT文・UPDATE文で利用）
      * 下段：従業員テーブル連携用エンティティ（SQLのSELECT文で利用）
-     *  */
+     */
     private String ccLatestEditor;
     private Employee employee;
 
     /**
      * 削除フラグ
      * データベース保存用エンティティのため、Formクラス及びHelperクラスへの追記不要
-     *  */
+     */
     private boolean ccDeleteFlg;
 
 }

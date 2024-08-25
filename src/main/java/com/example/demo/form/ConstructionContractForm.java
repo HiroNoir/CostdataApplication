@@ -10,21 +10,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 工事契約フォームクラス
-*/
+ * 工事契約フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConstructionContractForm {
 
-    /** 主キー
-     * 工事契約ID */
+    /**
+     * 主キー
+     * 工事契約ID
+     */
     private Integer ccId;
 
     /** 設計契約 */
     private Integer ccDcId;
 
-    /**　設計契約（更新処理時form.html表示用）　*/
+    /** 設計契約（更新処理時form.html表示用） */
     private DesignContract designContract;
 
     /** 内訳種別区分 */

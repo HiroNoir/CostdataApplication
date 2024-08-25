@@ -13,8 +13,8 @@ import com.example.demo.service.DesignContractService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 設計契約サービス実装クラス
-*/
+ * 設計契約サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -39,8 +39,7 @@ public class DesignContractServiceImpl implements DesignContractService {
 
     /** 【登録実行】 */
     @Override
-    public ErrorKinds insert(DesignContract designContract,
-            LoginUserDetails loginUserDetails) {
+    public ErrorKinds insert(DesignContract designContract, LoginUserDetails loginUserDetails) {
 
         /** 登録に必要な情報をEntityに格納 */
         // 最終編集者の格納
@@ -57,8 +56,7 @@ public class DesignContractServiceImpl implements DesignContractService {
 
     /** 【更新実行】 */
     @Override
-    public ErrorKinds update(DesignContract designContract,
-            LoginUserDetails loginUserDetails) {
+    public ErrorKinds update(DesignContract designContract, LoginUserDetails loginUserDetails) {
 
         /** 更新に必要な情報をEntityに格納 */
         // 最終編集者の格納

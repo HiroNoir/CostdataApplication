@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.example.demo.form.LoginForm;
 
 /**
-* トップコントローラークラス
-*/
+ * トップコントローラークラス
+ */
 @Controller
 public class TopController {
 

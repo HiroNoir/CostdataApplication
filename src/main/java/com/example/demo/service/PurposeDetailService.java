@@ -5,8 +5,8 @@ import java.util.Map;
 import com.example.demo.entity.PurposeDetail;
 
 /**
-* 用途詳細区分設定サービスインターフェース
-*/
+ * 用途詳細区分設定サービスインターフェース
+ */
 public interface PurposeDetailService {
 
     /** 【用途詳細区分設定のMapを生成】 */

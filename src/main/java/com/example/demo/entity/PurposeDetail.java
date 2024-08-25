@@ -3,13 +3,15 @@ package com.example.demo.entity;
 import lombok.Data;
 
 /**
-* 用途詳細区分設定エンティティクラス
-*/
+ * 用途詳細区分設定エンティティクラス
+ */
 @Data
 public class PurposeDetail {
 
-    /** 主キー
-     * 用途詳細区分ID */
+    /**
+     * 主キー
+     * 用途詳細区分ID
+     */
     private Integer pdId;
 
     /** 用途概略区分 */

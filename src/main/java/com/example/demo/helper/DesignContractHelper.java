@@ -4,8 +4,8 @@ import com.example.demo.entity.DesignContract;
 import com.example.demo.form.DesignContractForm;
 
 /**
-* 設計契約サービスヘルパークラス
-*/
+ * 設計契約サービスヘルパークラス
+ */
 public class DesignContractHelper {
 
     /** 【FormからEntityへ変換】 */

@@ -13,16 +13,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 内訳情報フォームクラス
-*/
+ * 内訳情報フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class InformationDbForm {
 
-    /** 複合主キー1
+    /**
+     * 複合主キー1
      * 内訳種目ID
-     *  */
+     */
     private Integer idbBcdId;
 
     /** 工事契約（新規登録・更新処理時form.html表示用） */
@@ -34,16 +35,17 @@ public class InformationDbForm {
     /** 内訳頭紙区分（新規登録・更新処理時form.html表示用） */
     private CategoryDetail categoryDetail;
 
-    /**　内訳種目（更新処理時form.html表示用）　*/
+    /** 内訳種目（更新処理時form.html表示用） */
     private BreakdownCd breakdownCd;
 
-    /** 複合主キー2
+    /**
+     * 複合主キー2
      * 内訳情報区分
-     *  */
+     */
     @NotNull(message = "内訳情報区分を選択してください。")
     private Integer idbIiId;
 
-    /**　内訳情報区分（更新処理時form.html表示用）　*/
+    /** 内訳情報区分（更新処理時form.html表示用） */
     private InformationItem informationItem;
 
     /** 文字情報 */

@@ -4,8 +4,8 @@ import com.example.demo.entity.BreakdownCs;
 import com.example.demo.form.BreakdownCsForm;
 
 /**
-* 内訳科目サービスヘルパークラス
-*/
+ * 内訳科目サービスヘルパークラス
+ */
 public class BreakdownCsHelper {
 
     /** 【FormからEntityへ変換】 */

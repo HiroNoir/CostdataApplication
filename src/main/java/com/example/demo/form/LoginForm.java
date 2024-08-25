@@ -3,8 +3,8 @@ package com.example.demo.form;
 import lombok.Data;
 
 /**
-* カスタム認証フォームクラス
-*/
+ * カスタム認証フォームクラス
+ */
 @Data
 public class LoginForm {
 

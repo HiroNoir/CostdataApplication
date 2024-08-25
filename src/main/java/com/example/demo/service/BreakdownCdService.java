@@ -7,8 +7,8 @@ import com.example.demo.entity.BreakdownCd;
 import com.example.demo.service.impl.LoginUserDetails;
 
 /**
-* 内訳種目サービスインターフェース
-*/
+ * 内訳種目サービスインターフェース
+ */
 public interface BreakdownCdService {
 
     /** 【合計取得】 */
@@ -21,12 +21,10 @@ public interface BreakdownCdService {
     BreakdownCd findById(Integer bcdId);
 
     /** 【登録実行】 */
-    ErrorKinds insert(BreakdownCd breakdownCd,
-            LoginUserDetails loginUserDetails);
+    ErrorKinds insert(BreakdownCd breakdownCd, LoginUserDetails loginUserDetails);
 
     /** 【更新実行】 */
-    ErrorKinds update(BreakdownCd breakdownCd,
-            LoginUserDetails loginUserDetails);
+    ErrorKinds update(BreakdownCd breakdownCd, LoginUserDetails loginUserDetails);
 
     /** 【削除実行】 */
     ErrorKinds delete(Integer bcdId);

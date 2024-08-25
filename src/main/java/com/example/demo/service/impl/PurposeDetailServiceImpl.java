@@ -14,8 +14,8 @@ import com.example.demo.service.PurposeDetailService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 用途詳細区分設定サービス実装クラス
-*/
+ * 用途詳細区分設定サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class PurposeDetailServiceImpl implements PurposeDetailService {
         Map<String, Integer> purposeDetailMap = new LinkedHashMap<>();
 
         /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
-        for(PurposeDetail row : purposeDetail) {
+        for (PurposeDetail row : purposeDetail) {
             String pdTypeName = row.getPdTypeName();
             Integer pdId = row.getPdId();
             purposeDetailMap.put(pdTypeName, pdId);

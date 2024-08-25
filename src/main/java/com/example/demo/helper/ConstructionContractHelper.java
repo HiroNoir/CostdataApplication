@@ -4,8 +4,8 @@ import com.example.demo.entity.ConstructionContract;
 import com.example.demo.form.ConstructionContractForm;
 
 /**
-* 工事契約サービスヘルパークラス
-*/
+ * 工事契約サービスヘルパークラス
+ */
 public class ConstructionContractHelper {
 
     /** 【FormからEntityへ変換】 */

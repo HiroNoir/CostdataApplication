@@ -13,8 +13,8 @@ import com.example.demo.service.BreakdownCoService;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 内訳頭紙サービス実装クラス
-*/
+ * 内訳頭紙サービス実装クラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -39,10 +39,8 @@ public class BreakdownCoServiceImpl implements BreakdownCoService {
 
     /** 【特定取得】 */
     @Override
-    public List<BreakdownCo> findAllById(Integer bcoCcId,
-            Long directConstructionPrice, Long totalConstructionPrice) {
-        return mapper.selectAllById(bcoCcId,
-                directConstructionPrice, totalConstructionPrice);
+    public List<BreakdownCo> findAllById(Integer bcoCcId, Long directConstructionPrice, Long totalConstructionPrice) {
+        return mapper.selectAllById(bcoCcId, directConstructionPrice, totalConstructionPrice);
     }
 
     /** 【一件取得】 */

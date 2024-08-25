@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.CategorySubject;
 
 /**
-* 内訳科目区分設定リポジトリインターフェース（MyBatis用マッパー）
-*/
+ * 内訳科目区分設定リポジトリインターフェース（MyBatis用マッパー）
+ */
 @Mapper
 public interface CategorySubjectMapper {
 

@@ -5,8 +5,8 @@ import java.util.Map;
 import com.example.demo.entity.CategoryDetail;
 
 /**
-* 内訳種目区分設定サービスインターフェース
-*/
+ * 内訳種目区分設定サービスインターフェース
+ */
 public interface CategoryDetailService {
 
     /** 【一件取得】 */

@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.entity.BreakdownCd;
 
 /**
-* 内訳種目リポジトリインターフェース（MyBatis用マッパー）
-*/
+ * 内訳種目リポジトリインターフェース（MyBatis用マッパー）
+ */
 @Mapper
 public interface BreakdownCdMapper {
 
@@ -21,10 +21,10 @@ public interface BreakdownCdMapper {
     /** 【一件取得】 */
     BreakdownCd selectById(Integer bcdId);
 
-    /**　【登録実行】 */
+    /** 【登録実行】 */
     void insert(BreakdownCd breakdownCd);
 
-    /**　【更新実行】 */
+    /** 【更新実行】 */
     void update(BreakdownCd breakdownCd);
 
     /** 【削除実行】 */

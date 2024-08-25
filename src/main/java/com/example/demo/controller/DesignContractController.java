@@ -24,8 +24,8 @@ import com.example.demo.service.impl.LoginUserDetails;
 import lombok.RequiredArgsConstructor;
 
 /**
-* 設計契約コントローラークラス
-*/
+ * 設計契約コントローラークラス
+ */
 @Controller
 @RequestMapping("/design-contract")
 @RequiredArgsConstructor
@@ -33,9 +33,9 @@ public class DesignContractController {
 
     /** メソッド認可メモ */
     // 下記メソッドには@PreAuthorize("hasAuthority('EDITOR')")を付し、編集者権限を有するユーザーのみ実行可能とする
-    // 　【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
+    // 【登録画面表示】、【登録処理実行】、【更新画面表示】、【更新処理実行】
     // 下記メソッドには@PreAuthorize("hasAuthority('ADMIN')")を付し、管理者権限を有するユーザーのみ実行可能とする
-    // 　【削除処理実行】
+    // 【削除処理実行】
     // これらのメソッド認可を設定しておかないと、URLにメソッド名で実行可能となってしまう。よって、権限による認可を付す
     // 権限のないユーザーがURLにメソッド名を書いてで実行すると、405エラーが発生し、405.htmlに画面遷移する
 
@@ -58,10 +58,9 @@ public class DesignContractController {
 
     }
 
-    /**　【一件取得】 */
+    /** 【一件取得】 */
     @GetMapping("/{id}/detail")
-    public String detail(@PathVariable("id") Integer dcId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("id") Integer dcId, Model model, RedirectAttributes redirectAttributes) {
 
         /** 詳細画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
@@ -76,7 +75,7 @@ public class DesignContractController {
             return "design-contract/detail";
         } else {
             // 対象データがない場合
-            //　エラーのフラッシュメッセージをRedirectAttributesに格納
+            // エラーのフラッシュメッセージをRedirectAttributesに格納
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/design-contract/list";
@@ -84,13 +83,13 @@ public class DesignContractController {
 
     }
 
-    /** 【登録画面表示】　*/
+    /** 【登録画面表示】 */
     @GetMapping("/create")
     @PreAuthorize("hasAuthority('EDITOR')")
     public String create(@ModelAttribute DesignContractForm form) {
 
         // @ModelAttributeの引数省略型を利用しているため、下記のように、Model名はクラス名のローワーキャメルケースとなる
-        // model.addAttribute("designContractForm", form);　→form.htmlへ引き継ぐModel名となる
+        // model.addAttribute("designContractForm", form); →form.htmlへ引き継ぐModel名となる
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 登録画面へ遷移 */
@@ -104,11 +103,10 @@ public class DesignContractController {
     /** 【登録処理実行】 */
     @PostMapping("/add")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String add(@Validated DesignContractForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
-            @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
+    public String add(@Validated DesignContractForm form, BindingResult bindingRusult, Model model,
+            RedirectAttributes redirectAttributes, @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため登録画面へ遷移してエラー内容を表示させる
             // 画面遷移（メソッド指定）
@@ -123,8 +121,7 @@ public class DesignContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 画面遷移（メソッド指定）
             return create(form);
         }
@@ -138,12 +135,11 @@ public class DesignContractController {
     /** 【更新画面表示】 */
     @GetMapping("/{id}/edit")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String edit(@PathVariable("id") Integer dcId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String edit(@PathVariable("id") Integer dcId, Model model, RedirectAttributes redirectAttributes) {
 
-        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理　*/
+        /** 更新処理実行時入力チェックからのエラーメッセージ表示処理 */
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度form.htmlへ遷移する
-        if(dcId == null) {
+        if (dcId == null) {
             // 画面遷移（アドレス指定）
             return "design-contract/form";
         }
@@ -158,7 +154,7 @@ public class DesignContractController {
             // EntityクラスからFormクラスへ変換
             DesignContractForm form = DesignContractHelper.convertForm(targetDesignContract);
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("designContractForm", form);
             // 更新画面としてform.htmlが実行されるよう設定
             form.setIsNew(false);
@@ -174,19 +170,18 @@ public class DesignContractController {
 
     }
 
-    /**　【更新処理実行】 */
+    /** 【更新処理実行】 */
     @PostMapping("/{id}/revice")
     @PreAuthorize("hasAuthority('EDITOR')")
-    public String revice(@PathVariable("id") Integer dcId,
-            @Validated DesignContractForm form, BindingResult bindingRusult,
-            Model model, RedirectAttributes redirectAttributes,
+    public String revice(@PathVariable("id") Integer dcId, @Validated DesignContractForm form,
+            BindingResult bindingRusult, Model model, RedirectAttributes redirectAttributes,
             @AuthenticationPrincipal LoginUserDetails loginUserDetails) {
 
-        /** Entityクラスによる入力チェック　*/
+        /** Entityクラスによる入力チェック */
         if (bindingRusult.hasErrors()) {
             // 入力チェックにエラーがあるため更新画面へ遷移してエラー内容を表示させる
             // Modelに格納
-            //　登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
+            // 登録画面表示の@ModelAttribute引数省略型に合せ、Model名はFormクラス名のローワーキャメルケースとする
             model.addAttribute("designContractForm", form);
             // 画面遷移（メソッド指定）
             return edit(null, model, redirectAttributes);
@@ -200,8 +195,7 @@ public class DesignContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 更新画面へ引き継ぐデータをModelに格納
             model.addAttribute("designContractForm", service.findById(dcId));
             // 画面遷移（メソッド指定）
@@ -217,8 +211,7 @@ public class DesignContractController {
     /** 【削除処理実行】 */
     @PostMapping("/{id}/remove")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public String remove(@PathVariable("id") Integer dcId,
-            Model model, RedirectAttributes redirectAttributes) {
+    public String remove(@PathVariable("id") Integer dcId, Model model, RedirectAttributes redirectAttributes) {
 
         /** 削除処理実行（ErrorKindsクラスによる入力チェック共） */
         // 削除処理をしてErrorKindsクラスで定義された種別の結果を受け取る
@@ -226,8 +219,7 @@ public class DesignContractController {
         // ErrorMessageクラスで定義されたエラーが含まれていれば詳細画面に遷移してエラーメッセージを表示する
         if (ErrorMessage.contains(result)) {
             // エラーメッセージをModelに格納
-            model.addAttribute(ErrorMessage.getErrorName(result),
-                               ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
             // 詳細画面へ引き継ぐデータをModelに格納
             model.addAttribute("designContractForm", service.findById(dcId));
             // 画面遷移（メソッド指定）

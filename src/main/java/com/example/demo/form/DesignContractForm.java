@@ -7,15 +7,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-* 設計契約フォームクラス
-*/
+ * 設計契約フォームクラス
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DesignContractForm {
 
-    /** 主キー
-     * 設計契約ID */
+    /**
+     * 主キー
+     * 設計契約ID
+     */
     private Integer dcId;
 
     /** 業務番号 */

@@ -11,8 +11,8 @@ import com.example.demo.repository.AuthenticationMapper;
 import lombok.RequiredArgsConstructor;
 
 /**
-* LoginUserDetails実装クラス
-*/
+ * LoginUserDetails実装クラス
+ */
 @Service
 @RequiredArgsConstructor
 public class LoginUserDatailsServiceImpl implements UserDetailsService {
@@ -24,8 +24,7 @@ public class LoginUserDatailsServiceImpl implements UserDetailsService {
 
     /** 【認証処理】 */
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 「認証テーブル」からデータを取得
         Authentication authentication = authenticationMapper.selectByUsername(username);
 
@@ -35,8 +34,7 @@ public class LoginUserDatailsServiceImpl implements UserDetailsService {
             return new LoginUserDetails(authentication);
         } else {
             // 対象データが存在しない場合はExceptionをスローする
-            throw new UsernameNotFoundException(
-                    username + " => 指定しているユーザー名は存在しません");
+            throw new UsernameNotFoundException(username + " => 指定しているユーザー名は存在しません");
         }
     }
 

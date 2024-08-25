@@ -12,8 +12,8 @@ import com.example.demo.entity.Authentication;
 import com.example.demo.entity.Role;
 
 /**
-* UserDetails実装クラス
-*/
+ * UserDetails実装クラス
+ */
 public class LoginUserDetails implements UserDetails {
 
     /**
@@ -43,26 +43,24 @@ public class LoginUserDetails implements UserDetails {
         // ログインユーザーの権限を格納
         authorities.add(new SimpleGrantedAuthority(authentication.getAuthority().toString()));
         // ADMIN ロールの場合、EDITORとGENERLの権限も付与
-        if (authentication.getAuthority()== Role.ADMIN) {
-            authorities.add(
-                    new SimpleGrantedAuthority(Role.EDITOR.toString()));
-            authorities.add(
-                    new SimpleGrantedAuthority(Role.GENERAL.toString()));
+        if (authentication.getAuthority() == Role.ADMIN) {
+            authorities.add(new SimpleGrantedAuthority(Role.EDITOR.toString()));
+            authorities.add(new SimpleGrantedAuthority(Role.GENERAL.toString()));
         }
         // EDITOR ロールの場合、GENERLの権限も付与
         if (authentication.getAuthority() == Role.EDITOR) {
-            authorities.add(
-                    new SimpleGrantedAuthority(Role.GENERAL.toString()));
+            authorities.add(new SimpleGrantedAuthority(Role.GENERAL.toString()));
         }
         this.authorities = authorities;
     }
 
     /** 【カスタム属性の名前と名字を格納】 */
-    //　名前を取得
+    // 名前を取得
     public String getFirstName() {
         return authentication.getFirstName();
     }
-    //　名字を取得
+
+    // 名字を取得
     public String getLastName() {
         return authentication.getLastName();
     }
@@ -71,8 +69,8 @@ public class LoginUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         /**
-         *  書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。
-         *  ユーザーに与えらている権限リストを返却するメソッド。このメソッドは許可処理で利用する。
+         * 書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。
+         * ユーザーに与えらている権限リストを返却するメソッド。このメソッドは許可処理で利用する。
          */
         return authorities;
     }
@@ -80,9 +78,9 @@ public class LoginUserDetails implements UserDetails {
     @Override
     public String getPassword() {
         /**
-         *  書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。
-         *  登録されているパスワードを返却するメソッド。このメソッドで返却したパスワードとクライアントから指定されたパスワードが
-         *  一致しない場合は、DaoAuthenticationProviderはBadCredencialIsExcetionをスローする。
+         * 書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。
+         * 登録されているパスワードを返却するメソッド。このメソッドで返却したパスワードとクライアントから指定されたパスワードが
+         * 一致しない場合は、DaoAuthenticationProviderはBadCredencialIsExcetionをスローする。
          */
         return authentication.getPassword();
     }
@@ -90,8 +88,7 @@ public class LoginUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         /**
-         * 書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。
-         * ユーザー名を返却するメソッド。
+         * 書籍「Spring徹底入門_NTTデータ著_第2版」P442よりこのメソッドの説明を転載。 ユーザー名を返却するメソッド。
          */
         return authentication.getUsername();
     }

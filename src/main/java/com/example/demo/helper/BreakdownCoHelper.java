@@ -4,8 +4,8 @@ import com.example.demo.entity.BreakdownCo;
 import com.example.demo.form.BreakdownCoForm;
 
 /**
-* 内訳頭紙サービスヘルパークラス
-*/
+ * 内訳頭紙サービスヘルパークラス
+ */
 public class BreakdownCoHelper {
 
     /** 【FormからEntityへ変換】 */

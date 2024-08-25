@@ -4,8 +4,8 @@ import com.example.demo.entity.BreakdownCd;
 import com.example.demo.form.BreakdownCdForm;
 
 /**
-* 内訳種目サービスヘルパークラス
-*/
+ * 内訳種目サービスヘルパークラス
+ */
 public class BreakdownCdHelper {
 
     /** 【FormからEntityへ変換】 */
