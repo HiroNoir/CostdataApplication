@@ -113,6 +113,17 @@
                     <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
                 </div>
             </div>
+            <div th:if="${coId == 1010}" class="row mb-5">
+                <div class="col">
+                    <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">入力金額チェック用検算（差額計算）</h3>
+                    <table sec:authorize="hasAuthority('EDITOR')">
+                        <tr>
+                            <th style="text-align: left;">内訳種目の建築の直接工事費－内訳情報の建築の直接工事費＝</th>
+                            <td style="text-align: right;" th:text="${#numbers.formatInteger(defDirectConstructionPrice, 3, 'COMMA')} + '円'"></td>
+                        </tr>
+                    </table>
+                 </div>
+            </div>
             <div class="row">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">

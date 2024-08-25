@@ -19,6 +19,7 @@ import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.constraints.ErrorMessage;
 import com.example.demo.entity.BreakdownCd;
 import com.example.demo.entity.BreakdownCo;
+import com.example.demo.entity.BreakdownCs;
 import com.example.demo.entity.CategoryDetail;
 import com.example.demo.entity.CategoryOutline;
 import com.example.demo.entity.ConstructionContract;
@@ -68,6 +69,48 @@ public class InformationDbController {
     @GetMapping("/{id}/specify")
     public String specify(@PathVariable("id") Integer idbBcdId, Model model, RedirectAttributes redirectAttributes) {
 
+        /** ローカルフィールド定義、及び、初期化 */
+        Long longBreakdownCdPriceOfArchitecture = null; // breakdown_cdテーブルより取得した建築の直接工事費
+        Long longInformationDbPriceOfArchitecture = null; // information_dbテーブルより取得した建築の直接工事費
+        Long longPriceOfArchitecture = null; // 建築の直接工事費
+        Long longPriceOfElectricalSystems = null; // 電気設備の直接工事費
+        Long longPriceOfMechanicalSystems = null; // 機械設備の直接工事費
+        Long longPriceOfElevatorSystems = null; // 昇降機設備の直接工事費
+
+        /** 現在表示している内訳種目の金額をbreakdown_cdテーブルより取得 */
+        // 対象データを取得
+        BreakdownCd beakdownCdPriceOfArchitecture = breakdownCdService.findById(idbBcdId);
+        // 対象データの有無確認
+        if (beakdownCdPriceOfArchitecture != null) {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            longBreakdownCdPriceOfArchitecture = beakdownCdPriceOfArchitecture.getBcdPrice();
+        } else {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            longBreakdownCdPriceOfArchitecture = 0L;
+        }
+        // Modelに格納
+        model.addAttribute("longBreakdownCdPriceOfArchitecture", longBreakdownCdPriceOfArchitecture);
+
+        /** 「内訳種目の建築の直接工事費－内訳情報の建築の直接工事費」の検算結果を取得 */
+        // 対象データを取得
+        InformationDb informationDbPriceOfArchitecture = service.findById(idbBcdId, 101);
+        // 対象データの有無確認
+        if (informationDbPriceOfArchitecture != null) {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            longInformationDbPriceOfArchitecture = informationDbPriceOfArchitecture.getIdbDataBigint();
+        } else {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            longInformationDbPriceOfArchitecture = 0L;
+        }
+        // 上記合計金額より直接工事費を減算して差額を算出
+        Long defDirectConstructionPrice = longBreakdownCdPriceOfArchitecture - longInformationDbPriceOfArchitecture;
+        // Modelに格納
+        model.addAttribute("defDirectConstructionPrice", defDirectConstructionPrice);
+
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
         // 対象データを取得
@@ -82,6 +125,7 @@ public class InformationDbController {
             // Modelに格納
             model.addAttribute("projectName", constructionContract.getProjectName());
             model.addAttribute("coTypeName", categoryOutline.getCoTypeName());
+            model.addAttribute("coId", categoryOutline.getCoId());
             model.addAttribute("cdTypeName", categoryDetail.getCdTypeName());
             model.addAttribute("bcdTypeName", targetBreakdownCd.getBcdTypeName());
             model.addAttribute("informationDb", service.findAllById(idbBcdId));
