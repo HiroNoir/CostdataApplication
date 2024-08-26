@@ -158,15 +158,8 @@
                              </tr>
                          </tbody>
                      </table>
-                     <p class="mb-3" th:text="'種目別金額合計　' + ${#numbers.formatInteger(longSumDirectConstructionPrice, 3, 'COMMA')} + '円　('+ ${unitPricePerSquareMeterOfLongSumDirectConstructionPrice} + ')'">
+                     <p class="mb-3" th:text="'上記の合計　' + ${#numbers.formatInteger(longSumDirectConstructionPrice, 3, 'COMMA')} + '円　('+ ${unitPricePerSquareMeterOfLongSumDirectConstructionPrice} + ')'">
                 </div>
-
-
-
-
-
-
-
                 <div class="col-md-4">
                     <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">種目別・内訳科目区分による分析</h3>
                     <table class="table table-striped">
@@ -187,6 +180,7 @@
                              </tr>
                          </tbody>
                      </table>
+                     <p class="mb-3" th:text="'上記の合計　' + ${#numbers.formatInteger(longBreakdownCdSumDirectConstructionPrice, 3, 'COMMA')} + '円　('+ ${unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice} + ')'">
                 </div>
 
 
@@ -196,8 +190,23 @@
 
 
 
-            </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
         </div>
     </main>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>

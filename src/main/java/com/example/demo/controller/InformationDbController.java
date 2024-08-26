@@ -80,6 +80,7 @@ public class InformationDbController {
         Double bcdAreaTotalfloor = 0.00; // breakdown_cdテーブルより取得した新営工事の延床面積
         Double bcdAreaRenovation = 0.00; // breakdown_cdテーブルより取得した改修工事の改修面積
         Double bcdAreaExterior = 0.00;   // breakdown_cdテーブルより取得した外構工事の外構面積
+        Long longBreakdownCdSumDirectConstructionPrice = null; // breakdown_cdテーブルより取得した直接工事費の合計
 
         /** 現在表示している内訳種目の金額をbreakdown_cdテーブルより取得 */
         // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
@@ -179,9 +180,47 @@ public class InformationDbController {
         List<BreakdownCs> categorizedBreakdownCs = breakdownCsService.findAllByIdCategorizedByGroup(idbBcdId, longBreakdownCdPriceOfArchitecture);
         model.addAttribute("categorizedBreakdownCs", categorizedBreakdownCs);
 
-        /** 【分析2-2】「内訳科目の直仮+土工+躯体+仕上」の直接工事費合計の㎡単価 */
+        /** 【分析2-2】「内訳科目の直仮+土工+躯体+仕上」の直接工事費合計 */
         // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
+        // 対象データを取得
+        BreakdownCs breakdownCdSumDirectConstructionPrice = breakdownCsService.sumFindById(idbBcdId);
+        // 対象データの有無確認
+        if (breakdownCdSumDirectConstructionPrice != null) {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            longBreakdownCdSumDirectConstructionPrice = breakdownCdSumDirectConstructionPrice.getSumBcsPrice();
+         // Modelに格納
+        } else {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            longSumDirectConstructionPrice = 0L;
+        }
+        // Modelに格納
+        model.addAttribute("longBreakdownCdSumDirectConstructionPrice", longBreakdownCdSumDirectConstructionPrice);
+
+        /** 【分析2-3】「内訳科目の直仮+土工+躯体+仕上」の直接工事費の直接工事費合計の㎡単価合 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で表示するために、specify.htmlの条件式で対応
+        // 対象データは取得は【分析1-2】で取得済み
+        // Modelに格納
+        if (bcdAreaTotalfloor != 0.00) {
+            String unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice = comFormat.format(Math.round(longBreakdownCdSumDirectConstructionPrice / bcdAreaTotalfloor)) + "円/延床㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice", unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice);
+        } else if (bcdAreaRenovation != 0.00) {
+            String unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice = comFormat.format(Math.round(longBreakdownCdSumDirectConstructionPrice / bcdAreaRenovation)) + "円/改修㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice", unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice);
+        } else if (bcdAreaExterior != 0.00) {
+            String unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice = comFormat.format(Math.round(longBreakdownCdSumDirectConstructionPrice / bcdAreaExterior)) + "円/外構㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice", unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice);
+        }
+
+
+
+
+
+
+
 
 
 
