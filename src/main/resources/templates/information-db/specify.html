@@ -124,6 +124,39 @@
                     </table>
                  </div>
             </div>
+
+
+
+            <div  th:if="${coId == 1010}" class="row mb-5">
+                <div class="col-md-4">
+                    <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">種目別・内訳頭紙区分による分析</h3>
+                    <table class="table table-striped">
+                         <thead class="table-light">
+                             <tr>
+                                 <th scope="col" style="width: 20%">種目</th>
+                                 <th>金額</th>
+                                 <th>㎡単価</th>
+                                 <th>割合</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr th:each="analyzedDirectConstructionPrice : ${analyzedDirectConstructionPrice}">
+                                 <td th:text="${analyzedDirectConstructionPrice.InformationItem.iiItemName}"></td>
+                                 <td style="text-align: right;" th:text="${#numbers.formatInteger(analyzedDirectConstructionPrice.idbDataBigint, 3, 'COMMA')} + '円'"></td>
+                                 <td style="text-align: right;" th:text="${analyzedDirectConstructionPrice.idbUnitPricePerSquareMeter}"></td>
+                                 <td style="text-align: right;" th:text="${analyzedDirectConstructionPrice.idbRatio}"></td>
+                             </tr>
+                         </tbody>
+                     </table>
+                     <p class="mb-3" th:text="'種目別金額合計　' + ${#numbers.formatInteger(longSumDirectConstructionPrice, 3, 'COMMA')} + '円　('+ ${unitPricePerSquareMeterOfLongSumDirectConstructionPrice} + ')'">
+                </div>
+            </div>
+
+
+
+
+
+
             <div class="row">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">

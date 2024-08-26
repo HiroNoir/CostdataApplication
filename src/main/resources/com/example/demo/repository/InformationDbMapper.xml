@@ -8,6 +8,9 @@
         <result column="idb_data_text" property="idbDataText" />
         <result column="idb_data_double" property="idbDataDouble" />
         <result column="idb_data_bigint" property="idbDataBigint" />
+        <result column="sum_idb_price" property="sumIdbPrice" />
+        <result column="idb_unit_price_per_square_meter" property="idbUnitPricePerSquareMeter" />
+        <result column="idb_ratio" property="idbRatio" />
         <result column="idb_created_at" property="idbCreatedAt" />
         <result column="idb_updated_at" property="idbUpdatedAt" />
         <result column="idb_latest_editor" property="idbLatestEditor" />
@@ -89,7 +92,27 @@
             <result column="co_type_name" property="coTypeName" />
         </association>
     </resultMap>
-    <!-- 合計取得 ※建築+電気設備+機械設備+昇降機設備 -->
+    <!-- 分析用特定取得 ※建築+電気設備+機械設備+昇降機設備 -->
+    <select id="priceSelectById" resultMap="informationDbResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT ii_item_name, idb_data_bigint,
+            CASE
+                WHEN <![CDATA[bcd_area_totalfloor <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(idb_data_bigint / bcd_area_totalfloor, 0), 0), '円/延床㎡')
+                WHEN <![CDATA[bcd_area_renovation <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(idb_data_bigint / bcd_area_renovation, 0), 0), '円/改修㎡')
+                WHEN <![CDATA[bcd_area_exterior <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(idb_data_bigint / bcd_area_exterior, 0), 0), '円/外構㎡')
+                ELSE '-'
+            END AS idb_unit_price_per_square_meter,
+            CONCAT(round(idb_data_bigint / #{directConstructionPrice} * 100, 1), '%') AS idb_ratio
+        FROM information_db
+        JOIN information_item ON information_db.idb_ii_id = information_item.ii_id
+        JOIN breakdown_cd ON information_db.idb_bcd_id = breakdown_cd.bcd_id
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 101 OR idb_ii_id = 201 OR idb_ii_id = 301 OR idb_ii_id = 401)
+        ORDER BY information_item.ii_id;
+    </select>
+    <!-- 分析用合計取得 ※建築+電気設備+機械設備+昇降機設備 -->
     <select id="sumSelectById" resultMap="informationDbResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT SUM(idb_data_bigint) AS sum_idb_price

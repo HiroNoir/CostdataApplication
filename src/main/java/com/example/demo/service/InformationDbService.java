@@ -11,7 +11,10 @@ import com.example.demo.service.impl.LoginUserDetails;
  */
 public interface InformationDbService {
 
-    /** 【合計取得 ※建築+電気設備+機械設備+昇降機設備】 */
+    /** 【分析用特定取得 ※建築+電気設備+機械設備+昇降機設備】 */
+    List<InformationDb> priceFindById(Integer idbBcdId, Long directConstructionPrice);
+
+    /** 【分析用合計取得 ※建築+電気設備+機械設備+昇降機設備】 */
     InformationDb sumFindById(Integer idbBcdId);
 
     /** 【特定取得】 */

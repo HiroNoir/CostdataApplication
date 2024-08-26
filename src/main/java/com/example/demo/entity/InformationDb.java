@@ -67,6 +67,27 @@ public class InformationDb {
     /** 金額情報 */
     private Long idbDataBigint;
 
+    /**
+     * 合計金額 ※建築+電気設備+機械設備+昇降機設備（分析用）
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで 計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private Long sumIdbPrice;
+
+    /**
+     * ㎡単価
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String idbUnitPricePerSquareMeter;
+
+    /**
+     * 割合（種目別の対直接工事費合計）
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String idbRatio;
+
     /** 作成日時 */
     private LocalDateTime idbCreatedAt;
 

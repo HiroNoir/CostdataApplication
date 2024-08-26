@@ -12,7 +12,10 @@ import com.example.demo.entity.InformationDb;
 @Mapper
 public interface InformationDbMapper {
 
-    /** 【合計取得 ※建築+電気設備+機械設備+昇降機設備】 */
+    /** 【分析用特定取得 ※建築+電気設備+機械設備+昇降機設備】 */
+    List<InformationDb> priceSelectById(Integer idbBcdId, Long directConstructionPrice);
+
+    /** 【分析用合計取得 ※建築+電気設備+機械設備+昇降機設備】 */
     InformationDb sumSelectById(Integer idbBcdId);
 
     /** 【特定取得】 */

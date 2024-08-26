@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.text.NumberFormat;
 import java.util.Map;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +20,6 @@ import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.constraints.ErrorMessage;
 import com.example.demo.entity.BreakdownCd;
 import com.example.demo.entity.BreakdownCo;
-import com.example.demo.entity.BreakdownCs;
 import com.example.demo.entity.CategoryDetail;
 import com.example.demo.entity.CategoryOutline;
 import com.example.demo.entity.ConstructionContract;
@@ -72,10 +72,10 @@ public class InformationDbController {
         /** ローカルフィールド定義、及び、初期化 */
         Long longBreakdownCdPriceOfArchitecture = null; // breakdown_cdテーブルより取得した建築の直接工事費
         Long longInformationDbPriceOfArchitecture = null; // information_dbテーブルより取得した建築の直接工事費
-        Long longPriceOfArchitecture = null; // 建築の直接工事費
-        Long longPriceOfElectricalSystems = null; // 電気設備の直接工事費
-        Long longPriceOfMechanicalSystems = null; // 機械設備の直接工事費
-        Long longPriceOfElevatorSystems = null; // 昇降機設備の直接工事費
+        Long longSumDirectConstructionPrice = null; // 内訳情報の建築+電気設備+機械設備+昇降機設備の合計直接工事費
+        Double bcdAreaTotalfloor = 0.00; // breakdown_cdテーブルより取得した新営工事の延床面積
+        Double bcdAreaRenovation = 0.00; // breakdown_cdテーブルより取得した改修工事の改修面積
+        Double bcdAreaExterior = 0.00;   // breakdown_cdテーブルより取得した外構工事の外構面積
 
         /** 現在表示している内訳種目の金額をbreakdown_cdテーブルより取得 */
         // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
@@ -112,6 +112,59 @@ public class InformationDbController {
         Long defDirectConstructionPrice = longBreakdownCdPriceOfArchitecture - longInformationDbPriceOfArchitecture;
         // Modelに格納
         model.addAttribute("defDirectConstructionPrice", defDirectConstructionPrice);
+
+        /** 【分析1-1】「内訳情報の建築+電気設備+機械設備+昇降機設備」の直接工事費合計と、㎡単価及び割合 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で表示するために、specify.htmlの条件式で対応
+        // 対象データを取得
+        InformationDb targetInformationDb = service.sumFindById(idbBcdId);
+        // 対象データの有無確認
+        if (targetInformationDb != null) {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            longSumDirectConstructionPrice = targetInformationDb.getSumIdbPrice();
+            // Modelに格納
+            model.addAttribute("analyzedDirectConstructionPrice", service.priceFindById(idbBcdId, longSumDirectConstructionPrice));
+        } else {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            longSumDirectConstructionPrice = 0L;
+        }
+        // Modelに格納
+        model.addAttribute("longSumDirectConstructionPrice", longSumDirectConstructionPrice);
+
+        /** 【分析1-2】内訳種目の面積情報取得と、「内訳情報の建築+電気設備+機械設備+昇降機設備」の直接工事費合計の㎡単価 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で表示するために、specify.htmlの条件式で対応
+        // 対象データを取得
+        BreakdownCd targetbcdArea = breakdownCdService.findById(idbBcdId);
+        // 対象データの有無確認
+        if (targetbcdArea != null) {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            bcdAreaTotalfloor = targetbcdArea.getBcdAreaTotalfloor();
+            bcdAreaRenovation = targetbcdArea.getBcdAreaRenovation();
+            bcdAreaExterior = targetbcdArea.getBcdAreaExterior();
+        } else {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            bcdAreaTotalfloor = 0.00;
+            bcdAreaRenovation = 0.00;
+            bcdAreaExterior = 0.00;
+        }
+        // カンマ区切りのフォーマットをインスタンス化
+        NumberFormat comFormat = NumberFormat.getNumberInstance();
+        // Modelに格納
+        if (bcdAreaTotalfloor != 0.00) {
+            String unitPricePerSquareMeterOfLongSumDirectConstructionPrice = comFormat.format(Math.round(longSumDirectConstructionPrice / bcdAreaTotalfloor)) + "円/延床㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongSumDirectConstructionPrice", unitPricePerSquareMeterOfLongSumDirectConstructionPrice);
+        } else if (bcdAreaRenovation != 0.00) {
+            String unitPricePerSquareMeterOfLongSumDirectConstructionPrice = comFormat.format(Math.round(longSumDirectConstructionPrice / bcdAreaRenovation)) + "円/改修㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongSumDirectConstructionPrice", unitPricePerSquareMeterOfLongSumDirectConstructionPrice);
+        } else if (bcdAreaExterior != 0.00) {
+            String unitPricePerSquareMeterOfLongSumDirectConstructionPrice = comFormat.format(Math.round(longSumDirectConstructionPrice / bcdAreaExterior)) + "円/外構㎡";
+            model.addAttribute("unitPricePerSquareMeterOfLongSumDirectConstructionPrice", unitPricePerSquareMeterOfLongSumDirectConstructionPrice);
+        }
 
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う

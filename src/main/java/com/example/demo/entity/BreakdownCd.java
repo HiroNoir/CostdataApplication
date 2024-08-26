@@ -81,7 +81,8 @@ public class BreakdownCd {
     private Long sumBcdPrice;
 
     /**
-     * ㎡単価 ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
+     * ㎡単価
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
      * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
      */
     private String unitPricePerSquareMeter;
