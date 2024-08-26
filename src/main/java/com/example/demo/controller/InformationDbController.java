@@ -194,7 +194,7 @@ public class InformationDbController {
         } else {
             // 対象データがない場合
             // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
-            longSumDirectConstructionPrice = 0L;
+            longBreakdownCdSumDirectConstructionPrice = 0L;
         }
         // Modelに格納
         model.addAttribute("longBreakdownCdSumDirectConstructionPrice", longBreakdownCdSumDirectConstructionPrice);
@@ -249,8 +249,8 @@ public class InformationDbController {
             // Modelに格納
             model.addAttribute("projectName", constructionContract.getProjectName());
             model.addAttribute("coTypeName", categoryOutline.getCoTypeName());
-            model.addAttribute("coId", categoryOutline.getCoId());
             model.addAttribute("cdTypeName", categoryDetail.getCdTypeName());
+            model.addAttribute("cdId", categoryDetail.getCdId());
             model.addAttribute("bcdTypeName", targetBreakdownCd.getBcdTypeName());
             model.addAttribute("informationDb", service.findAllById(idbBcdId));
             model.addAttribute("listSize", service.findAllById(idbBcdId).size());

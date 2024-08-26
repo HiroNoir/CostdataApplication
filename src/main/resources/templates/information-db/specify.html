@@ -113,7 +113,7 @@
                     <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
                 </div>
             </div>
-            <div th:if="${coId == 1010}" class="row mb-5">
+            <div th:if="${cdId == 101010}" class="row mb-5">
                 <div class="col">
                     <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">入力金額チェック用検算（差額計算）</h3>
                     <table sec:authorize="hasAuthority('EDITOR')">
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col"></div> <!-- 中心揃え用 -->
             </div>
-            <div  th:if="${coId == 1010}" class="row mb-5">
+            <div  th:if="${cdId == 101010}" class="row mb-5">
                 <div class="col-md-4">
                     <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">種目別・内訳頭紙区分による分析</h3>
                     <table class="table table-striped">
