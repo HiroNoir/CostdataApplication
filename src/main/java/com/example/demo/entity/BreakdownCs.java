@@ -79,6 +79,34 @@ public class BreakdownCs {
      */
     private String unitPricePerSquareMeter;
 
+    /**
+     * 種目別・内訳科目区分による分析に利用する「短縮科目名」
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで 計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String categoryOfCsTypeName;
+
+    /**
+     * 種目別・内訳科目区分による分析に利用する「短縮科目名別集計金額」
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで 計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private Long categorizedSumBcsPrice;
+
+    /**
+     * 種目別・内訳科目区分による分析に利用する「短縮科目名別集計金額の㎡単価」
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで 計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String categorizedUnitPricePerSquareMeter;
+
+    /**
+     * 種目別・内訳科目区分による分析に利用する「短縮科目名別集計金額の割合」
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで 計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String bcsRatio;
+
     /** 作成日時 */
     private LocalDateTime bcsCreatedAt;
 

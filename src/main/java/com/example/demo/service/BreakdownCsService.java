@@ -11,6 +11,9 @@ import com.example.demo.service.impl.LoginUserDetails;
  */
 public interface BreakdownCsService {
 
+    /** 【分析用特定取得　※直仮+土工+地業+躯体+仕上】 */
+    List<BreakdownCs> findAllByIdCategorizedByGroup(Integer bcsBcdId, Long directConstructionPrice);
+
     /** 【合計取得】 */
     BreakdownCs sumFindById(Integer bcsBcdId);
 

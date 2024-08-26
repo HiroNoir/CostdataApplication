@@ -9,6 +9,10 @@
         <result column="bcs_data_bigint" property="bcsDataBigint" />
         <result column="sum_bcs_price" property="sumBcsPrice" />
         <result column="unit_price_per_square_meter" property="unitPricePerSquareMeter" />
+        <result column="category_of_cs_type_name" property="categoryOfCsTypeName" />
+        <result column="categorized_sum_bcs_price" property="categorizedSumBcsPrice" />
+        <result column="categorized_unit_price_per_square_meter" property="categorizedUnitPricePerSquareMeter" />
+        <result column="bcs_ratio" property="bcsRatio" />
         <result column="bcs_created_at" property="bcsCreatedAt" />
         <result column="bcs_updated_at" property="bcsUpdatedAt" />
         <result column="bcs_latest_editor" property="bcsLatestEditor" />
@@ -89,6 +93,27 @@
             <result column="co_type_name" property="coTypeName" />
         </association>
     </resultMap>
+    <!-- 分析用特定取得　※直仮+土工+地業+躯体+仕上 -->
+    <select id="selectAllByIdCategorizedByGroup" resultMap="breakdownCsResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT substring(cs_type_name, 1, 2) AS category_of_cs_type_name,
+            SUM(bcs_data_bigint) AS categorized_sum_bcs_price,
+            CASE
+                WHEN <![CDATA[breakdown_cd.bcd_area_totalfloor <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(SUM(bcs_data_bigint) / breakdown_cd.bcd_area_totalfloor, 0), 0), '円/延床㎡')
+                WHEN <![CDATA[breakdown_cd.bcd_area_renovation <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(SUM(bcs_data_bigint) / breakdown_cd.bcd_area_renovation, 0), 0), '円/改修㎡')
+                WHEN <![CDATA[breakdown_cd.bcd_area_exterior <> 0]]>
+                    THEN CONCAT(FORMAT(ROUND(SUM(bcs_data_bigint) / breakdown_cd.bcd_area_exterior, 0), 0), '円/外構㎡')
+                ELSE '-'
+            END AS categorized_unit_price_per_square_meter,
+            CONCAT(round(SUM(bcs_data_bigint) / #{directConstructionPrice} * 100, 1), '%') AS bcs_ratio
+        FROM breakdown_cs
+        JOIN category_subject ON breakdown_cs.bcs_cs_id = category_subject.cs_id
+        JOIN breakdown_cd ON breakdown_cs.bcs_bcd_id = breakdown_cd.bcd_id
+        WHERE bcs_delete_flg = 0 AND bcs_bcd_id = #{bcsBcdId} AND <![CDATA[(bcs_cs_id >= 10101010 AND bcs_cs_id <= 10101260)]]>
+        GROUP BY category_of_cs_type_name;
+    </select>
     <!-- 合計取得 -->
     <select id="sumSelectById" resultMap="breakdownCsResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->

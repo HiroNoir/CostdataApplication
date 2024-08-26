@@ -12,6 +12,9 @@ import com.example.demo.entity.BreakdownCs;
 @Mapper
 public interface BreakdownCsMapper {
 
+    /** 【分析用特定取得　※直仮+土工+地業+躯体+仕上】 */
+    List<BreakdownCs> selectAllByIdCategorizedByGroup(Integer bcsBcdId, Long directConstructionPrice);
+
     /** 【合計取得】 */
     BreakdownCs sumSelectById(Integer bcsBcdId);
 

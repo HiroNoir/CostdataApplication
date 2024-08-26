@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +21,7 @@ import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.constraints.ErrorMessage;
 import com.example.demo.entity.BreakdownCd;
 import com.example.demo.entity.BreakdownCo;
+import com.example.demo.entity.BreakdownCs;
 import com.example.demo.entity.CategoryDetail;
 import com.example.demo.entity.CategoryOutline;
 import com.example.demo.entity.ConstructionContract;
@@ -28,6 +30,7 @@ import com.example.demo.form.InformationDbForm;
 import com.example.demo.helper.InformationDbHelper;
 import com.example.demo.service.BreakdownCdService;
 import com.example.demo.service.BreakdownCoService;
+import com.example.demo.service.BreakdownCsService;
 import com.example.demo.service.CategoryDetailService;
 import com.example.demo.service.CategoryOutlineService;
 import com.example.demo.service.ConstructionContractService;
@@ -64,6 +67,7 @@ public class InformationDbController {
     private final CategoryDetailService categoryDetailService;
     private final InformationItemService informationItemService;
     private final BreakdownCdService breakdownCdService;
+    private final BreakdownCsService breakdownCsService;
 
     /** 【特定取得】 */
     @GetMapping("/{id}/specify")
@@ -96,6 +100,8 @@ public class InformationDbController {
         model.addAttribute("longBreakdownCdPriceOfArchitecture", longBreakdownCdPriceOfArchitecture);
 
         /** 「内訳種目の建築の直接工事費－内訳情報の建築の直接工事費」の検算結果を取得 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
         // 対象データを取得
         InformationDb informationDbPriceOfArchitecture = service.findById(idbBcdId, 101);
         // 対象データの有無確認
@@ -165,6 +171,30 @@ public class InformationDbController {
             String unitPricePerSquareMeterOfLongSumDirectConstructionPrice = comFormat.format(Math.round(longSumDirectConstructionPrice / bcdAreaExterior)) + "円/外構㎡";
             model.addAttribute("unitPricePerSquareMeterOfLongSumDirectConstructionPrice", unitPricePerSquareMeterOfLongSumDirectConstructionPrice);
         }
+
+        /** 【分析2-1】「内訳科目の直仮+土工+躯体+仕上」の直接工事費と、㎡単価及び割合 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で表示するために、specify.htmlの条件式で対応
+        // 対象データを取得
+        List<BreakdownCs> categorizedBreakdownCs = breakdownCsService.findAllByIdCategorizedByGroup(idbBcdId, longBreakdownCdPriceOfArchitecture);
+        model.addAttribute("categorizedBreakdownCs", categorizedBreakdownCs);
+
+        /** 【分析2-2】「内訳科目の直仮+土工+躯体+仕上」の直接工事費合計の㎡単価 */
+        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う

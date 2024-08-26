@@ -25,6 +25,12 @@ public class BreakdownCsServiceImpl implements BreakdownCsService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final BreakdownCsMapper mapper;
 
+    /** 【分析用特定取得　※直仮+土工+地業+躯体+仕上】 */
+    @Override
+    public List<BreakdownCs> findAllByIdCategorizedByGroup(Integer bcsBcdId, Long directConstructionPrice) {
+        return mapper.selectAllByIdCategorizedByGroup(bcsBcdId, directConstructionPrice);
+    }
+
     /** 【合計取得】 */
     @Override
     public BreakdownCs sumFindById(Integer bcsBcdId) {
