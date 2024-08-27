@@ -11,6 +11,9 @@ import com.example.demo.service.impl.LoginUserDetails;
  */
 public interface InformationDbService {
 
+    /** 【分析用特定取得 ※躯体数量と歩掛り】 */
+    List<InformationDb> quantityFindById(Integer idbBcdId, Double targetArea, Double targetConcreteVolume);
+
     /** 【分析用特定取得 ※建築+電気設備+機械設備+昇降機設備】 */
     List<InformationDb> priceFindById(Integer idbBcdId, Long directConstructionPrice);
 

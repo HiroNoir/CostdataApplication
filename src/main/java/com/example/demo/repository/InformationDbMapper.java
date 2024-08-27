@@ -12,6 +12,9 @@ import com.example.demo.entity.InformationDb;
 @Mapper
 public interface InformationDbMapper {
 
+    /** 【分析用特定取得 ※躯体数量と歩掛り】 */
+    List<InformationDb> quantitySelectById(Integer idbBcdId, Double targetArea, Double targetConcreteVolume);
+
     /** 【分析用特定取得 ※建築+電気設備+機械設備+昇降機設備】 */
     List<InformationDb> priceSelectById(Integer idbBcdId, Long directConstructionPrice);
 

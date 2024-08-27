@@ -88,6 +88,20 @@ public class InformationDb {
      */
     private String idbRatio;
 
+    /**
+     * 躯体歩掛（延床面積1m2当り）
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String idbUnitQuantityPerSquareMeter;
+
+    /**
+     * 躯体歩掛（コンクリート体積1m3当り）
+     * ※データベース保存用エンティティではないが、Mapper.xmlのSQLで計算した値を格納して、specify.htmlで表示されるために利用する。
+     * よって、FormクラスやHelperクラスではこのエンティティは不要とする。
+     */
+    private String idbUnitQuantityPerConcrete;
+
     /** 作成日時 */
     private LocalDateTime idbCreatedAt;
 

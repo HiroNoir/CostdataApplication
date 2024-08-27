@@ -11,6 +11,8 @@
         <result column="sum_idb_price" property="sumIdbPrice" />
         <result column="idb_unit_price_per_square_meter" property="idbUnitPricePerSquareMeter" />
         <result column="idb_ratio" property="idbRatio" />
+        <result column="idb_unit_quantity_per_squareMeter" property="idbUnitQuantityPerSquareMeter" />
+        <result column="idb_unit_quantity_per_concrete" property="idbUnitQuantityPerConcrete" />
         <result column="idb_created_at" property="idbCreatedAt" />
         <result column="idb_updated_at" property="idbUpdatedAt" />
         <result column="idb_latest_editor" property="idbLatestEditor" />
@@ -92,6 +94,31 @@
             <result column="co_type_name" property="coTypeName" />
         </association>
     </resultMap>
+    <!-- 分析用特定取得 ※躯体数量と歩掛り -->
+    <select id="quantitySelectById" resultMap="informationDbResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT ii_item_name,
+            CASE
+                WHEN idb_ii_id = 112 OR idb_ii_id = 115
+                    THEN CONCAT(round((idb_data_double * 1000) / (#{targetArea}), 2), 'kg/m2')
+                WHEN idb_ii_id = 113
+                    THEN CONCAT(round(idb_data_double / (#{targetArea}), 2), 'm3/m2')
+                WHEN idb_ii_id = 114
+                    THEN CONCAT(round(idb_data_double / (#{targetArea}), 2), 'm2/m2')
+                ELSE '-'
+            END AS idb_unit_quantity_per_squareMeter,
+            CASE
+                WHEN idb_ii_id = 112
+                    THEN CONCAT(round((idb_data_double * 1000) / (#{targetConcreteVolume}), 2), 'kg/コンm3')
+                WHEN idb_ii_id = 114
+                    THEN CONCAT(round(idb_data_double / (#{targetConcreteVolume}), 2), 'm2/コンm3')
+                ELSE '-'
+            END AS idb_unit_quantity_per_concrete
+        FROM information_db
+        JOIN information_item on information_db.idb_ii_id = information_item.ii_id
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 112 OR idb_ii_id = 113 OR idb_ii_id = 114 OR idb_ii_id = 115)
+        ORDER BY information_item.ii_id;
+    </select>
     <!-- 分析用特定取得 ※建築+電気設備+機械設備+昇降機設備 -->
     <select id="priceSelectById" resultMap="informationDbResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->

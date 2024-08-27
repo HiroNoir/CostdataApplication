@@ -25,6 +25,12 @@ public class InformationDbServiceImpl implements InformationDbService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final InformationDbMapper mapper;
 
+    /** 【分析用特定取得 ※躯体数量と歩掛り】 */
+    @Override
+    public List<InformationDb> quantityFindById(Integer idbBcdId, Double targetArea, Double targetConcreteVolume) {
+        return mapper.quantitySelectById(idbBcdId, targetArea, targetConcreteVolume);
+    }
+
     /** 【分析用特定取得 ※建築+電気設備+機械設備+昇降機設備】 */
     @Override
     public List<InformationDb> priceFindById(Integer idbBcdId, Long directConstructionPrice) {

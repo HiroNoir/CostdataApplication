@@ -144,9 +144,9 @@
                          <thead class="table-light">
                              <tr>
                                  <th scope="col" style="width: 20%">種目</th>
-                                 <th>金額</th>
-                                 <th>㎡単価</th>
-                                 <th>割合</th>
+                                 <th scope="col" style="width: 30%">金額</th>
+                                 <th scope="col" style="width: 30%">㎡単価</th>
+                                 <th scope="col" style="width: 20%">割合</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -166,9 +166,9 @@
                          <thead class="table-light">
                              <tr>
                                  <th scope="col" style="width: 20%">科目</th>
-                                 <th>金額</th>
-                                 <th>㎡単価</th>
-                                 <th>割合</th>
+                                 <th scope="col" style="width: 30%">金額</th>
+                                 <th scope="col" style="width: 30%">㎡単価</th>
+                                 <th scope="col" style="width: 20%">割合</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -182,30 +182,25 @@
                      </table>
                      <p class="mb-3" th:text="'上記の合計　' + ${#numbers.formatInteger(longBreakdownCdSumDirectConstructionPrice, 3, 'COMMA')} + '円　('+ ${unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice} + ')'">
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+               <div class="col-md-4">
+                    <h3 sec:authorize="hasAuthority('EDITOR')" class="h3">種目別・躯体数量の分析</h3>
+                    <table class="table table-striped">
+                         <thead class="table-light">
+                             <tr>
+                                 <th scope="col" style="width: 20%">項目</th>
+                                 <th scope="col" style="width: 40%">延床面積1m2当り数量</th>
+                                 <th scope="col" style="width: 40%">コンクリート体積1m3当り数量</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr th:each="quantityOfStructure : ${quantityOfStructure}">
+                                 <td th:text="${quantityOfStructure.informationItem.iiItemName}"></td>
+                                 <td style="text-align: right;" th:text="${quantityOfStructure.idbUnitQuantityPerSquareMeter}"></td>
+                                 <td style="text-align: right;" th:text="${quantityOfStructure.idbUnitQuantityPerConcrete}"></td>
+                             </tr>
+                         </tbody>
+                     </table>
+                </div>
             </div>
         </div>
     </main>

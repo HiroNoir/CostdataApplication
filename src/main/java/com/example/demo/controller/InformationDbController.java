@@ -81,9 +81,10 @@ public class InformationDbController {
         Double bcdAreaRenovation = 0.00; // breakdown_cdテーブルより取得した改修工事の改修面積
         Double bcdAreaExterior = 0.00;   // breakdown_cdテーブルより取得した外構工事の外構面積
         Long longBreakdownCdSumDirectConstructionPrice = null; // breakdown_cdテーブルより取得した直接工事費の合計
+        Double quantityOfConcrete = 0.00; // information_dbテーブルより取得したコンクリート体積
 
         /** 現在表示している内訳種目の金額をbreakdown_cdテーブルより取得 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
         // 対象データを取得
         BreakdownCd beakdownCdPriceOfArchitecture = breakdownCdService.findById(idbBcdId);
@@ -101,7 +102,7 @@ public class InformationDbController {
         model.addAttribute("longBreakdownCdPriceOfArchitecture", longBreakdownCdPriceOfArchitecture);
 
         /** 「内訳種目の建築の直接工事費－内訳情報の建築の直接工事費」の検算結果を取得 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
         // 対象データを取得
         InformationDb informationDbPriceOfArchitecture = service.findById(idbBcdId, 101);
@@ -121,7 +122,7 @@ public class InformationDbController {
         model.addAttribute("defDirectConstructionPrice", defDirectConstructionPrice);
 
         /** 【分析1-1】「内訳情報の建築+電気設備+機械設備+昇降機設備」の直接工事費合計と、㎡単価及び割合 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で表示するために、specify.htmlの条件式で対応
         // 対象データを取得
         InformationDb targetInformationDb = service.sumFindById(idbBcdId);
@@ -141,7 +142,7 @@ public class InformationDbController {
         model.addAttribute("longSumDirectConstructionPrice", longSumDirectConstructionPrice);
 
         /** 【分析1-2】内訳種目の面積情報取得と、「内訳情報の建築+電気設備+機械設備+昇降機設備」の直接工事費合計の㎡単価 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で表示するために、specify.htmlの条件式で対応
         // 対象データを取得
         BreakdownCd targetbcdArea = breakdownCdService.findById(idbBcdId);
@@ -174,14 +175,14 @@ public class InformationDbController {
         }
 
         /** 【分析2-1】「内訳科目の直仮+土工+躯体+仕上」の直接工事費と、㎡単価及び割合 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で表示するために、specify.htmlの条件式で対応
         // 対象データを取得
         List<BreakdownCs> categorizedBreakdownCs = breakdownCsService.findAllByIdCategorizedByGroup(idbBcdId, longBreakdownCdPriceOfArchitecture);
         model.addAttribute("categorizedBreakdownCs", categorizedBreakdownCs);
 
         /** 【分析2-2】「内訳科目の直仮+土工+躯体+仕上」の直接工事費合計 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で検算を表示するために、次の検算とspecify.htmlの条件式で対応
         // 対象データを取得
         BreakdownCs breakdownCdSumDirectConstructionPrice = breakdownCsService.sumFindById(idbBcdId);
@@ -190,7 +191,6 @@ public class InformationDbController {
             // 対象データがある場合
             // ローカルフィールドに格納
             longBreakdownCdSumDirectConstructionPrice = breakdownCdSumDirectConstructionPrice.getSumBcsPrice();
-         // Modelに格納
         } else {
             // 対象データがない場合
             // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
@@ -200,7 +200,7 @@ public class InformationDbController {
         model.addAttribute("longBreakdownCdSumDirectConstructionPrice", longBreakdownCdSumDirectConstructionPrice);
 
         /** 【分析2-3】「内訳科目の直仮+土工+躯体+仕上」の直接工事費の直接工事費合計の㎡単価合 */
-        // 建築の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で表示するために、specify.htmlの条件式で対応
         // 対象データは取得は【分析1-2】で取得済み
         // Modelに格納
@@ -215,25 +215,24 @@ public class InformationDbController {
             model.addAttribute("unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice", unitPricePerSquareMeterOfLongBreakdownCdSumDirectConstructionPrice);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /** 【分析3】「内訳情報」の躯体数量と歩掛り */
+        // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
+        // 建築のみの画面で表示するために、specify.htmlの条件式で対応
+        // コンクリート体積を取得（nullの場合はゼロを代入）
+        // if文でnullチェックをしていたが、どうしてもNullPointerExceptionを吐くためtry-catchで対応
+        try {
+            // 対象データがある場合
+            // ローカルフィールドに格納
+            quantityOfConcrete = service.findById(idbBcdId, 113).getIdbDataDouble();
+        } catch (NullPointerException e) {
+            // 対象データがない場合
+            // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
+            quantityOfConcrete = 0.00;
+        }
+        // 対象データを取得
+        List<InformationDb> quantityOfStructure = service.quantityFindById(idbBcdId, bcdAreaTotalfloor, quantityOfConcrete);
+        // Modelに格納
+        model.addAttribute("quantityOfStructure", quantityOfStructure);
 
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
