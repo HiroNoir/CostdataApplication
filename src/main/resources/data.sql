@@ -503,6 +503,46 @@ INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order
 VALUES (39, 101010, 102, 10201, 3, '庁舎エントランス庇', 7131229, 69.00, 69.00, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
 VALUES (39, 101040, 202, 20201, 4, '仮設倉庫撤去', 42500, 0, 0, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 101, 10101, 1, '住宅棟', 562265290, 1144.67, 23448.21, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 112, 11201, 2, '渡り廊下棟', 4720200, 299.02, 235.96, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 103, 10302, 3, '商業業務棟', 451907258, 4866.14, 10829.98, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 112, 11201, 4, '駐車場棟', 133652247, 2914.29, 14044.49, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 110, 11002, 5, 'ごみ置き場', 950180, 48.76, 48.76, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 112, 11201, 6, '屋外駐輪場1', 1180970, 17.30, 28.83, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 112, 11201, 7, '屋外駐輪場2', 452050, 24.60, 41.00, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 112, 11201, 8, '屋外駐輪場3', 352860, 7.82, 13.03, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102010, 102, 10205, 9, '駐車場管理室', 2222730, 16.80, 16.80, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (5, 102030, 201, 20101, 10, '外構', 15496370, 0, 0, 0, 5986.13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 101, 10101, 1, '住宅棟', 938637840, 1144.67, 23448.21, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 112, 11201, 2, '渡り廊下棟', 990000, 299.02, 235.96, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 103, 10302, 3, '商業業務棟', 437280657, 4866.14, 10829.98, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 112, 11201, 4, '駐車場棟', 24456817, 2914.29, 14044.49, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 110, 11002, 5, 'ごみ置き場', 1504309, 48.76, 48.76, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103010, 102, 10205, 9, '駐車場管理室', 1189250, 16.80, 16.80, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (6, 103030, 201, 20101, 10, '外構', 3497722, 0, 0, 0, 5986.13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (7, 104010, 101, 10101, 1, '住宅棟', 82940700, 1144.67, 23448.21, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (7, 104010, 103, 10302, 3, '商業業務棟', 59643000, 4866.14, 10829.98, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+INSERT INTO breakdown_cd (bcd_bco_id, bcd_cd_id, bcd_po_id, bcd_pd_id, bcd_order,bcd_type_name, bcd_price, bcd_area_building, bcd_area_totalfloor, bcd_area_renovation, bcd_area_exterior, bcd_created_at, bcd_updated_at, bcd_latest_editor, bcd_delete_flg)
+VALUES (7, 104010, 112, 11201, 4, '駐車場棟', 21518200, 2914.29, 14044.49, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 /** 25.内訳情報テーブル */
 SET @serch_bcd_id = 2;
