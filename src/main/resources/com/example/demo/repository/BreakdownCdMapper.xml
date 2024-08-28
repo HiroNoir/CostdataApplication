@@ -45,6 +45,7 @@
         </association>
         <association property="categoryDetail" javaType="com.example.demo.entity.CategoryDetail">
             <id column="cd_id" property="cdId" />
+            <result column="cd_co_id" property="cdCoId" />
             <result column="cd_type_name" property="cdTypeName" />
         </association>
         <association property="purposeOutline" javaType="com.example.demo.entity.PurposeOutline">

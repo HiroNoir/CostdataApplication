@@ -4,7 +4,7 @@
     <!-- マッピング（SELECT文用resultMap） -->
     <resultMap id="categoryDetailResult" type="com.example.demo.entity.CategoryDetail">
         <id column="cd_id" property="cdId" />
-        <result column="co_id" property="coId" />
+        <result column="cd_co_id" property="cdCoId" />
         <result column="cd_type_name" property="cdTypeName" />
     </resultMap>
     <!-- 一件取得 -->
@@ -17,6 +17,6 @@
     <select id="selectAll" resultMap="categoryDetailResult">
         SELECT *
         FROM category_detail
-        WHERE co_id = #{coId};
+        WHERE cd_co_id = #{cdCoId};
     </select>
 </mapper>

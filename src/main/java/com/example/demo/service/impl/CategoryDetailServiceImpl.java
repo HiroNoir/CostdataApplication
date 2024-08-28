@@ -34,10 +34,10 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
 
     /** 【Map生成】 */
     @Override
-    public Map<String, Integer> getCategoryDetailMap(Integer coId) {
+    public Map<String, Integer> getCategoryDetailMap(Integer cdCoId) {
 
         /** データベースから値を取得 */
-        List<CategoryDetail> categoryDetail = mapper.selectAll(coId);
+        List<CategoryDetail> categoryDetail = mapper.selectAll(cdCoId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> categoryDetailMap = new LinkedHashMap<>();

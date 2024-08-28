@@ -1,11 +1,8 @@
 package com.example.demo.form;
 
 import com.example.demo.entity.BreakdownCo;
-import com.example.demo.entity.CategoryDetail;
 import com.example.demo.entity.CategoryOutline;
 import com.example.demo.entity.ConstructionContract;
-import com.example.demo.entity.PurposeDetail;
-import com.example.demo.entity.PurposeOutline;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
