@@ -14,6 +14,9 @@ public class CategoryDetail {
      */
     private Integer cdId;
 
+    /** 内訳頭紙区分 */
+    private Integer coId;
+
     /** 内訳種目区分名 */
     private String cdTypeName;
 

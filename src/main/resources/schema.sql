@@ -31,6 +31,7 @@ CREATE TABLE `costdata_application`.`category_outline` (
 /** 03.内訳種目区分設定 */
 CREATE TABLE `costdata_application`.`category_detail` (
     `cd_id` INTEGER NOT NULL,
+    `co_id` INTEGER NOT NULL,
     `cd_type_name` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`cd_id`),
     UNIQUE INDEX `cd_id_UNIQUE` (`cd_id` ASC) VISIBLE);

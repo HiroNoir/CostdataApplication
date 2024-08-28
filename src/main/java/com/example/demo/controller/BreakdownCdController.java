@@ -184,7 +184,10 @@ public class BreakdownCdController {
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 内訳種目区分設定Mapを取得 */
-        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap();
+        // 内訳頭紙区分を取得
+        Integer targetBcoCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
+        // Mapを取得
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetBcoCoId);
         // Modelに格納
         model.addAttribute("categoryDetailMap", categoryDetailMap);
 
@@ -264,7 +267,10 @@ public class BreakdownCdController {
             RedirectAttributes redirectAttributes) {
 
         /** 内訳種目区分設定Mapを取得 */
-        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap();
+        // 内訳頭紙区分を取得
+        Integer targetBcoCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
+        // Mapを取得
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetBcoCoId);
         // Modelに格納
         model.addAttribute("categoryDetailMap", categoryDetailMap);
 

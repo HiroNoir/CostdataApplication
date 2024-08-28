@@ -16,6 +16,6 @@ public interface CategoryDetailMapper {
     CategoryDetail selectById(Integer cdId);
 
     /** 【全件取得】 */
-    List<CategoryDetail> selectAll();
+    List<CategoryDetail> selectAll(Integer coId);
 
 }

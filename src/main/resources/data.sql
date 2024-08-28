@@ -22,22 +22,22 @@ INSERT INTO category_outline (co_id, co_type_name) VALUES (1110, '消費税相�
 INSERT INTO category_outline (co_id, co_type_name) VALUES (1120, '工事費');
 
 /** 03.内訳種目区分設定 */
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (101010, '新営工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (101020, '改修工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (101030, '外構工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (101040, 'とりこわし工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (102010, '新営工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (102020, '改修工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (102030, '外構工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (102040, 'とりこわし工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (103010, '新営工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (103020, '改修工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (103030, '外構工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (103040, 'とりこわし工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (104010, '新営工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (104020, '改修工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (104030, '外構工事');
-INSERT INTO category_detail (cd_id, cd_type_name) VALUES (104040, 'とりこわし工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (101010, 1010, '建築-新営工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (101020, 1010, '建築-改修工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (101030, 1010, '建築-外構工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (101040, 1010, '建築-とりこわし工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (102010, 1020, '電気設備-新営工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (102020, 1020, '電気設備-改修工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (102030, 1020, '電気設備-外構工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (102040, 1020, '電気設備-とりこわし工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (103010, 1030, '機械設備-新営工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (103020, 1030, '機械設備-改修工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (103030, 1030, '機械設備-外構工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (103040, 1030, '機械設備-とりこわし工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (104010, 1040, '昇降機設備-新営工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (104020, 1040, '昇降機設備-改修工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (104030, 1040, '昇降機設備-外構工事');
+INSERT INTO category_detail (cd_id, co_id, cd_type_name) VALUES (104040, 1040, '昇降機設備-とりこわし工事');
 
 /** 04.用途概略区分設定 */
 INSERT INTO purpose_outline (po_id, po_type_name) VALUES (101, '住宅');

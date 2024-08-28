@@ -13,6 +13,6 @@ public interface CategoryDetailService {
     CategoryDetail findById(Integer cdId);
 
     /** 【内訳種目区分のMapを生成】 */
-    Map<String, Integer> getCategoryDetailMap();
+    Map<String, Integer> getCategoryDetailMap(Integer coId);
 
 }
