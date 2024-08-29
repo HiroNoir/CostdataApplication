@@ -100,24 +100,24 @@
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT ii_item_name,
             CASE
-                WHEN idb_ii_id = 112 OR idb_ii_id = 115
+                WHEN idb_ii_id = 1010112 OR idb_ii_id = 1010115
                     THEN CONCAT(round((idb_data_double * 1000) / (#{targetArea}), 2), 'kg/m2')
-                WHEN idb_ii_id = 113
+                WHEN idb_ii_id = 1010113
                     THEN CONCAT(round(idb_data_double / (#{targetArea}), 2), 'm3/m2')
-                WHEN idb_ii_id = 114
+                WHEN idb_ii_id = 1010114
                     THEN CONCAT(round(idb_data_double / (#{targetArea}), 2), 'm2/m2')
                 ELSE '-'
             END AS idb_unit_quantity_per_squareMeter,
             CASE
-                WHEN idb_ii_id = 112
+                WHEN idb_ii_id = 1010112
                     THEN CONCAT(round((idb_data_double * 1000) / (#{targetConcreteVolume}), 2), 'kg/コンm3')
-                WHEN idb_ii_id = 114
+                WHEN idb_ii_id = 1010114
                     THEN CONCAT(round(idb_data_double / (#{targetConcreteVolume}), 2), 'm2/コンm3')
                 ELSE '-'
             END AS idb_unit_quantity_per_concrete
         FROM information_db
         JOIN information_item on information_db.idb_ii_id = information_item.ii_id
-        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 112 OR idb_ii_id = 113 OR idb_ii_id = 114 OR idb_ii_id = 115)
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 1010112 OR idb_ii_id = 1010113 OR idb_ii_id = 1010114 OR idb_ii_id = 1010115)
         ORDER BY information_item.ii_id;
     </select>
     <!-- 分析用特定取得 ※建築+電気設備+機械設備+昇降機設備 -->
@@ -137,7 +137,7 @@
         FROM information_db
         JOIN information_item ON information_db.idb_ii_id = information_item.ii_id
         JOIN breakdown_cd ON information_db.idb_bcd_id = breakdown_cd.bcd_id
-        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 101 OR idb_ii_id = 201 OR idb_ii_id = 301 OR idb_ii_id = 401)
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 1010101 OR idb_ii_id = 1010201 OR idb_ii_id = 1010301 OR idb_ii_id = 1010401)
         ORDER BY information_item.ii_id;
     </select>
     <!-- 分析用合計取得 ※建築+電気設備+機械設備+昇降機設備 -->
@@ -145,7 +145,7 @@
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT SUM(idb_data_bigint) AS sum_idb_price
         FROM information_db
-        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 101 OR idb_ii_id = 201 OR idb_ii_id = 301 OR idb_ii_id = 401);
+        WHERE idb_delete_flg = 0 AND idb_bcd_id = #{idbBcdId} AND (idb_ii_id = 1010101 OR idb_ii_id = 1010201 OR idb_ii_id = 1010301 OR idb_ii_id = 1010401);
     </select>
     <!-- 特定取得 -->
     <select id="selectAllById" resultMap="informationDbResult">
