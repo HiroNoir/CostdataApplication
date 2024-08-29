@@ -304,7 +304,10 @@ public class InformationDbController {
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 内訳情報区分設定Mapを取得 */
-        Map<String, Integer> informationItemlMap = informationItemService.getInformationItemMap();
+        // 内訳頭紙区分を取得
+        Integer targetCoId = breakdownCoService.findById(breakdownCdService.findById(idbBcdId).getBcdBcoId()).getBcoCoId();
+        // Mapを取得
+        Map<String, Integer> informationItemlMap = informationItemService.getInformationItemMap(targetCoId);
         // Modelに格納
         model.addAttribute("informationItemlMap", informationItemlMap);
 

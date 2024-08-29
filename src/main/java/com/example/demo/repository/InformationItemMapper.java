@@ -13,6 +13,6 @@ import com.example.demo.entity.InformationItem;
 public interface InformationItemMapper {
 
     /** 【全件取得】 */
-    List<InformationItem> selectAll();
+    List<InformationItem> selectAll(Integer iiCoId);
 
 }

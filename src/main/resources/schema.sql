@@ -55,6 +55,7 @@ CREATE TABLE `costdata_application`.`purpose_detail` (
 /** 06.内訳情報区分設定 */
 CREATE TABLE `costdata_application`.`information_item` (
     `ii_id` INTEGER NOT NULL,
+    `ii_co_id` INTEGER NOT NULL,
     `ii_item_name` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`ii_id`),
     UNIQUE INDEX `ii_id_UNIQUE` (`ii_id` ASC) VISIBLE);

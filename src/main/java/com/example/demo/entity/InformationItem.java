@@ -14,6 +14,10 @@ public class InformationItem {
      */
     private Integer iiId;
 
+    /** 内訳頭紙区分 */
+    private String iiCoId;
+
     /** 用途情報区分名 */
     private String iiItemName;
+
 }

@@ -185,9 +185,9 @@ public class BreakdownCdController {
 
         /** 内訳種目区分設定Mapを取得 */
         // 内訳頭紙区分を取得
-        Integer targetBcoCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
+        Integer targetCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
         // Mapを取得
-        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetBcoCoId);
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetCoId);
         // Modelに格納
         model.addAttribute("categoryDetailMap", categoryDetailMap);
 

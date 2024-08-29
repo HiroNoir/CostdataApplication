@@ -134,27 +134,30 @@ INSERT INTO purpose_detail (pd_id, pd_po_id, pd_type_name, pd_included_type) VAL
 INSERT INTO purpose_detail (pd_id, pd_po_id, pd_type_name, pd_included_type) VALUES (20201, 202, 'とりこわし', 'とりこわし工事単独発注');
 
 /** 06.内訳情報区分設定 */
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (101, '種目別 建築（円）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (102, '構造種別');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (103, '地下階数（階）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (104, '地上階数（階）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (105, '塔屋階数（階）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (106, '最高高さ（ｍ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (107, '軒の高さ（ｍ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (108, '根切り体積（m3）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (109, '埋戻し体積（m3）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (110, '発生土処分体積（m3）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (111, '土量計算メモ');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (112, '鉄筋重量（ｔ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (113, 'コンクリート体積（m3）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (114, '型枠面積（m2）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (115, '本体鉄骨（ｔ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (116, '階段鉄骨（ｔ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (117, '昇降機用鉄骨（ｔ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (118, 'その他雑鉄骨（ｔ）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (201, '種目別 電気設備（円）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (301, '種目別 機械設備（円）');
-INSERT INTO information_item (ii_id, ii_item_name) VALUES (401, '種目別 昇降機設備（円）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010101, 1010, '種目別 建築（円）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010102, 1010, '構造種別');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010103, 1010, '地下階数（階）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010104, 1010, '地上階数（階）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010105, 1010, '塔屋階数（階）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010106, 1010, '最高高さ（ｍ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010107, 1010, '軒の高さ（ｍ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010108, 1010, '根切り体積（m3）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010109, 1010, '埋戻し体積（m3）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010110, 1010, '発生土処分体積（m3）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010111, 1010, '土量計算メモ');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010112, 1010, '鉄筋重量（ｔ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010113, 1010, 'コンクリート体積（m3）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010114, 1010, '型枠面積（m2）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010115, 1010, '本体鉄骨（ｔ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010116, 1010, '階段鉄骨（ｔ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010117, 1010, '昇降機用鉄骨（ｔ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010118, 1010, 'その他雑鉄骨（ｔ）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010201, 1010, '種目別 電気設備（円）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010301, 1010, '種目別 機械設備（円）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1010401, 1010, '種目別 昇降機設備（円）');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1020101, 1020, '電気設備分析用情報');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1030101, 1030, '機械設備分析用情報');
+INSERT INTO information_item (ii_id, ii_co_id, ii_item_name) VALUES (1040101, 1040, '昇降機設備分析用情報');
 
 /** 07.内訳科目区分設定 */
 INSERT INTO category_subject (cs_id, cs_co_id, cs_cd_id, cs_type_name) VALUES (10101010, 1010, 101010, '直仮-直接仮設');
@@ -547,408 +550,407 @@ VALUES (7, 104010, 112, 11201, 4, '駐車場棟', 21518200, 2914.29, 14044.49, 0
 /** 25.内訳情報テーブル */
 SET @serch_bcd_id = 2;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'RC造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'RC造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 29, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 29, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 96.27, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 96.27, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 95.62, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 95.62, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 9889, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 9889, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 9327, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 9327, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 562, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 562, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切9889m3=埋戻9327m3+残土処分562m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切9889m3=埋戻9327m3+残土処分562m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 1618, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 1618, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 10609.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 10609.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 11429, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 11429, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量（SRC部分）', 40.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量（SRC部分）', 40.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 116, '設計数量', 77.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010116, '設計数量', 77.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 562265290, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 562265290, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 938637840, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 938637840, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 401, '', 0, 82940700, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010401, '', 0, 82940700, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 3;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 9.31, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 9.31, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 9.23, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 9.23, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 384, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 384, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 241, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 241, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 143, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 143, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切384m3=埋戻241m3+残土処分143m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切384m3=埋戻241m3+残土処分143m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 24.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 24.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 241, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 241, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 798, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 798, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 35.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 35.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 118, 'アルミハニカム庇下地', 10.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010118, 'アルミハニカム庇下地', 10.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 4720200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 4720200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 990000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 990000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 4;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 20.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 20.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 16.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 16.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 9954, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 9954, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 4246, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 4246, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 5184, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 5184, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切9954m3=埋戻4246m3+盛土524m3+残土処分5184m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切9954m3=埋戻4246m3+盛土524m3+残土処分5184m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 635, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 635, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 5847.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 5847.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 13588, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 13588, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 1477, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 1477, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 116, '設計数量', 40.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010116, '設計数量', 40.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 118, 'デッキ庇Ａ下地', 1.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010118, 'デッキ庇Ａ下地', 1.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 451907258, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 451907258, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 437280657, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 437280657, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 401, '', 0, 59643000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010401, '', 0, 59643000, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 5;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 17.13, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 17.13, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 15.82, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 15.82, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 2825, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 2825, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 1754, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 1754, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 925, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 925, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切2825m3=埋戻1754m3+盛土146m3+残土処分925m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切2825m3=埋戻1754m3+盛土146m3+残土処分925m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 149, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 149, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 2525.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 2525.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 3127, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 3127, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 1184, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 1184, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 116, '設計数量', 9.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010116, '設計数量', 9.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 133652247, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 133652247, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 24456817, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 24456817, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 401, '', 0, 21518200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010401, '', 0, 21518200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 6;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 3.47, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 3.47, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 3.15, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 3.15, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 44.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 44.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 28, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 28, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 16.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 16.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切44.3m3=埋戻28m3+残土処分16.3m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切44.3m3=埋戻28m3+残土処分16.3m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 2.6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 2.6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 25, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 25, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 119, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 119, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 2.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 2.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 950180, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 950180, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 1504309, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 1504309, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 7;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 20, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 20, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 10.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 10.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 9.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 9.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切20m3=埋戻10.2m3+残土処分9.8m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切20m3=埋戻10.2m3+残土処分9.8m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 0.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 0.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 6.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 6.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 12.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 12.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 1180970, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 1180970, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 8;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 26.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 26.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 13.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 13.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 13.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 13.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切26.8m3=埋戻13.1m3+残土処分13.7m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切26.8m3=埋戻13.1m3+残土処分13.7m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 0.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 0.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 9.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 9.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 16, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 16, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 452050, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 452050, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 9;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 2.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 2.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 9.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 9.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 5.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 5.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 4.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 4.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切9.9m3=埋戻5.4m3+残土処分4.5m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切9.9m3=埋戻5.4m3+残土処分4.5m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 0.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 0.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 3.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 3.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 6.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 6.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 352860, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 352860, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 10;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 3.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 3.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 3.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 3.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 24.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 24.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 15.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 15.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切24.3m3=埋戻15.3m3+残土処分9m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切24.3m3=埋戻15.3m3+残土処分9m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 1.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 1.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 10.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 10.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 59.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 59.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 1.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 1.3, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 2222730, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 2222730, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 1189250, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 1189250, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 13;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'RC造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'RC造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 4.345, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 4.345, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 3.835, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 3.835, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 64, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 64, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 36.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 36.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 27.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 27.1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切64.0m3=埋戻36.8m3+残土処分27.1m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切64.0m3=埋戻36.8m3+残土処分27.1m3', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 9.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 9.9, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 69.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 69.5, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 445, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 445, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 201, '', 0, 369150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010201, '', 0, 369150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 301, '', 0, 1896006, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010301, '', 0, 1896006, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 15;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'SRC造、S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'SRC造、S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010105, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 28.31, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 28.31, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 25.41, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 25.41, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 1733, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 1733, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 890, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 890, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 1733, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 1733, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切1733.0m3=残土処分1733.0m3（場外全搬出、埋戻890.0m3は購入土）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切1733.0m3=残土処分1733.0m3（場外全搬出、埋戻890.0m3は購入土）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 285.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 285.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 2652, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 2652, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 10171, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 10171, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量（SRC造256t+S造218t）', 474, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量（SRC造256t+S造218t）', 474, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 116, '設計数量', 22.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010116, '設計数量', 22.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 118, '設備架台鉄骨2t+点検歩廊鉄骨1.2t', 3.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010118, '設備架台鉄骨2t+点検歩廊鉄骨1.2t', 3.2, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 16;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 4.235, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 4.235, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 3.985, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 3.985, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 108, '', 346, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010108, '', 346, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 109, '', 195, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010109, '', 195, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 110, '', 346, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010110, '', 346, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 111, '根切346.0m3=残土処分346.0m3（場外全搬出、埋戻195.0m3は購入土）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010111, '根切346.0m3=残土処分346.0m3（場外全搬出、埋戻195.0m3は購入土）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 112, '設計数量', 19.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010112, '設計数量', 19.8, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 113, '設計数量', 178.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010113, '設計数量', 178.4, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 114, '設計数量', 713, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010114, '設計数量', 713, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '設計数量', 17.6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010115, '設計数量', 17.6, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 
 SET @serch_bcd_id = 26;
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010101, '', 0, (SELECT  bcd_price FROM breakdown_cd WHERE bcd_id = @serch_bcd_id), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 102, 'S造（建築本体に庇を増築）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010102, 'S造（建築本体に庇を増築）', 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010104, '', 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 106, '', 4.85, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010106, '', 4.85, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 107, '', 4.45, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
+VALUES (@serch_bcd_id, 1010107, '', 4.45, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 INSERT INTO information_db (idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint, idb_created_at, idb_updated_at, idb_latest_editor, idb_delete_flg)
-VALUES (@serch_bcd_id, 115, '', 2.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
-
+VALUES (@serch_bcd_id, 1010115, '', 2.7, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '775', 0);
 /** 26.内訳科目テーブル */
 SET @serch_bcd_id = 2;
 INSERT INTO breakdown_cs (bcs_bcd_id, bcs_cs_id, bcs_data_text, bcs_data_bigint, bcs_created_at, bcs_updated_at, bcs_latest_editor, bcs_delete_flg)

@@ -28,10 +28,10 @@ public class InformationItemServiceImpl implements InformationItemService {
 
     /** 【Map生成】 */
     @Override
-    public Map<String, Integer> getInformationItemMap() {
+    public Map<String, Integer> getInformationItemMap(Integer iiCoId) {
 
         /** データベースから値を取得 */
-        List<InformationItem> informationItem = mapper.selectAll();
+        List<InformationItem> informationItem = mapper.selectAll(iiCoId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> informationItemMap = new LinkedHashMap<>();
