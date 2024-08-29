@@ -7,8 +7,8 @@
         <result column="ii_co_id" property="iiCoId" />
         <result column="ii_item_name" property="iiItemName" />
     </resultMap>
-        <!-- 全件取得 -->
-    <select id="selectAll" resultMap="informationItemResult">
+        <!-- 特定取得 -->
+    <select id="selectAllById" resultMap="informationItemResult">
         SELECT *
         FROM information_item
         WHERE ii_co_id = #{iiCoId};

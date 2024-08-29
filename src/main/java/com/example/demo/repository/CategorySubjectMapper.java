@@ -12,7 +12,7 @@ import com.example.demo.entity.CategorySubject;
 @Mapper
 public interface CategorySubjectMapper {
 
-    /** 【全件取得】 */
-    List<CategorySubject> selectAll(Integer csCdId);
+    /** 【特定取得】 */
+    List<CategorySubject> selectAllById(Integer csCdId);
 
 }

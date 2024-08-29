@@ -31,7 +31,7 @@ public class InformationItemServiceImpl implements InformationItemService {
     public Map<String, Integer> getInformationItemMap(Integer iiCoId) {
 
         /** データベースから値を取得 */
-        List<InformationItem> informationItem = mapper.selectAll(iiCoId);
+        List<InformationItem> informationItem = mapper.selectAllById(iiCoId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> informationItemMap = new LinkedHashMap<>();

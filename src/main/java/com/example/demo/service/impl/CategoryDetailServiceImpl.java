@@ -37,7 +37,7 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
     public Map<String, Integer> getCategoryDetailMap(Integer cdCoId) {
 
         /** データベースから値を取得 */
-        List<CategoryDetail> categoryDetail = mapper.selectAll(cdCoId);
+        List<CategoryDetail> categoryDetail = mapper.selectAllById(cdCoId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> categoryDetailMap = new LinkedHashMap<>();

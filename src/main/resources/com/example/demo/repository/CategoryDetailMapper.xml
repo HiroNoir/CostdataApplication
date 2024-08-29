@@ -13,8 +13,8 @@
         FROM category_detail
         WHERE cd_id = #{cdId};
     </select>
-    <!-- 全件取得 -->
-    <select id="selectAll" resultMap="categoryDetailResult">
+    <!-- 特定取得 -->
+    <select id="selectAllById" resultMap="categoryDetailResult">
         SELECT *
         FROM category_detail
         WHERE cd_co_id = #{cdCoId};

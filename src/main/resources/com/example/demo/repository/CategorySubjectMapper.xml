@@ -7,8 +7,8 @@
         <result column="cs_cd_id" property="csCdId" />
         <result column="cs_type_name" property="csTypeName" />
     </resultMap>
-        <!-- 全件取得 -->
-    <select id="selectAll" resultMap="categorySubjectResult">
+        <!-- 特定取得 -->
+    <select id="selectAllById" resultMap="categorySubjectResult">
         SELECT *
         FROM category_subject
         WHERE cs_cd_id = #{csCdId};
