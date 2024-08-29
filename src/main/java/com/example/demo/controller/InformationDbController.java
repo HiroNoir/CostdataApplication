@@ -218,13 +218,14 @@ public class InformationDbController {
         /** 【分析3】「内訳情報」の躯体数量と歩掛り */
         // 建築の新営工事の直接工事費のみを対象として取得したいが、ここでは建築以外の直接工事費も取得
         // 建築のみの画面で表示するために、specify.htmlの条件式で対応
-        // コンクリート体積を取得（nullの場合はゼロを代入）
-        // if文でnullチェックをしていたが、どうしてもNullPointerExceptionを吐くためtry-catchで対応
-        try {
+        // コンクリート体積を取得するための対象データを取得
+        InformationDb targetquantityOfConcrete = service.findById(idbBcdId, 1010113);
+        System.out.println(targetquantityOfConcrete);
+        if (targetquantityOfConcrete != null) {
             // 対象データがある場合
             // ローカルフィールドに格納
             quantityOfConcrete = service.findById(idbBcdId, 1010113).getIdbDataDouble();
-        } catch (NullPointerException e) {
+        } else {
             // 対象データがない場合
             // Nullの場合はゼロを代入して、以下の計算でエラーが出ない様にする
             quantityOfConcrete = 0.00;
