@@ -46,7 +46,7 @@ public class BreakdownCdForm {
     private Integer bcdPoId;
 
     /** 用途詳細区分 */
-    @NotNull(message = "用途詳細区分を選択してください。")
+    @NotNull(message = "用途概略区分を選択してください。表示されていない場合は、上記※を確認して再選択してください。")
     private Integer bcdPdId;
 
     /** 整列番号 */

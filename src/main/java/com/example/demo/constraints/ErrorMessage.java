@@ -35,9 +35,9 @@ public class ErrorMessage {
             // 内訳頭紙登録時の内訳頭紙区分重複チェック用エラーメッセージ
             put(ErrorKinds.bcoCoId_DUPLICATE_ERROR,
                     new ArrayList<String>(Arrays.asList("bcoCoIdError", "既に登録されているデータです")));
-            // 内訳種目登録時の用途マッチングチェックエラー
-            put(ErrorKinds.PURPOSE_MATCHING_ERROR,
-                    new ArrayList<String>(Arrays.asList("purposeMatchError", "用途詳細区分は用途概略区分とマッチする項目を選択してください。")));
+            // 内訳種目登録時の用途詳細区分空白チェックエラー
+            put(ErrorKinds.PURPOSE_BLANK_ERROR,
+                    new ArrayList<String>(Arrays.asList("purposeMatchError", "用途概略区分を選択してください。表示されていない場合は、上記※を確認して再選択してください。")));
             // 内訳種目登録時の入力面積マッチングチェックエラー
             put(ErrorKinds.AREA_MATCHING_ERROR, new ArrayList<String>(Arrays.asList("areaMatchError",
                     "新営工事・とりこわし工事では建築面積・延床面積を、改修工事では改修面積を、外構工事では外構面積を入力してください。それ以外の項目には「0」を入力してください。")));

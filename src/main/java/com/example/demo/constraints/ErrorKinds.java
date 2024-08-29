@@ -26,8 +26,8 @@ public enum ErrorKinds {
     // 内訳頭紙登録時の内訳頭紙区分重複チェックエラー
     bcoCoId_DUPLICATE_ERROR,
 
-    // 内訳種目登録時の用途マッチングチェックエラー
-    PURPOSE_MATCHING_ERROR,
+    // 内訳種目登録時の用途詳細区分空白チェックエラー
+    PURPOSE_BLANK_ERROR,
 
     // 内訳種目登録時の入力面積マッチングチェックエラー
     AREA_MATCHING_ERROR,

@@ -7,10 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.entity.BreakdownCd;
-import com.example.demo.entity.PurposeDetail;
 import com.example.demo.repository.BreakdownCdMapper;
 import com.example.demo.service.BreakdownCdService;
-import com.example.demo.service.PurposeDetailService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +25,6 @@ public class BreakdownCdServiceImpl implements BreakdownCdService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final BreakdownCdMapper mapper;
     // 他テーブルのデータを取得するため、他テーブルを扱うリポジトリインターフェスをDI
-    private final PurposeDetailService purposeDetailService;
 
     /** 【合計取得】 */
     @Override
@@ -52,12 +49,17 @@ public class BreakdownCdServiceImpl implements BreakdownCdService {
     public ErrorKinds insert(BreakdownCd breakdownCd, LoginUserDetails loginUserDetails) {
 
         /** 用途詳細選択ェック */
-        // 選択した用途詳細のbcdPoIdと用途概略のpoIdが整合しているかチェック
+        // 用途概略のpoIdが選択されていないことを示す、下記の条件をチェック
         // 対象データの取得
-        PurposeDetail targetPurposeDetail = purposeDetailService.findById(breakdownCd.getBcdPdId());
-        if (breakdownCd.getBcdPoId() != targetPurposeDetail.getPdPoId()) {
+        if (breakdownCd.getBcdPdId() == 10100 || breakdownCd.getBcdPdId() == 10200 ||
+            breakdownCd.getBcdPdId() == 10300 || breakdownCd.getBcdPdId() == 10400 ||
+            breakdownCd.getBcdPdId() == 10500 || breakdownCd.getBcdPdId() == 10600 ||
+            breakdownCd.getBcdPdId() == 10700 || breakdownCd.getBcdPdId() == 10800 ||
+            breakdownCd.getBcdPdId() == 10900 || breakdownCd.getBcdPdId() == 11000 ||
+            breakdownCd.getBcdPdId() == 11100 || breakdownCd.getBcdPdId() == 11200 ||
+            breakdownCd.getBcdPdId() == 20100 || breakdownCd.getBcdPdId() == 20200) {
             // 選択ミスがあるためErrorKindsクラスのPURPOSE_MATCHING_ERRORを返す
-            return ErrorKinds.PURPOSE_MATCHING_ERROR;
+            return ErrorKinds.PURPOSE_BLANK_ERROR;
         }
 
         /** 面積入力チェック */
@@ -112,6 +114,20 @@ public class BreakdownCdServiceImpl implements BreakdownCdService {
     /** 【更新実行】 */
     @Override
     public ErrorKinds update(BreakdownCd breakdownCd, LoginUserDetails loginUserDetails) {
+
+        /** 用途詳細選択ェック */
+        // 用途概略のpoIdが選択されていないことを示す、下記の条件をチェック
+        // 対象データの取得
+        if (breakdownCd.getBcdPdId() == 10100 || breakdownCd.getBcdPdId() == 10200 ||
+            breakdownCd.getBcdPdId() == 10300 || breakdownCd.getBcdPdId() == 10400 ||
+            breakdownCd.getBcdPdId() == 10500 || breakdownCd.getBcdPdId() == 10600 ||
+            breakdownCd.getBcdPdId() == 10700 || breakdownCd.getBcdPdId() == 10800 ||
+            breakdownCd.getBcdPdId() == 10900 || breakdownCd.getBcdPdId() == 11000 ||
+            breakdownCd.getBcdPdId() == 11100 || breakdownCd.getBcdPdId() == 11200 ||
+            breakdownCd.getBcdPdId() == 20100 || breakdownCd.getBcdPdId() == 20200) {
+            // 選択ミスがあるためErrorKindsクラスのPURPOSE_MATCHING_ERRORを返す
+            return ErrorKinds.PURPOSE_BLANK_ERROR;
+        }
 
         /** 面積入力チェック */
         // 新営工事の場合は、改修面積と外構面積が「0」になっていることをチェック
