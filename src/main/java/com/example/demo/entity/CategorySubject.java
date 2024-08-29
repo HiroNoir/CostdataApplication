@@ -14,9 +14,6 @@ public class CategorySubject {
      */
     private Integer csId;
 
-    /** 内訳頭紙区分 */
-    private Integer csCoId;
-
     /** 内訳種目区分 */
     private Integer csCdId;
 

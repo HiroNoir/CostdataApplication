@@ -29,6 +29,7 @@
         </association>
         <association property="categorySubject" javaType="com.example.demo.entity.CategorySubject">
             <id column="cs_id" property="csId" />
+            <result column="cs_cd_id" property="csCdId" />
             <result column="cs_type_name" property="csTypeName" />
         </association>
         <association property="breakdownCd" javaType="com.example.demo.entity.BreakdownCd">

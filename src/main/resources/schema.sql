@@ -63,7 +63,6 @@ CREATE TABLE `costdata_application`.`information_item` (
 /** 07.内訳科目区分設定 */
 CREATE TABLE `costdata_application`.`category_subject` (
     `cs_id` INTEGER NOT NULL,
-    `cs_co_id` INTEGER NOT NULL,
     `cs_cd_id` INTEGER NOT NULL,
     `cs_type_name` VARCHAR(30) NOT NULL,
     PRIMARY KEY (`cs_id`),

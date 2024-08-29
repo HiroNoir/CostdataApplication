@@ -4,7 +4,6 @@
     <!-- マッピング（SELECT文用resultMap） -->
     <resultMap id="categorySubjectResult" type="com.example.demo.entity.CategorySubject">
         <id column="cs_id" property="csId" />
-        <result column="cs_co_id" property="csCoId" />
         <result column="cs_cd_id" property="csCdId" />
         <result column="cs_type_name" property="csTypeName" />
     </resultMap>
