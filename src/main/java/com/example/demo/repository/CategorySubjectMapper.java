@@ -13,6 +13,6 @@ import com.example.demo.entity.CategorySubject;
 public interface CategorySubjectMapper {
 
     /** 【全件取得】 */
-    List<CategorySubject> selectAll();
+    List<CategorySubject> selectAll(Integer csCdId);
 
 }

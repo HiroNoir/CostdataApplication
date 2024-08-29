@@ -28,10 +28,10 @@ public class CategorySubjectServiceImpl implements CategorySubjectService {
 
     /** 【Map生成】 */
     @Override
-    public Map<String, Integer> getCategorySubjectMap() {
+    public Map<String, Integer> getCategorySubjectMap(Integer csCdId) {
 
         /** データベースから値を取得 */
-        List<CategorySubject> categorySubject = mapper.selectAll();
+        List<CategorySubject> categorySubject = mapper.selectAll(csCdId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> categorySubjectMap = new LinkedHashMap<>();

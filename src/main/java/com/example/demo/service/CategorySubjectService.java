@@ -8,6 +8,6 @@ import java.util.Map;
 public interface CategorySubjectService {
 
     /** 【内訳情報区分設定のMapを生成】 */
-    Map<String, Integer> getCategorySubjectMap();
+    Map<String, Integer> getCategorySubjectMap(Integer csCdId);
 
 }

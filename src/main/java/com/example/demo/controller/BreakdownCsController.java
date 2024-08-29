@@ -175,7 +175,10 @@ public class BreakdownCsController {
         // 更新画面表示・更新処理実行のメソッドにおいても上記と同様のModel名とする
 
         /** 内訳情報区分設定Mapを取得 */
-        Map<String, Integer> categorySubjectMap = categorySubjectService.getCategorySubjectMap();
+        // 内訳科目区分を取得
+        Integer targetCdId = breakdownCdService.findById(bcsBcdId).getBcdCdId();
+        // Mapを取得
+        Map<String, Integer> categorySubjectMap = categorySubjectService.getCategorySubjectMap(targetCdId);
         // Modelに格納
         model.addAttribute("categorySubjectMap", categorySubjectMap);
 
