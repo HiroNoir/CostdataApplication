@@ -28,10 +28,10 @@ public class PurposeDetailServiceImpl implements PurposeDetailService {
 
     /** 【Map生成】 */
     @Override
-    public Map<String, Integer> getPurposeDetailMap() {
+    public Map<String, Integer> getPurposeDetailMap(Integer pdPoId) {
 
         /** データベースから値を取得 */
-        List<PurposeDetail> purposeDetail = mapper.selectAll();
+        List<PurposeDetail> purposeDetail = mapper.selectAllById(pdPoId);
 
         /** データベースから取り出した値を格納するためのMapを作成 */
         Map<String, Integer> purposeDetailMap = new LinkedHashMap<>();

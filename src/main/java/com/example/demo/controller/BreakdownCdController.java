@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.constraints.ErrorKinds;
@@ -173,6 +174,13 @@ public class BreakdownCdController {
 
     }
 
+    /** 【登録画面・更新画面で使用するAjax通信による用途詳細区分Mapの取得】 */
+    @GetMapping("/{poId}/getPurposeDetailMap")
+    @ResponseBody
+    public Map<String, Integer> getPurposeDetailMap(@PathVariable Integer poId){
+        return purposeDetailService.getPurposeDetailMap(poId);
+    }
+
     /** 【登録画面表示】 */
     @GetMapping("/{id}/create")
     @PreAuthorize("hasAuthority('EDITOR')")
@@ -195,11 +203,6 @@ public class BreakdownCdController {
         Map<String, Integer> purposeOutlineMap = purposeOutlineService.getPurposeOutlineMap();
         // Modelに格納
         model.addAttribute("purposeOutlineMap", purposeOutlineMap);
-
-        /** 用途詳細区分設定Mapを取得 */
-        Map<String, Integer> purposeDetailMap = purposeDetailService.getPurposeDetailMap();
-        // Modelに格納
-        model.addAttribute("purposeDetailMap", purposeDetailMap);
 
         /** 登録画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
@@ -278,11 +281,6 @@ public class BreakdownCdController {
         Map<String, Integer> purposeOutlineMap = purposeOutlineService.getPurposeOutlineMap();
         // Modelに格納
         model.addAttribute("purposeOutlineMap", purposeOutlineMap);
-
-        /** 用途詳細区分設定Mapを取得 */
-        Map<String, Integer> purposeDetailMap = purposeDetailService.getPurposeDetailMap();
-        // Modelに格納
-        model.addAttribute("purposeDetailMap", purposeDetailMap);
 
         /** 更新処理実行時入力チェックからのエラーメッセージ表示処理 */
         // idがnullの場合は更新処理実行時の入力チェックでひっかかったため再度更新画面へ遷移する

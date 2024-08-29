@@ -8,10 +8,11 @@
         <result column="pd_type_name" property="pdTypeName" />
         <result column="pd_included_type" property="pdIncludedType" />
     </resultMap>
-    <!-- 全件取得 -->
-    <select id="selectAll" resultMap="purposeDetailResult">
+    <!-- 特定取得 -->
+    <select id="selectAllById" resultMap="purposeDetailResult">
         SELECT *
-        FROM purpose_detail;
+        FROM purpose_detail
+        WHERE pd_po_id = #{pdPoId};
     </select>
     <!-- 一件取得 -->
     <select id="selectById" resultMap="purposeDetailResult">

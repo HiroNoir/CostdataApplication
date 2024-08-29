@@ -12,8 +12,8 @@ import com.example.demo.entity.PurposeDetail;
 @Mapper
 public interface PurposeDetailMapper {
 
-    /** 【全件取得】 */
-    List<PurposeDetail> selectAll();
+    /** 【特定取得】 */
+    List<PurposeDetail> selectAllById(Integer pdPoId);
 
     /** 【一件取得】 */
     PurposeDetail selectById(Integer pdId);

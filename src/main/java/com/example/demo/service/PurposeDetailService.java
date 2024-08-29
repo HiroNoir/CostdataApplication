@@ -10,7 +10,7 @@ import com.example.demo.entity.PurposeDetail;
 public interface PurposeDetailService {
 
     /** 【用途詳細区分設定のMapを生成】 */
-    Map<String, Integer> getPurposeDetailMap();
+    Map<String, Integer> getPurposeDetailMap(Integer pdPoId);
 
     /** 【用途詳細選択ェックのための一件取得】 */
     PurposeDetail findById(Integer pdId);

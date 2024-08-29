@@ -145,7 +145,7 @@
                                             <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
                                             <option th:value="null"></option>
                                             <!-- 有効な値が入ったセレクトボックス -->
-                                            <option th:each="item : ${purposeDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                            <!-- <option th:each="item : ${purposeDetailMap}" th:value="${item.value}" th:text="${item.key}"></option> -->
                                         </select>
                                         <span th:if="${#fields.hasErrors('bcdPdId')}" th:errors="*{bcdPdId}" class="text-danger"></span>
                                         <span th:if="${purposeMatchError} neq null" th:text="${purposeMatchError}" class="text-danger"></span>
@@ -241,6 +241,27 @@
             </div>
         </div>
     </main>
+    <script th:inline="javascript">
+        var purposeSelect = document.getElementById('bcdPoId');
+        var specificPurposeSelect = document.getElementById('bcdPdId');
+
+        purposeSelect.addEventListener('change', function(){
+            var selectedPoId = purposeSelect.value;
+            specificPurposeSelect.innerHTML = ''; // 一旦選択肢をクリア
+
+            // Ajaxで用途詳細区分のデータを取得
+            fetch('/breakdown-cd/' + selectedPoId + '/getPurposeDetailMap')
+            .then(response => response.json())
+            .then(data => {
+                for (var key in data) {
+                    var option = document.createElement('option');
+                    option.value = data[key];
+                    option.text = key;
+                    specificPurposeSelect.appendChild(option);
+                }
+            });
+        });
+    </script>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
