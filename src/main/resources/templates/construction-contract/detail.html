@@ -156,12 +156,33 @@
                 <div class="col-auto">
                     <a sec:authorize="hasAuthority('EDITOR')" th:href="@{/construction-contract/{id}/edit(id=${constructionContract.ccId})}" class="btn btn-primary">更新</a>
                 </div>
+                <!-- 削除ボタン (モーダルを表示) -->
                 <div class="col-auto">
-                    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/construction-contract/{id}/remove(id=${constructionContract.ccId})}" method="post">
-                        <input type="submit" value="削除" class="btn btn-danger">
-                    </form>
+                    <button sec:authorize="hasAuthority('ADMIN')" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        削除
+                    </button>
                 </div>
                 <div class="col"></div> <!-- 中心揃え用 -->
+                <!-- 削除確認モーダル -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">確認</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                本当に削除しますか？
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                                <form th:action="@{/construction-contract/{id}/remove(id=${constructionContract.ccId})}" method="post">
+                                    <input type="submit" value="削除" class="btn btn-danger">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <span th:if="${deleteError} neq null" th:text="${deleteError}" class="text-danger"></span>
        </div>
