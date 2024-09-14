@@ -11,6 +11,9 @@ import com.example.demo.service.impl.LoginUserDetails;
  */
 public interface ConstructionContractService {
 
+    /** 【工事発注前全権取得】 */
+    List<ConstructionContract> findAllOfBefore();
+
     /** 【全件取得】 */
     List<ConstructionContract> findAll();
 

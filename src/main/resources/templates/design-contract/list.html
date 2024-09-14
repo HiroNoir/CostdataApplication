@@ -13,7 +13,7 @@
     <!-- ヘッダー -->
     <header class="py-4">
     <div class="container text-center">
-        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a></h1>
+        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/}" th:text="CostdataApplication"></a></h1>
     </div>
     </header>
     <!-- ナビゲーションバー -->
@@ -25,11 +25,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- ブランド -->
-            <a class="navbar-brand" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a>
+            <a class="navbar-brand" th:href="@{/}" th:text="CostdataApplication"></a>
         　　　<!-- ナビゲーション -->
             <div class="collapse navbar-collapse" id="navbar-content">
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/construction-contract/before}" th:text="ホーム"></a>
+                    </li>
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
@@ -37,7 +40,7 @@
                         <a class="nav-link active" th:href="@{/design-contract/list}" th:text="設計契約一覧">現在位置</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->

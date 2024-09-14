@@ -12,6 +12,9 @@ import com.example.demo.entity.ConstructionContract;
 @Mapper
 public interface ConstructionContractMapper {
 
+    /** 【工事発注前全権取得】 */
+    List<ConstructionContract> selectAllOfBefore();
+
     /** 【全件取得】 */
     List<ConstructionContract> selectAll();
 

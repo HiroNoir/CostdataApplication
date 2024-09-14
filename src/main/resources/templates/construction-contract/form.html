@@ -13,7 +13,7 @@
     <!-- ヘッダー -->
     <header class="py-4">
     <div class="container text-center">
-        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a></h1>
+        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/}" th:text="CostdataApplication"></a></h1>
     </div>
     </header>
     <!-- ナビゲーションバー -->
@@ -25,11 +25,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- ブランド -->
-            <a class="navbar-brand" th:href="@{/construction-contract/list}" th:text="CostdataApplication"></a>
+            <a class="navbar-brand" th:href="@{/}" th:text="CostdataApplication"></a>
         　　　<!-- ナビゲーション -->
             <div class="collapse navbar-collapse" id="navbar-content">
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/construction-contract/before}" th:text="ホーム"></a>
+                    </li>
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
@@ -37,7 +40,7 @@
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->
@@ -67,7 +70,7 @@
                 th:object="${constructionContractForm}" method="post">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card　mb-5">
+                        <div class="card">
                             <div class="card-body">
                                 <div>
                                     <!-- 新規登録時のidはAUTO_INCREMENTによる自動採番のため仕込み不要 -->
@@ -108,6 +111,9 @@
                                 <!-- 以下は、上記以外のinput -->
                                 <div class="mb-3">
                                     <label for="contractCondition" class="form-label">工事契約状態</label>
+                                    <div>※工事発注前の場合は、発注予定時期を、次の積算時期（年）（月）に記入してください。</div>
+                                    <div>※工事発注後の場合は、次の積算時期（年）（月）を正しい情報に更新してください。</div>
+                                    <div>※工事発注中止の場合は、積算時期（年）（月）を正しい情報に更新し、中止となった経緯を経緯等コメントに入力してください。</div>
                                     <div>
                                         <select th:field="*{contractCondition}" id="contractCondition" class="form-select">
                                             <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
@@ -150,6 +156,14 @@
                                         <span th:if="${#fields.hasErrors('projectName')}" th:errors="*{projectName}" class="text-danger"></span>
                                     </div>
                                 </div>
+
+                           </div>
+                       </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+
                                 <div class="mb-3">
                                     <label for="siteAddress" class="form-label">工事場所</label>
                                     <div>
@@ -165,12 +179,7 @@
                                         <span th:if="${#fields.hasErrors('siteArea')}" th:errors="*{siteArea}" class="text-danger"></span>
                                     </div>
                                 </div>
-                           </div>
-                       </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
+
                                 <div class="mb-3">
                                     <label for="plannedPrice" class="form-label">予定価格（円）</label>
                                     <div>※不明の場合は「0」を入力し、経緯等コメント欄にその理由を入力してください。</div>
@@ -239,6 +248,7 @@
                     </div>
                 </div>
             </form>
+            <div class="mb-5"></div> <!-- ボタンとのクリアランス -->
             <div class="row">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">

@@ -25,6 +25,12 @@ public class ConstructionContractServiceImpl implements ConstructionContractServ
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final ConstructionContractMapper mapper;
 
+    /** 【工事発注前全権取得】 */
+    @Override
+    public List<ConstructionContract> findAllOfBefore() {
+        return mapper.selectAllOfBefore();
+    }
+
     /** 【全件取得】 */
     @Override
     public List<ConstructionContract> findAll() {

@@ -23,8 +23,9 @@ public class TopController {
     // SecurityConfigの「.defaultSuccessUrl("/", true)」で指定してある
     @GetMapping("/")
     public String top() {
-        // return "login/menu"; ログイン後のトップページを工事契約一覧へ変更（リダイレクトでアクセス必要）
-        return "redirect:/construction-contract/list";
+        // return "login/menu"; ログイン後のトップページを「工事契約一覧」へ変更（リダイレクトでアクセス必要）
+        // return "redirect:/construction-contract/list"; ログイン後のトップページを「未発注の工事契約一覧」へ変更（リダイレクトでアクセス必要）
+        return "redirect:/construction-contract/before";
 
     }
 

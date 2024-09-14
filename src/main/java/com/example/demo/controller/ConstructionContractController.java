@@ -52,6 +52,19 @@ public class ConstructionContractController {
     private final DesignContractService designContractService;
     private final EstimateTypeService estimateTypeService;
 
+    /** 【ホーム画面（メニュー及び工事発注前一覧】 */
+    @GetMapping("/before")
+    public String listOfBefore(Model model) {
+
+        /** メニュー及び工事発注前一覧へ遷移 */
+        // Modelに格納
+        model.addAttribute("constructionContract", service.findAllOfBefore());
+        model.addAttribute("listSize", service.findAllOfBefore().size());
+        // 画面遷移（アドレス指定）
+        return "construction-contract/before";
+
+    }
+
     /** 【全件取得】 */
     @GetMapping("/list")
     public String list(Model model) {

@@ -49,6 +49,16 @@
             <result column="dc_delete_flg" property="dcDeleteFlg" />
         </association>
     </resultMap>
+    <!-- 工事発注前全件取得 -->
+    <select id="selectAllOfBefore" resultMap="constructionContractResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT cc_id, construction_period, project_name, estimate_year, estimate_month,
+            design_contract.dc_id, design_contract.contract_number
+        FROM construction_contract
+        JOIN design_contract ON construction_contract.cc_dc_id = design_contract.dc_id
+        WHERE cc_delete_flg = 0 AND contract_condition = 'BEFORE'
+        ORDER BY contract_number, construction_period;
+    </select>
     <!-- 全件取得 -->
     <select id="selectAll" resultMap="constructionContractResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->

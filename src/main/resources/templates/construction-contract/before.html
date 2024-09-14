@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <title>工事契約一覧</title>
+    <!-- レイアウトを確認するためのスタイル　（不要になったらコメントアウト）
+    <style> * { outline: 1px solid #f00; }</style> -->
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="py-4">
+    <div class="container text-center">
+        <h1><a class="link-dark link-offset-2 link-underline link-underline-opacity-0" th:href="@{/}" th:text="CostdataApplication"></a></h1>
+    </div>
+    </header>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark d-print sticky-top">
+        <!-- サブコンポーネント -->
+        <div class="container">
+            <!-- 切り替えボタン -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- ブランド -->
+            <a class="navbar-brand" th:href="@{/}" th:text="CostdataApplication"></a>
+        　　　<!-- ナビゲーション -->
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <!-- ナビゲーションメニュー -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/construction-contract/before}" th:text="ホーム">現在位置</a>
+                    </li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                        <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧"></a>
+                    </li>
+                </ul>
+                <!-- ログアウト -->
+                <ul class="navbar-nav">
+                    <li class="nav-item text-center">
+                        <form th:action="@{/logout}" method="post">
+                            <input type="submit" value="ログアウト" class="btn btn-info text-dark">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- メイン -->
+    <main class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-success">
+                        上記のナビゲーションバーより各ページへ移動できます。スマートフォンの場合は、ハンバーガーメニューをクリックすると各ページに移動できます。<br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-info">
+                        ・皆様のご協力のもと、このコストデータ整備を進めております。ありがとうございます。引き続き、情報提供くださいますようお願い申し上げます。<br>
+                        ・以下の一覧は「設計業務完了した後で、工事発注前」の案件です。発注され、施工業者が決まりましたら、コストデータを作成いたします。<br>
+                        ・コストデータ作成に必要な「施工業者の情報、内訳書、及び、意匠図のPDF一式」を、コストデータ整備担当者へ提供してください。<br>
+                        ・▲未記載（提供の具体的な方法）<br>
+                        ・コストデータ整備担当者がデータベースに入力したら、コストデータとして閲覧できるようになります。入力後当該案件はこの一覧から消えます。
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2 class="h2 text-center mb-5">未発注の工事契約一覧</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- Flashメッセージの表示 -->
+                    <p th:if="${message}" th:text="${message}" class="text-primary">
+                        完了メッセージ
+                    </p>
+                    <p th:if="${errorMessage}" th:text="${errorMessage}" class="text-danger">
+                        エラーメッセージ
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" style="width: 10%">業務番号</th>
+                                <th scope="col" style="width: 10%">発注工期</th>
+                                <th scope="col" style="width: 60%">工事名称</th>
+                                <th scope="col" style="width: 20%">発注予定時期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="constructionContract : ${constructionContract}">
+                                <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
+                                <td th:text="${constructionContract.constructionPeriod}"></td>
+                                <td th:text="${constructionContract.projectName}"></td>
+                                <td th:text="${constructionContract.estimateYear} + ' ' + ${constructionContract.estimateMonth}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div> <!-- 中心揃え用 -->
+                <div class="col-auto">
+                    <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col"></div> <!-- 中心揃え用 -->
+            </div>
+       </div>
+    </main>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
