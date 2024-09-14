@@ -36,6 +36,9 @@ public class ConstructionContract {
     private Integer ccEtId;
     private EstimateType estimateType;
 
+    /** 工事契約状態 */
+    private ContractCondition contractCondition;
+
     /** 積算時期（年） */
     private String estimateYear;
 

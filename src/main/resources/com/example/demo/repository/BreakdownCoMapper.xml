@@ -27,6 +27,7 @@
             <id column="cc_id" property="ccId" />
             <result column="cc_dc_id" property="ccDcId" />
             <result column="cc_et_id" property="ccEtId" />
+            <result column="contract_condition" property="contractCondition" />
             <result column="estimate_year" property="estimateYear" />
             <result column="estimate_month" property="estimateMonth" />
             <result column="construction_period" property="constructionPeriod" />

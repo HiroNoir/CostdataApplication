@@ -107,6 +107,18 @@
                                 </div>
                                 <!-- 以下は、上記以外のinput -->
                                 <div class="mb-3">
+                                    <label for="contractCondition" class="form-label">工事契約状態</label>
+                                    <div>
+                                        <select th:field="*{contractCondition}" id="contractCondition" class="form-select">
+                                            <!-- デフォルトをnullに設定して、バリデーション@NotNullでチェック -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item:${T(com.example.demo.entity.ContractCondition).values()}" th:value="${item}" th:text="${item.getValue()}" th:selected="*{contractCondition} == ${item}">
+                                        </select>
+                                        <span th:if="${#fields.hasErrors('contractCondition')}" th:errors="*{contractCondition}" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
                                     <label for="estimateYear" class="form-label">積算時期（年）</label>
                                     <div>※西暦で「2000年」のように末尾に「年」を記入して入力してください。</div>
                                     <div>

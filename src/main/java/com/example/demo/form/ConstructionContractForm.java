@@ -1,5 +1,6 @@
 package com.example.demo.form;
 
+import com.example.demo.entity.ContractCondition;
 import com.example.demo.entity.DesignContract;
 
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +33,10 @@ public class ConstructionContractForm {
     /** 内訳種別区分 */
     @NotNull(message = "内訳種別区分を選択してください。")
     private Integer ccEtId;
+
+    /** 工事契約状態 */
+    @NotNull(message = "工事契約状態を選択してください。")
+    private ContractCondition contractCondition;
 
     /** 積算時期（年） */
     @NotBlank(message = "積算時期（年）は必須です。")

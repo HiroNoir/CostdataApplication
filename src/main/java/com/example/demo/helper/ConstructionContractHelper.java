@@ -14,6 +14,7 @@ public class ConstructionContractHelper {
         entity.setCcId(form.getCcId());
         entity.setCcDcId(form.getCcDcId());
         entity.setCcEtId(form.getCcEtId());
+        entity.setContractCondition(form.getContractCondition());
         entity.setEstimateYear(form.getEstimateYear());
         entity.setEstimateMonth(form.getEstimateMonth());
         entity.setConstructionPeriod(form.getConstructionPeriod());
@@ -35,6 +36,7 @@ public class ConstructionContractHelper {
         form.setCcId(entity.getCcId());
         form.setCcDcId(entity.getCcDcId());
         form.setCcEtId(entity.getCcEtId());
+        form.setContractCondition(entity.getContractCondition());
         form.setEstimateYear(entity.getEstimateYear());
         form.setEstimateMonth(entity.getEstimateMonth());
         form.setConstructionPeriod(entity.getConstructionPeriod());

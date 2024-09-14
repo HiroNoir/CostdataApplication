@@ -75,6 +75,10 @@
                             <td th:text="${constructionContract.estimateType.etTypeName}"></td>
                         </tr>
                         <tr>
+                            <th>工事契約状態</th>
+                            <td th:text="${constructionContract.contractCondition.getValue}"></td>
+                        </tr>
+                        <tr>
                             <th>積算時期</th>
                             <td th:text="${constructionContract.estimateYear} + ' ' + ${constructionContract.estimateMonth}"></td>
                         </tr>

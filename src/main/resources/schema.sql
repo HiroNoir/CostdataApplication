@@ -103,6 +103,7 @@ CREATE TABLE `costdata_application`.`construction_contract` (
     `cc_id` INTEGER NOT NULL AUTO_INCREMENT,
     `cc_dc_id` INTEGER NOT NULL,
     `cc_et_id` INTEGER NOT NULL,
+    `contract_condition` ENUM ('BEFORE', 'AFTER', 'CANCEL') NOT NULL,
     `estimate_year` VARCHAR(10) NOT NULL,
     `estimate_month` VARCHAR(10) NOT NULL,
     `construction_period` VARCHAR(10) NOT NULL,

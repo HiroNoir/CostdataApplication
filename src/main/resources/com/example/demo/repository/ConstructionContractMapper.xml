@@ -6,6 +6,7 @@
         <id column="cc_id" property="ccId" />
         <result column="cc_dc_id" property="ccDcId" />
         <result column="cc_et_id" property="ccEtId" />
+        <result column="contract_condition" property="contractCondition" />
         <result column="estimate_year" property="estimateYear" />
         <result column="estimate_month" property="estimateMonth" />
         <result column="construction_period" property="constructionPeriod" />
@@ -81,13 +82,13 @@
     <!-- 登録実行 -->
     <insert id="insert" parameterType="com.example.demo.entity.ConstructionContract">
         <!-- 論理削除採用のため「delete_flg」と値「0」を追記 -->
-        INSERT INTO construction_contract (cc_dc_id, cc_et_id,
+        INSERT INTO construction_contract (cc_dc_id, cc_et_id, contract_condition,
             estimate_year, estimate_month, construction_period, project_name,
             site_address, site_area, separete_construction,
             planned_price, contract_price, contractor_name,
             remarks_section, blueprint_address,
             cc_created_at, cc_updated_at, cc_latest_editor, cc_delete_flg)
-        VALUES (#{ccDcId}, #{ccEtId},
+        VALUES (#{ccDcId}, #{ccEtId}, #{contractCondition},
             #{estimateYear}, #{estimateMonth}, #{constructionPeriod}, #{projectName},
             #{siteAddress}, #{siteArea}, #{separeteConstruction},
             #{plannedPrice}, #{contractPrice}, #{contractorName},
@@ -98,7 +99,7 @@
     <update id="update" parameterType="com.example.demo.entity.ConstructionContract">
         <!-- 論理削除採用のため「delete_flg」と値「0」を追記 -->
         UPDATE construction_contract
-        SET cc_dc_id = #{ccDcId}, cc_et_id = #{ccEtId},
+        SET cc_dc_id = #{ccDcId}, cc_et_id = #{ccEtId}, contract_condition = #{contractCondition},
             estimate_year = #{estimateYear}, estimate_month = #{estimateMonth},
             construction_period = #{constructionPeriod}, project_name = #{projectName},
             site_address = #{siteAddress}, site_area = #{siteArea},
