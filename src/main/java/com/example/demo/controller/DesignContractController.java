@@ -17,6 +17,7 @@ import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.constraints.ErrorMessage;
 import com.example.demo.entity.DesignContract;
 import com.example.demo.form.DesignContractForm;
+import com.example.demo.form.SimpleSearchForm;
 import com.example.demo.helper.DesignContractHelper;
 import com.example.demo.service.DesignContractService;
 import com.example.demo.service.impl.LoginUserDetails;
@@ -47,7 +48,11 @@ public class DesignContractController {
 
     /** 【全件取得】 */
     @GetMapping("/list")
-    public String list(Model model) {
+    public String list(@ModelAttribute SimpleSearchForm form, Model model) {
+
+        // 検索処理用フォームクラス（SimpleSearchForm）を織り込んで一覧画面へ遷移する。
+        // @ModelAttributeの引数省略型を利用しているため、下記のように、Model名はクラス名のローワーキャメルケースとなる
+        // model.addAttribute("simpleSearchForm", form); →form.htmlへ引き継ぐModel名となる
 
         /** 一覧画面へ遷移 */
         // Modelに格納
@@ -55,6 +60,27 @@ public class DesignContractController {
         model.addAttribute("listSize", service.findAll().size());
         // 画面遷移（アドレス指定）
         return "design-contract/list";
+
+    }
+
+    /** 【検索取得】 */
+    @PostMapping("/search")
+    public String search(SimpleSearchForm form, Model model) {
+
+        /** 一覧画面へ遷移 */
+        // キーワードの空白有無
+        if (form.getKeyword().isBlank()) {
+            // キーワードが空白又はスペース入力の場合は全件取得
+            // リダイレクト（アドレス指定）
+            return "redirect:/design-contract/list";
+        } else {
+            // キーワードに文字列が入力されている場合は検索取得
+            // Modelに格納
+            model.addAttribute("designContract", service.findAllByKeyword(form.getKeyword()));
+            model.addAttribute("listSize", service.findAllByKeyword(form.getKeyword()).size());
+            // 画面遷移（アドレス指定）
+            return "design-contract/list";
+        }
 
     }
 

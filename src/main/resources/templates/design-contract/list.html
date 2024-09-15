@@ -43,6 +43,20 @@
                         <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧"></a>
                     </li>
                 </ul>
+                <!-- 検索 -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item text-center">
+                        <form th:action="@{/design-contract/search}" method="post" th:object="${simpleSearchForm}" class="d-flex">
+                                <input type="search" th:field="*{keyword}" id="keyword" placeholder="業務番号 or業務名称 or発注者名" class="form-control">
+                                <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
+                        </form>
+                    </li>
+                </ul>
+                <!-- 検索ボタンととログアウトボタンの上下クリアランス -->
+                <ul class="navbar-nav">
+                    <li class="nav-item mb-3">
+                    </li>
+                </ul>
                 <!-- ログアウト -->
                 <ul class="navbar-nav">
                     <li class="nav-item text-center">

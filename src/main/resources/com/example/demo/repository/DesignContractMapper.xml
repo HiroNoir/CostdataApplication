@@ -30,6 +30,17 @@
         WHERE dc_delete_flg = 0
         ORDER BY contract_number;
     </select>
+    <!-- 検索取得 -->
+    <select id="selectAllByKeyword" resultMap="designContractResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT dc_id, contract_number, contract_name, customer_name
+        FROM design_contract
+        WHERE dc_delete_flg = 0 AND
+            (contract_number LIKE CONCAT('%', #{keyword}, '%')
+            OR contract_name LIKE CONCAT('%', #{keyword}, '%')
+            OR customer_name LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY contract_number;
+    </select>
     <!-- 一件取得 -->
     <select id="selectById" resultMap="designContractResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->

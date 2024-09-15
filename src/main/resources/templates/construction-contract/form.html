@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="estimateMonth" class="form-label">積算時期（月）</label>
-                                    <div>※「1月」「12月」のように末尾に「月」を記入して入力してください。</div>
+                                    <div>※「01月」「12月」のように二桁の数字と末尾に「月」を記入して入力してください。</div>
                                     <div>
                                         <input type="text" th:field="*{estimateMonth}" id="estimateMonth" class="form-control">
                                         <span th:if="${#fields.hasErrors('estimateMonth')}" th:errors="*{estimateMonth}" class="text-danger"></span>
