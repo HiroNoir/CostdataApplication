@@ -17,7 +17,19 @@
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT code, first_name, last_name
         FROM employee
-        WHERE delete_flg = 0 ORDER BY created_at;
+        WHERE delete_flg = 0
+        ORDER BY created_at;
+    </select>
+    <!-- 検索取得 -->
+    <select id="selectAllByKeyword" resultMap="employeeResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT code, first_name, last_name
+        FROM employee
+        WHERE delete_flg = 0 AND
+            (code LIKE CONCAT('%', #{keyword}, '%')
+            OR first_name LIKE CONCAT('%', #{keyword}, '%')
+            OR last_name LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY created_at;
     </select>
     <!-- 一件取得 -->
     <select id="selectByCode" resultMap="employeeResult">

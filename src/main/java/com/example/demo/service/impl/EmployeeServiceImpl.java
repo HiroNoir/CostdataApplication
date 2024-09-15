@@ -35,6 +35,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return mapper.selectAll();
     }
 
+    /** 【検索取得】 */
+    @Override
+    public List<Employee> findAllByKeyword(String keyword) {
+        return mapper.selectAllByKeyword(keyword);
+    }
+
     /** 【一件取得】 */
     @Override
     public Employee findByCode(String code) {

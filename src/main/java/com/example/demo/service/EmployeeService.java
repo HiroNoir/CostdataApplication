@@ -14,6 +14,9 @@ public interface EmployeeService {
     /** 【全件取得】 */
     List<Employee> findAll();
 
+    /** 【全件取得】 */
+    List<Employee> findAllByKeyword(String keyword);
+
     /** 【一件取得】 */
     Employee findByCode(String code);
 
