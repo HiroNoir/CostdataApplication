@@ -47,7 +47,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item text-center">
                         <form th:action="@{/design-contract/search}" method="post" th:object="${simpleSearchForm}" class="d-flex">
-                                <input type="search" th:field="*{keyword}" id="keyword" placeholder="業務番号 or業務名称 or発注者名" class="form-control">
+                                <input type="search" th:field="*{keyword}" id="keyword" placeholder="左から３列の中で検索" class="form-control">
                                 <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
                         </form>
                     </li>

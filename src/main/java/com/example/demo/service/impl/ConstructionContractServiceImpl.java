@@ -37,6 +37,12 @@ public class ConstructionContractServiceImpl implements ConstructionContractServ
         return mapper.selectAll();
     }
 
+    /** 【検索取得】 */
+    @Override
+    public List<ConstructionContract> findAllByKeyword(String keyword) {
+        return mapper.selectAllByKeyword(keyword);
+    }
+
     /** 【特定取得】 */
     @Override
     public List<ConstructionContract> findAllById(Integer ccDcId) {

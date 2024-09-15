@@ -17,6 +17,9 @@ public interface ConstructionContractService {
     /** 【全件取得】 */
     List<ConstructionContract> findAll();
 
+    /** 【検索取得】 */
+    List<ConstructionContract> findAllByKeyword(String keyword);
+
     /** 【特定取得】 */
     List<ConstructionContract> findAllById(Integer ccDcId);
 
