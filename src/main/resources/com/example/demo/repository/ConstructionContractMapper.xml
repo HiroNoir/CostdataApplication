@@ -103,6 +103,9 @@
         <if test="ccEtId != null">
             AND cc_et_id = #{ccEtId}
         </if>
+        <if test="contractCondition != null">
+            AND contract_condition = #{contractCondition}
+        </if>
         <if test="estimateYear != ''">
             AND estimate_year LIKE CONCAT('%', #{estimateYear}, '%')
         </if>

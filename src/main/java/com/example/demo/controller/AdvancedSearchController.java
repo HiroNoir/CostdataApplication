@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.form.AdvancedSearchFormOfCc;
-import com.example.demo.form.SimpleSearchForm;
 import com.example.demo.service.ConstructionContractService;
 import com.example.demo.service.EstimateTypeService;
 
@@ -65,12 +64,14 @@ public class AdvancedSearchController {
         // Modelに格納
         model.addAttribute("constructionContract", constructionContractService.findAllByAdvancedSearchForm(
                 form.getCcEtId(),
+                form.getContractCondition(),
                 form.getEstimateYear(),
                 form.getSiteAddress(),
                 form.getContractorName()
                 ));
         model.addAttribute("listSize", constructionContractService.findAllByAdvancedSearchForm(
                 form.getCcEtId(),
+                form.getContractCondition(),
                 form.getEstimateYear(),
                 form.getSiteAddress(),
                 form.getContractorName()

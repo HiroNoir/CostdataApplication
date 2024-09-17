@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.entity.ConstructionContract;
+import com.example.demo.entity.ContractCondition;
 
 /**
  * 工事契約リポジトリインターフェース（MyBatis用マッパー）
@@ -25,7 +26,7 @@ public interface ConstructionContractMapper {
     List<ConstructionContract> selectAllBySimpleSearchForm(String keyword);
 
     /** 【詳細検索取得】 */
-    List<ConstructionContract> selectAllByAdvancedSearchForm(Integer ccEtId, String estimateYear, String siteAddress, String contractorName);
+    List<ConstructionContract> selectAllByAdvancedSearchForm(Integer ccEtId, ContractCondition contractCondition, String estimateYear, String siteAddress, String contractorName);
 
     /** 【一件取得】 */
     ConstructionContract selectById(Integer ccId);

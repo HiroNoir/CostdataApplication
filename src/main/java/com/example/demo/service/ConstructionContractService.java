@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.entity.ConstructionContract;
+import com.example.demo.entity.ContractCondition;
 import com.example.demo.service.impl.LoginUserDetails;
 
 /**
@@ -24,7 +25,7 @@ public interface ConstructionContractService {
     List<ConstructionContract> findAllBySimpleSearchForm(String keyword);
 
     /** 【詳細検索取得】 */
-    List<ConstructionContract> findAllByAdvancedSearchForm(Integer ccEtId, String estimateYear, String siteAddress, String contractorName);
+    List<ConstructionContract> findAllByAdvancedSearchForm(Integer ccEtId, ContractCondition contractCondition, String estimateYear, String siteAddress, String contractorName);
 
     /** 【一件取得】 */
     ConstructionContract findById(Integer ccId);

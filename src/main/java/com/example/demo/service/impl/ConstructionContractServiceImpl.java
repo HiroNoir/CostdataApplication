@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.constraints.ErrorKinds;
 import com.example.demo.entity.ConstructionContract;
+import com.example.demo.entity.ContractCondition;
 import com.example.demo.repository.ConstructionContractMapper;
 import com.example.demo.service.ConstructionContractService;
 
@@ -51,8 +52,8 @@ public class ConstructionContractServiceImpl implements ConstructionContractServ
 
     /** 【詳細検索取得】 */
     @Override
-    public List<ConstructionContract> findAllByAdvancedSearchForm(Integer ccEtId, String estimateYear, String siteAddress, String contractorName) {
-        return mapper.selectAllByAdvancedSearchForm(ccEtId, estimateYear, siteAddress, contractorName);
+    public List<ConstructionContract> findAllByAdvancedSearchForm(Integer ccEtId, ContractCondition contractCondition, String estimateYear, String siteAddress, String contractorName) {
+        return mapper.selectAllByAdvancedSearchForm(ccEtId, contractCondition, estimateYear, siteAddress, contractorName);
     }
 
     /** 【一件取得】 */

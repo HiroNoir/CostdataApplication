@@ -1,5 +1,7 @@
 package com.example.demo.form;
 
+import com.example.demo.entity.ContractCondition;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,9 @@ public class AdvancedSearchFormOfCc {
 
     /** 内訳種別区分 */
     private Integer ccEtId;
+
+    /** 工事契約状態 */
+    private ContractCondition contractCondition;
 
     /** 積算時期（年） */
     private String estimateYear;
