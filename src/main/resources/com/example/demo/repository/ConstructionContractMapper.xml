@@ -69,8 +69,18 @@
         WHERE cc_delete_flg = 0
         ORDER BY contract_number, construction_period;
     </select>
-    <!-- 検索取得 -->
-    <select id="selectAllByKeyword" resultMap="constructionContractResult">
+    <!-- 特定取得 -->
+    <select id="selectAllById" resultMap="constructionContractResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT cc_id, cc_dc_id, construction_period, project_name,
+            design_contract.dc_id, design_contract.contract_number
+        FROM construction_contract
+        JOIN design_contract ON construction_contract.cc_dc_id = design_contract.dc_id
+        WHERE cc_delete_flg = 0 AND cc_dc_id = #{ccDcId}
+        ORDER BY contract_number, construction_period;
+    </select>
+    <!-- 簡易検索取得 -->
+    <select id="selectAllBySimpleSearchForm" resultMap="constructionContractResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT cc_id, construction_period, project_name,
             design_contract.dc_id, design_contract.contract_number
@@ -82,14 +92,26 @@
             OR project_name LIKE CONCAT('%', #{keyword}, '%'))
         ORDER BY contract_number, construction_period;
     </select>
-    <!-- 特定取得 -->
-    <select id="selectAllById" resultMap="constructionContractResult">
+    <!-- 詳細検索取得 -->
+    <select id="selectAllByAdvancedSearchForm" resultMap="constructionContractResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
-        SELECT cc_id, cc_dc_id, construction_period, project_name,
+        SELECT cc_id, construction_period, project_name,
             design_contract.dc_id, design_contract.contract_number
         FROM construction_contract
         JOIN design_contract ON construction_contract.cc_dc_id = design_contract.dc_id
-        WHERE cc_delete_flg = 0 AND cc_dc_id = #{ccDcId}
+        WHERE cc_delete_flg = 0
+        <if test="ccEtId != null">
+            AND cc_et_id = #{ccEtId}
+        </if>
+        <if test="estimateYear != ''">
+            AND estimate_year LIKE CONCAT('%', #{estimateYear}, '%')
+        </if>
+        <if test="siteAddress != ''">
+            AND site_address LIKE CONCAT('%', #{siteAddress}, '%')
+        </if>
+        <if test="contractorName != ''">
+            AND contractor_name LIKE CONCAT('%', #{contractorName}, '%')
+        </if>
         ORDER BY contract_number, construction_period;
     </select>
     <!-- 一件取得 -->

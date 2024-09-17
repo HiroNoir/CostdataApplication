@@ -15,8 +15,8 @@ public interface DesignContractMapper {
     /** 【全件取得】 */
     List<DesignContract> selectAll();
 
-    /** 【検索取得】 */
-    List<DesignContract> selectAllByKeyword(String keyword);
+    /** 【簡易検索取得】 */
+    List<DesignContract> selectAllBySimpleSearchForm(String keyword);
 
     /** 【一件取得】 */
     DesignContract selectById(Integer dcId);

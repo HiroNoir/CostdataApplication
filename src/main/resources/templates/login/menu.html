@@ -30,6 +30,9 @@
             <div class="collapse navbar-collapse" id="navbar-content">
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/construction-contract/before}" th:text="ホーム"></a>
+                    </li>
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
                     </li>
@@ -37,7 +40,10 @@
                         <a class="nav-link" th:href="@{/design-contract/list}" th:text="設計契約一覧"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧（ホーム）"></a>
+                        <a class="nav-link" th:href="@{/construction-contract/list}" th:text="工事契約一覧"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/common/search}" th:text="詳細検索"></a>
                     </li>
                 </ul>
                 <!-- ログアウト -->

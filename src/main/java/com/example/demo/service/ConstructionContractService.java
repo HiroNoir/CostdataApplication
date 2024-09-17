@@ -7,7 +7,7 @@ import com.example.demo.entity.ConstructionContract;
 import com.example.demo.service.impl.LoginUserDetails;
 
 /**
- * 設計契約サービスインターフェース
+ * 工事契約サービスインターフェース
  */
 public interface ConstructionContractService {
 
@@ -17,11 +17,14 @@ public interface ConstructionContractService {
     /** 【全件取得】 */
     List<ConstructionContract> findAll();
 
-    /** 【検索取得】 */
-    List<ConstructionContract> findAllByKeyword(String keyword);
-
     /** 【特定取得】 */
     List<ConstructionContract> findAllById(Integer ccDcId);
+
+    /** 【簡易検索取得】 */
+    List<ConstructionContract> findAllBySimpleSearchForm(String keyword);
+
+    /** 【詳細検索取得】 */
+    List<ConstructionContract> findAllByAdvancedSearchForm(Integer ccEtId, String estimateYear, String siteAddress, String contractorName);
 
     /** 【一件取得】 */
     ConstructionContract findById(Integer ccId);

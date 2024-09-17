@@ -55,7 +55,7 @@ public class ConstructionContractController {
 
     /** 【ホーム画面（メニュー及び工事発注前一覧】 */
     @GetMapping("/before")
-    public String listOfBefore(Model model) {
+    public String before(Model model) {
 
         /** メニュー及び工事発注前一覧へ遷移 */
         // Modelに格納
@@ -83,27 +83,6 @@ public class ConstructionContractController {
 
     }
 
-    /** 【検索取得】 */
-    @PostMapping("/search")
-    public String search(SimpleSearchForm form, Model model) {
-
-        /** 一覧画面へ遷移 */
-        // キーワードの空白有無
-        if (form.getKeyword().isBlank()) {
-            // キーワードが空白又はスペース入力の場合は全件取得
-            // リダイレクト（アドレス指定）
-            return "redirect:/construction-contract/list";
-        } else {
-            // キーワードに文字列が入力されている場合は検索取得
-            // Modelに格納
-            model.addAttribute("constructionContract", service.findAllByKeyword(form.getKeyword()));
-            model.addAttribute("listSize", service.findAllByKeyword(form.getKeyword()).size());
-            // 画面遷移（アドレス指定）
-            return "construction-contract/list";
-        }
-
-    }
-
     /** 【特定取得】 */
     @GetMapping("/{id}/specify")
     public String specify(@PathVariable("id") Integer ccDcId, Model model, RedirectAttributes redirectAttributes) {
@@ -128,6 +107,27 @@ public class ConstructionContractController {
             redirectAttributes.addFlashAttribute("errorMessage", "対象データがありません");
             // リダイレクト（アドレス指定）
             return "redirect:/design-contract/list";
+        }
+
+    }
+
+    /** 【簡易検索取得】 */
+    @PostMapping("/search")
+    public String search(SimpleSearchForm form, Model model) {
+
+        /** 一覧画面へ遷移 */
+        // キーワードの空白有無
+        if (form.getKeyword().isBlank()) {
+            // キーワードが空白又はスペース入力の場合は全件取得
+            // リダイレクト（アドレス指定）
+            return "redirect:/construction-contract/list";
+        } else {
+            // キーワードに文字列が入力されている場合は検索取得
+            // Modelに格納
+            model.addAttribute("constructionContract", service.findAllBySimpleSearchForm(form.getKeyword()));
+            model.addAttribute("listSize", service.findAllBySimpleSearchForm(form.getKeyword()).size());
+            // 画面遷移（アドレス指定）
+            return "construction-contract/list";
         }
 
     }

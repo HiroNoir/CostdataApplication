@@ -18,11 +18,14 @@ public interface ConstructionContractMapper {
     /** 【全件取得】 */
     List<ConstructionContract> selectAll();
 
-    /** 【検索取得】 */
-    List<ConstructionContract> selectAllByKeyword(String keyword);
-
     /** 【特定取得】 */
     List<ConstructionContract> selectAllById(Integer ccDcId);
+
+    /** 【簡易検索取得】 */
+    List<ConstructionContract> selectAllBySimpleSearchForm(String keyword);
+
+    /** 【詳細検索取得】 */
+    List<ConstructionContract> selectAllByAdvancedSearchForm(Integer ccEtId, String estimateYear, String siteAddress, String contractorName);
 
     /** 【一件取得】 */
     ConstructionContract selectById(Integer ccId);

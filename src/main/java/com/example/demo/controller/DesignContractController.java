@@ -63,7 +63,7 @@ public class DesignContractController {
 
     }
 
-    /** 【検索取得】 */
+    /** 【簡易検索取得】 */
     @PostMapping("/search")
     public String search(SimpleSearchForm form, Model model) {
 
@@ -76,8 +76,8 @@ public class DesignContractController {
         } else {
             // キーワードに文字列が入力されている場合は検索取得
             // Modelに格納
-            model.addAttribute("designContract", service.findAllByKeyword(form.getKeyword()));
-            model.addAttribute("listSize", service.findAllByKeyword(form.getKeyword()).size());
+            model.addAttribute("designContract", service.findAllBySimpleSearchForm(form.getKeyword()));
+            model.addAttribute("listSize", service.findAllBySimpleSearchForm(form.getKeyword()).size());
             // 画面遷移（アドレス指定）
             return "design-contract/list";
         }

@@ -15,8 +15,8 @@ public interface DesignContractService {
     /** 【全件取得】 */
     List<DesignContract> findAll();
 
-    /** 【検索取得】 */
-    List<DesignContract> findAllByKeyword(String keyword);
+    /** 【簡易検索取得】 */
+    List<DesignContract> findAllBySimpleSearchForm(String keyword);
 
     /** 【一件取得】 */
     DesignContract findById(Integer dcId);

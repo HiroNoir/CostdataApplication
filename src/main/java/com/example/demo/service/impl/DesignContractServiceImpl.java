@@ -31,10 +31,10 @@ public class DesignContractServiceImpl implements DesignContractService {
         return mapper.selectAll();
     }
 
-    /** 【検索取得】 */
+    /** 【簡易検索取得】 */
     @Override
-    public List<DesignContract> findAllByKeyword(String keyword) {
-        return mapper.selectAllByKeyword(keyword);
+    public List<DesignContract> findAllBySimpleSearchForm(String keyword) {
+        return mapper.selectAllBySimpleSearchForm(keyword);
     }
 
     /** 【一件取得】 */

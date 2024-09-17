@@ -31,7 +31,7 @@
                 <!-- ナビゲーションメニュー -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/construction-contract/before}" th:text="ホーム">現在位置</a>
+                        <a class="nav-link" th:href="@{/construction-contract/before}" th:text="ホーム"></a>
                     </li>
                     <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                         <a class="nav-link" th:href="@{/employee/list}" th:text="従業員一覧"></a>
@@ -62,25 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="alert alert-success">
-                        上記のナビゲーションバーより各ページへ移動できます。スマートフォンの場合は、ハンバーガーメニューをクリックすると各ページに移動できます。<br>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-info">
-                        ・皆様のご協力のもと、このコストデータ整備を進めております。ありがとうございます。引き続き、情報提供くださいますようお願い申し上げます。<br>
-                        ・以下の一覧は「設計業務完了した後で、工事発注前」の案件です。発注され、施工業者が決まりましたら、コストデータを作成いたします。<br>
-                        ・コストデータ作成に必要な「施工業者の情報、内訳書、及び、意匠図のPDF一式」を、コストデータ整備担当者へ提供してください。<br>
-                        ・▲未記載（提供の具体的な方法）<br>
-                        ・コストデータ整備担当者がデータベースに入力したら、コストデータとして閲覧できるようになります。入力後当該案件はこの一覧から消えます。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2 class="h2 text-center mb-5">未発注の工事契約一覧</h2>
+                    <h2 class="h2 text-center mb-5">検索結果：工事契約一覧</h2>
                 </div>
             </div>
             <div class="row">
@@ -102,7 +84,8 @@
                                 <th scope="col" style="width: 10%">業務番号</th>
                                 <th scope="col" style="width: 10%">発注工期</th>
                                 <th scope="col" style="width: 60%">工事名称</th>
-                                <th scope="col" style="width: 20%">発注予定時期</th>
+                                <th scope="col" style="width: 10%">内訳</th>
+                                <th scope="col" style="width: 10%">詳細</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,7 +93,8 @@
                                 <td><a th:href="@{/design-contract/{id}/detail(id=${constructionContract.designContract.dcId})}" th:text="${constructionContract.designContract.contractNumber}"></a></td>
                                 <td th:text="${constructionContract.constructionPeriod}"></td>
                                 <td th:text="${constructionContract.projectName}"></td>
-                                <td th:text="${constructionContract.estimateYear} + ' ' + ${constructionContract.estimateMonth}"></td>
+                                <td><a th:href="@{/breakdown-co/{id}/specify(id=${constructionContract.ccId})}">頭紙</a></td>
+                                <td><a th:href="@{/construction-contract/{id}/detail(id=${constructionContract.ccId})}">詳細</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -125,6 +109,9 @@
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
+                </div>
+                <div class="col-auto">
+                    <a th:href="@{/advanced-search/search}" class="btn btn-primary">リセット</a>
                 </div>
                 <div class="col"></div> <!-- 中心揃え用 -->
             </div>
