@@ -90,7 +90,7 @@
                         </tr>
                         <tr>
                             <th>数量情報</th>
-                            <td th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')} + '㎡'"></td>
+                            <td th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')}"></td>
                         </tr>
                         <tr>
                             <th>金額情報</th>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="col"></div> <!-- 中心揃え用 -->
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>

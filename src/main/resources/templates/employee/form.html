@@ -124,7 +124,7 @@
                                         <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></span>
                                     </div>
                                 </div>
-                                <p class="mb-5">
+                                <p>
                                     <!-- ボタン：新規登録 or 更新処理 -->
                                     <input th:if="${employeeForm.isNew}" type="submit" value="登録" class="btn btn-primary">
                                     <input th:unless="${employeeForm.isNew}" type="submit" value="更新" class="btn btn-primary">
@@ -135,7 +135,7 @@
                     <div class="col"></div> <!-- 中心揃え用 -->
                 </div>
             </form>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>

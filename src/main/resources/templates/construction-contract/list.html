@@ -116,17 +116,17 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="mb-3" th:text="'（ 全' + ${listSize} + '件 ）'">
+                    <p th:text="'（ 全' + ${listSize} + '件 ）'">
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col">
                     <div sec:authorize="hasAuthority('EDITOR')" class="alert alert-info">
                         工事契約を新規登録する場合は、設計契約がなければ設計契約を新規登録した後、「設計契約一覧→工事契約一覧」と進んだところにある「登録」より実行してください。
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col"></div> <!-- 中心揃え用 -->
                 <div class="col-auto">
                     <a th:href="@{/}" class="btn btn-primary">ホーム</a>
