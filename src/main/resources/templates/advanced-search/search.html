@@ -66,11 +66,11 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3 class="h3 text-center mb-5">工事契約一覧より絞り込み</h3>
-                            <!-- フォーム -->
-                            <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="post">
+                    <!-- フォーム -->
+                    <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="post">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="h3 text-center mb-5">工事契約一覧より絞り込み</h3>
                                 <div class="mb-3">
                                     <label for="ccEtId" class="form-label">内訳種別区分</label>
                                     <select th:field="*{ccEtId}" id="ccEtId" class="form-select">
@@ -111,9 +111,9 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
