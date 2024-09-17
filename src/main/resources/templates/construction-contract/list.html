@@ -46,10 +46,10 @@
                         <a class="nav-link" th:href="@{/advanced-search/search}" th:text="詳細検索"></a>
                     </li>
                 </ul>
-                <!-- 検索 -->
+                <!-- 検索（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item text-center">
-                        <form th:action="@{/construction-contract/search}" method="post" th:object="${simpleSearchForm}" class="d-flex">
+                        <form th:action="@{/construction-contract/search}" method="get" th:object="${simpleSearchForm}" class="d-flex">
                                 <input type="search" th:field="*{keyword}" id="keyword" placeholder="左から３列の中で検索" class="form-control">
                                 <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
                         </form>

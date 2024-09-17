@@ -66,8 +66,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <!-- フォーム -->
-                    <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="post">
+                    <!-- フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                    <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="get">
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="h3 text-center mb-5">工事契約一覧より絞り込み</h3>

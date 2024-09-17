@@ -56,8 +56,8 @@ public class AdvancedSearchController {
 
     }
 
-    /** 【検索処理実行（工事契約用）】 */
-    @PostMapping("/result-of-cc")
+    /** 【検索処理実行（工事契約用）（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる）】 */
+    @GetMapping("/result-of-cc")
     public String getResultOfCc(AdvancedSearchFormOfCc form, Model model) {
 
         /** 検索結果画面へ遷移 */

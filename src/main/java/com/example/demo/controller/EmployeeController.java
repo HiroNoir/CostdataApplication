@@ -60,8 +60,8 @@ public class EmployeeController {
 
     }
 
-    /** 【簡易検索取得】 */
-    @PostMapping("/search")
+    /** 【簡易検索取得（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる）】 */
+    @GetMapping("/search")
     public String search(SimpleSearchForm form, Model model) {
 
         /** 一覧画面へ遷移 */
