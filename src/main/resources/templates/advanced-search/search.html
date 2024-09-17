@@ -66,10 +66,10 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <!-- フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
-                    <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="get">
-                        <div class="card">
-                            <div class="card-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                            <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="get">
                                 <h3 class="h3 text-center mb-5">工事契約一覧より絞り込み</h3>
                                 <div class="mb-3">
                                     <label for="ccEtId" class="form-label">内訳種別区分</label>
@@ -111,9 +111,9 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
-                            </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
