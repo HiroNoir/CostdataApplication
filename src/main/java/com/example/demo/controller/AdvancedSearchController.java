@@ -130,7 +130,7 @@ public class AdvancedSearchController {
 
     /** 【検索処理実行（内訳情報用）（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる）】 */
     @GetMapping("/result-of-idb")
-    public String getResultOfBcd(AdvancedSearchFormOfIdb form, Model model) {
+    public String getResultOfIdb(AdvancedSearchFormOfIdb form, Model model) {
 
         /** 検索結果画面へ遷移 */
         // Modelに格納
