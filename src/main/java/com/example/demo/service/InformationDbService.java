@@ -23,6 +23,9 @@ public interface InformationDbService {
     /** 【特定取得】 */
     List<InformationDb> findAllById(Integer idbBcdId);
 
+    /** 【詳細検索取得】 */
+    List<InformationDb> findAllByAdvancedSearchForm(Integer idbIiId, String idbDataText, Double upperIdbDataDouble, Double lowerIdbDataDouble);
+
     /** 【一件取得】 */
     InformationDb findById(Integer idbBcdId, Integer idbIiId);
 

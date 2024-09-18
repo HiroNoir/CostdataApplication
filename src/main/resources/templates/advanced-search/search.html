@@ -118,7 +118,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <!-- 工事契約検索用フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                            <!-- 内訳種目検索用フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
                             <form th:action="@{/advanced-search/result-of-bcd}" th:object="${advancedSearchFormOfBcd}" method="get">
                                 <h3 class="h3 text-center mb-5">内訳種目一覧より絞り込み</h3>
                                 <div class="mb-3">
@@ -145,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <!-- 新規登録・更新処理時の用途詳細区分のidはセレクトボックスで選択して仕込み（nullチェック有り、★Ajax通信による選択肢の更新） -->
+                                    <!-- ★Ajax通信による選択肢の更新） -->
                                     <label for="bcdPdId" class="form-label">用途詳細区分</label>
                                     <div>※上記の用途概略区分を選択すると、用途詳細区分の選択肢が表示されます。</div>
                                     <div class="text-danger">※表示されない場合は、再度上記の用途概略区分で別項目を選択し、改めて選択し直してください。</div>
@@ -170,7 +170,40 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="h3 text-center mb-5">設備用の検索（▲未実装）</h3>
+                            <!-- 内訳情報検索用フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                            <form th:action="@{/advanced-search/result-of-idb}" th:object="${advancedSearchFormOfIdb}" method="get">
+                                <h3 class="h3 text-center mb-5">内訳情報一覧より絞り込み</h3>
+                                <div class="mb-3">
+                                    <label for="idbIiId" class="form-label">内訳情報区分</label>
+                                    <div>
+                                        <select th:field="*{idbIiId}" id="idbIiId" class="form-select">
+                                            <!-- デフォルトをnullに設定 -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${informationItemlMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="idbDataText" class="form-label">文字情報</label>
+                                    <div>
+                                        <input type="text" th:field="*{idbDataText}" id="idbDataText" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="upperIdbDataDouble" class="form-label">数量情報（上限）</label>
+                                    <div>
+                                        <input type="text" th:field="*{upperIdbDataDouble}" id="upperIdbDataDouble" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lowerIdbDataDouble" class="form-label">数量情報（下限）</label>
+                                    <div>
+                                        <input type="text" th:field="*{lowerIdbDataDouble}" id="lowerIdbDataDouble" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
+                            </form>
                         </div>
                     </div>
                 </div>

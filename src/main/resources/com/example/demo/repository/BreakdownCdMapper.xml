@@ -132,7 +132,7 @@
         <if test="bcdPdId != null">
             AND bcd_pd_id = #{bcdPdId}
         </if>
-        <if test="bcdTypeName != null">
+        <if test="bcdTypeName != ''">
             AND bcd_type_name LIKE CONCAT('%', #{bcdTypeName}, '%')
         </if>
         ORDER BY construction_contract.cc_id, bcd_bco_id, bcd_order;

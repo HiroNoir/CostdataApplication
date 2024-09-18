@@ -49,6 +49,12 @@ public class InformationDbServiceImpl implements InformationDbService {
         return mapper.selectAllById(idbBcdId);
     }
 
+    /** 【詳細検索取得】 */
+    @Override
+    public List<InformationDb> findAllByAdvancedSearchForm(Integer idbIiId, String idbDataText, Double upperIdbDataDouble, Double lowerIdbDataDouble) {
+        return mapper.selectAllByAdvancedSearchForm(idbIiId, idbDataText, upperIdbDataDouble, lowerIdbDataDouble);
+    }
+
     /** 【一件取得】 */
     @Override
     public InformationDb findById(Integer idbBcdId, Integer idbIiId) {

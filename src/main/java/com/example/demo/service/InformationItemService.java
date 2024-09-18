@@ -7,6 +7,9 @@ import java.util.Map;
  */
 public interface InformationItemService {
 
+    /** 【内訳情報区分設定のMapを生成（全件取得）】 */
+    Map<String, Integer> getInformationItemMap();
+
     /** 【内訳情報区分設定のMapを生成（特定取得）】 */
     Map<String, Integer> getInformationItemMapById(Integer iiCoId);
 

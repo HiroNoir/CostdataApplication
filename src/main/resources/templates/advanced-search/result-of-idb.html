@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <title>検索結果：内訳種目一覧</title>
+    <title>検索結果：内訳情報一覧</title>
     <!-- レイアウトを確認するためのスタイル　（不要になったらコメントアウト）
     <style> * { outline: 1px solid #f00; }</style> -->
 </head>
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2 class="h2 text-center mb-5">検索結果：内訳種目一覧</h2>
+                    <h2 class="h2 text-center mb-5">検索結果：内訳情報一覧</h2>
                 </div>
             </div>
             <div class="row">
@@ -70,24 +70,25 @@
                     <table class="table table-striped table-hover">
                         <thead class="table-light">
                             <tr>
-                                <th scope="col" style="width: 40%">工事契約</th>
+                                <th scope="col" style="width: 30%">工事契約</th>
                                 <th scope="col" style="width: 10%">内訳頭紙区分</th>
-                                <th scope="col" style="width: 10%">整列番号</th>
-                                <th scope="col" style="width: 25%">種目名称</th>
-                                <th scope="col" style="width: 5%">内訳</th>
-                                <th scope="col" style="width: 5%">情報</th>
+                                <th scope="col" style="width: 15%">種目名称</th>
+                                <th scope="col" style="width: 10%">項目</th>
+                                <th scope="col" style="width: 20%">文字情報</th>
+                                <th scope="col" style="width: 10%">数量情報</th>
                                 <th scope="col" style="width: 5%">詳細</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="breakdownCd : ${breakdownCd}">
-                                <td th:text="${breakdownCd.constructionContract.projectName}"></td>
-                                <td th:text="${breakdownCd.categoryOutline.coTypeName}"></td>
-                                <td th:text="${breakdownCd.bcdOrder}"></td>
-                                <td th:text="${breakdownCd.bcdTypeName}"></td>
-                                <td><a th:href="@{/breakdown-cs/{id}/specify(id=${breakdownCd.bcdId})}">科目</a></td>
-                                <td><a th:href="@{/information-db/{id}/specify(id=${breakdownCd.bcdId})}">情報</a></td>
-                                <td><a th:href="@{/breakdown-cd/{id1}/{id2}/detail(id1=${breakdownCd.bcdId}, id2=${breakdownCd.bcdBcoId})}">詳細</a></td>
+                            <tr th:each="informationDb : ${informationDb}">
+                                <td th:text="${informationDb.constructionContract.projectName}"></td>
+                                <td th:text="${informationDb.categoryOutline.coTypeName}"></td>
+                                <td th:text="${informationDb.breakdownCd.bcdTypeName}"></td>
+                                <td th:text="${informationDb.InformationItem.iiItemName}"></td>
+                                <td th:text="${informationDb.idbDataText}"></td>
+                                <td th:if="${informationDb.idbDataDouble == 0}" style="text-align: center;">-</td>
+                                <td th:if="${informationDb.idbDataDouble != 0}" style="text-align: right;" th:text="${#numbers.formatDecimal(informationDb.idbDataDouble, 0, 'COMMA', 2, 'POINT')}"></td>
+                                <td><a th:href="@{/information-db/{id1}/{id2}/detail(id1=${informationDb.idbBcdId}, id2=${informationDb.idbIiId})}">詳細</a></td>
                             </tr>
                         </tbody>
                     </table>

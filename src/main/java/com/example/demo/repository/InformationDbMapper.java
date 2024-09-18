@@ -24,6 +24,9 @@ public interface InformationDbMapper {
     /** 【特定取得】 */
     List<InformationDb> selectAllById(Integer idbBcdId);
 
+    /** 【詳細検索取得】 */
+    List<InformationDb> selectAllByAdvancedSearchForm(Integer idbIiId, String idbDataText, Double upperIdbDataDouble, Double lowerIdbDataDouble);
+
     /** 【一件取得】 */
     InformationDb selectById(Integer idbBcdId, Integer idbIiId);
 

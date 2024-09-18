@@ -12,6 +12,9 @@ import com.example.demo.entity.InformationItem;
 @Mapper
 public interface InformationItemMapper {
 
+    /** 【全件取得】 */
+    List<InformationItem> selectAll();
+
     /** 【特定取得】 */
     List<InformationItem> selectAllById(Integer iiCoId);
 
