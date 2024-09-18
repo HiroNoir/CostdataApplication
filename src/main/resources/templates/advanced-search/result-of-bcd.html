@@ -81,7 +81,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="breakdownCd : ${breakdownCd}">
-                                <td th:text="${breakdownCd.constructionContract.projectName}"></td>
+                                <td><a th:href="@{/breakdown-co/{id}/specify(id=${breakdownCd.constructionContract.ccId})}" th:text="${breakdownCd.constructionContract.projectName}"></a></td>
                                 <td th:text="${breakdownCd.categoryOutline.coTypeName}"></td>
                                 <td th:text="${breakdownCd.bcdOrder}"></td>
                                 <td th:text="${breakdownCd.bcdTypeName}"></td>

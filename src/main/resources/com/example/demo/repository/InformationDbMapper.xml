@@ -168,7 +168,7 @@
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
         SELECT idb_bcd_id, idb_ii_id, idb_data_text, idb_data_double, idb_data_bigint,
             information_item.ii_item_name, category_detail.cd_type_name,
-            construction_contract.project_name, category_outline.co_type_name, breakdown_cd.bcd_type_name
+            construction_contract.cc_id, construction_contract.project_name, category_outline.co_type_name, breakdown_cd.bcd_type_name
         FROM information_db
         JOIN information_item ON information_db.idb_ii_id = information_item.ii_id
         JOIN breakdown_cd ON information_db.idb_bcd_id = breakdown_cd.bcd_id

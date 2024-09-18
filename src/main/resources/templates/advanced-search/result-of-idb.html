@@ -81,9 +81,9 @@
                         </thead>
                         <tbody>
                             <tr th:each="informationDb : ${informationDb}">
-                                <td th:text="${informationDb.constructionContract.projectName}"></td>
+                                <td><a th:href="@{/breakdown-co/{id}/specify(id=${informationDb.constructionContract.ccId})}" th:text="${informationDb.constructionContract.projectName}"></a></td>
                                 <td th:text="${informationDb.categoryOutline.coTypeName}"></td>
-                                <td th:text="${informationDb.breakdownCd.bcdTypeName}"></td>
+                                <td><a th:href="@{/breakdown-cs/{id}/specify(id=${informationDb.idbBcdId})}" th:text="${informationDb.breakdownCd.bcdTypeName}"></a></td>
                                 <td th:text="${informationDb.InformationItem.iiItemName}"></td>
                                 <td th:text="${informationDb.idbDataText}"></td>
                                 <td th:if="${informationDb.idbDataDouble == 0}" style="text-align: center;">-</td>
