@@ -26,7 +26,7 @@ public class EstimateTypeServiceImpl implements EstimateTypeService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final EstimateTypeMapper mapper;
 
-    /** 【Map生成】 */
+    /** 【内訳種別区分のMapを生成（全件取得）】 */
     @Override
     public Map<String, Integer> getEstimateTypeMap() {
 

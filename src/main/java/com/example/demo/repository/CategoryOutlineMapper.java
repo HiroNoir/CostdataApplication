@@ -12,10 +12,10 @@ import com.example.demo.entity.CategoryOutline;
 @Mapper
 public interface CategoryOutlineMapper {
 
-    /** 【一件取得】 */
-    CategoryOutline selectById(Integer coId);
-
     /** 【全件取得】 */
     List<CategoryOutline> selectAll();
+
+    /** 【一件取得】 */
+    CategoryOutline selectById(Integer coId);
 
 }

@@ -68,7 +68,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <!-- フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                            <!-- 工事契約検索用フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
                             <form th:action="@{/advanced-search/result-of-cc}" th:object="${advancedSearchFormOfCc}" method="get">
                                 <h3 class="h3 text-center mb-5">工事契約一覧より絞り込み</h3>
                                 <div class="mb-3">
@@ -118,7 +118,52 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="h3 text-center mb-5">内訳種目より絞り込み（内訳種目テーブルの用途概略区分・用途詳細区分・種目名称・建築面積・延床面積に加え、内訳情報テーブルの構造種別：地下階数：地上階数：塔屋階数で検索）</h3>
+                            <!-- 工事契約検索用フォーム（GETメソッドで実装　※POSTメソッドでは戻る時にフォームの再送を求められる） -->
+                            <form th:action="@{/advanced-search/result-of-bcd}" th:object="${advancedSearchFormOfBcd}" method="get">
+                                <h3 class="h3 text-center mb-5">内訳種目一覧より絞り込み</h3>
+                                <div class="mb-3">
+                                    <label for="bcdCdId" class="form-label">内訳種目区分</label>
+                                    <div>
+                                        <select th:field="*{bcdCdId}" id="bcdCdId" class="form-select">
+                                            <!-- デフォルトをnullに設定 -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${categoryDetailMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bcdPoId" class="form-label">用途概略区分</label>
+                                    <div>※こちらは検索対象にはなりません。検索対象は下記の用途詳細区分ですので、そちらを選択してください。</div>
+                                    <div>
+                                        <select th:field="*{bcdPoId}" id="bcdPoId" class="form-select">
+                                            <!-- デフォルトをnullに設定 -->
+                                            <option th:value="null"></option>
+                                            <!-- 有効な値が入ったセレクトボックス -->
+                                            <option th:each="item : ${purposeOutlineMap}" th:value="${item.value}" th:text="${item.key}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <!-- 新規登録・更新処理時の用途詳細区分のidはセレクトボックスで選択して仕込み（nullチェック有り、★Ajax通信による選択肢の更新） -->
+                                    <label for="bcdPdId" class="form-label">用途詳細区分</label>
+                                    <div>※上記の用途概略区分を選択すると、用途詳細区分の選択肢が表示されます。</div>
+                                    <div class="text-danger">※表示されない場合は、再度上記の用途概略区分で別項目を選択し、改めて選択し直してください。</div>
+                                    <div>
+                                        <select th:field="*{bcdPdId}" id="bcdPdId" class="form-select">
+                                            <!-- デフォルトをnullに設定 -->
+                                            <option th:value="null"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bcdTypeName" class="form-label">種目名称（≒棟名）</label>
+                                    <div>
+                                        <input type="text" th:field="*{bcdTypeName}" id="bcdTypeName" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-secondary text-nowrap">検索</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -139,6 +184,27 @@
             </div>
        </div>
     </main>
+    <script th:inline="javascript">
+        var purposeSelect = document.getElementById('bcdPoId');
+        var specificPurposeSelect = document.getElementById('bcdPdId');
+
+        purposeSelect.addEventListener('change', function(){
+            var selectedPoId = purposeSelect.value;
+            specificPurposeSelect.innerHTML = ''; // 一旦選択肢をクリア
+
+            // Ajaxで用途詳細区分のデータを取得
+            fetch('/breakdown-cd/' + selectedPoId + '/getPurposeDetailMap')
+            .then(response => response.json())
+            .then(data => {
+                for (var key in data) {
+                    var option = document.createElement('option');
+                    option.value = data[key];
+                    option.text = key;
+                    specificPurposeSelect.appendChild(option);
+                }
+            });
+        });
+    </script>
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

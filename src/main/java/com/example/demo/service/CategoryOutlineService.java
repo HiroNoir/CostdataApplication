@@ -9,10 +9,10 @@ import com.example.demo.entity.CategoryOutline;
  */
 public interface CategoryOutlineService {
 
+    /** 【内訳頭紙区分のMapを生成（全件取得）】 */
+    Map<String, Integer> getCategoryOutlineMap();
+
     /** 【一件取得】 */
     CategoryOutline findById(Integer coId);
-
-    /** 【内訳頭紙区分のMapを生成】 */
-    Map<String, Integer> getCategoryOutlineMap();
 
 }

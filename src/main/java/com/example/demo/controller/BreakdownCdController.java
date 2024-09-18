@@ -195,7 +195,7 @@ public class BreakdownCdController {
         // 内訳頭紙区分を取得
         Integer targetCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
         // Mapを取得
-        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetCoId);
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMapById(targetCoId);
         // Modelに格納
         model.addAttribute("categoryDetailMap", categoryDetailMap);
 
@@ -273,7 +273,7 @@ public class BreakdownCdController {
         // 内訳頭紙区分を取得
         Integer targetBcoCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
         // Mapを取得
-        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMap(targetBcoCoId);
+        Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMapById(targetBcoCoId);
         // Modelに格納
         model.addAttribute("categoryDetailMap", categoryDetailMap);
 

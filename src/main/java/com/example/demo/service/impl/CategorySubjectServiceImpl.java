@@ -26,9 +26,9 @@ public class CategorySubjectServiceImpl implements CategorySubjectService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final CategorySubjectMapper mapper;
 
-    /** 【Map生成】 */
+    /** 【内訳情報区分設定のMapを生成（特定取得）】 */
     @Override
-    public Map<String, Integer> getCategorySubjectMap(Integer csCdId) {
+    public Map<String, Integer> getCategorySubjectMapById(Integer csCdId) {
 
         /** データベースから値を取得 */
         List<CategorySubject> categorySubject = mapper.selectAllById(csCdId);

@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public interface CategorySubjectService {
 
-    /** 【内訳情報区分設定のMapを生成】 */
-    Map<String, Integer> getCategorySubjectMap(Integer csCdId);
+    /** 【内訳情報区分設定のMapを生成（特定取得）】 */
+    Map<String, Integer> getCategorySubjectMapById(Integer csCdId);
 
 }

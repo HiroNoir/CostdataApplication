@@ -26,15 +26,29 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final CategoryDetailMapper mapper;
 
-    /** 【一件取得】 */
+    /** 【内訳種目区分のMapを生成（全件取得）】 */
     @Override
-    public CategoryDetail findById(Integer cdId) {
-        return mapper.selectById(cdId);
+    public Map<String, Integer> getCategoryDetailMap() {
+
+        /** データベースから値を取得 */
+        List<CategoryDetail> categoryDetail = mapper.selectAll();
+
+        /** データベースから取り出した値を格納するためのMapを作成 */
+        Map<String, Integer> categoryDetailMap = new LinkedHashMap<>();
+
+        /** 拡張for文を用いて取り出したデータを1行ずつ取り出し、IDと名前をMapにセットしていく */
+        for (CategoryDetail row : categoryDetail) {
+            String cdTypeName = row.getCdTypeName();
+            Integer cdId = row.getCdId();
+            categoryDetailMap.put(cdTypeName, cdId);
+        }
+        return categoryDetailMap;
+
     }
 
-    /** 【Map生成】 */
+    /** 【内訳種目区分のMapを生成（特定取得）】 */
     @Override
-    public Map<String, Integer> getCategoryDetailMap(Integer cdCoId) {
+    public Map<String, Integer> getCategoryDetailMapById(Integer cdCoId) {
 
         /** データベースから値を取得 */
         List<CategoryDetail> categoryDetail = mapper.selectAllById(cdCoId);
@@ -50,6 +64,12 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
         }
         return categoryDetailMap;
 
+    }
+
+    /** 【一件取得】 */
+    @Override
+    public CategoryDetail findById(Integer cdId) {
+        return mapper.selectById(cdId);
     }
 
 }

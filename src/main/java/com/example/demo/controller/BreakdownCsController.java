@@ -178,7 +178,7 @@ public class BreakdownCsController {
         // 内訳科目区分を取得
         Integer targetCdId = breakdownCdService.findById(bcsBcdId).getBcdCdId();
         // Mapを取得
-        Map<String, Integer> categorySubjectMap = categorySubjectService.getCategorySubjectMap(targetCdId);
+        Map<String, Integer> categorySubjectMap = categorySubjectService.getCategorySubjectMapById(targetCdId);
         // Modelに格納
         model.addAttribute("categorySubjectMap", categorySubjectMap);
 

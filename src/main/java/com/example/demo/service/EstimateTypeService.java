@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public interface EstimateTypeService {
 
-    /** 【内訳種別区分のMapを生成】 */
+    /** 【内訳種別区分のMapを生成（全件取得）】 */
     Map<String, Integer> getEstimateTypeMap();
 
 }

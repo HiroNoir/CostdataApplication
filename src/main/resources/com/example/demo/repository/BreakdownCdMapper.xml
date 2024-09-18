@@ -115,6 +115,28 @@
         WHERE bcd_delete_flg = 0 AND bcd_bco_id = #{bcdBcoId}
         ORDER BY bcd_order;
     </select>
+    <!-- 詳細検索取得 -->
+    <select id="selectAllByAdvancedSearchForm" resultMap="breakdownCdResult">
+        <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->
+        SELECT bcd_id, bcd_bco_id, bcd_order, bcd_type_name, bcd_price,
+            construction_contract.cc_id, construction_contract.project_name,
+            category_outline.co_id, category_outline.co_type_name
+        FROM breakdown_cd
+        JOIN breakdown_co ON breakdown_cd.bcd_bco_id = breakdown_co.bco_id
+        JOIN construction_contract ON breakdown_co.bco_cc_id = construction_contract.cc_id
+        JOIN category_outline ON breakdown_co.bco_co_id = category_outline.co_id
+        WHERE bcd_delete_flg = 0
+        <if test="bcdCdId != null">
+            AND bcd_cd_id = #{bcdCdId}
+        </if>
+        <if test="bcdPdId != null">
+            AND bcd_pd_id = #{bcdPdId}
+        </if>
+        <if test="bcdTypeName != null">
+            AND bcd_type_name LIKE CONCAT('%', #{bcdTypeName}, '%')
+        </if>
+        ORDER BY construction_contract.cc_id, bcd_bco_id, bcd_order;
+    </select>
     <!-- 一件取得 -->
     <select id="selectById" resultMap="breakdownCdResult">
         <!-- 論理削除採用のため「WHERE delete_flg = 0」を追記 -->

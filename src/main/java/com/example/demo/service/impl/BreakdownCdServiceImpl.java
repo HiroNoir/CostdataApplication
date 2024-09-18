@@ -38,6 +38,12 @@ public class BreakdownCdServiceImpl implements BreakdownCdService {
         return mapper.selectAllById(bcdBcoId);
     }
 
+    /** 【詳細検索取得】 */
+    @Override
+    public List<BreakdownCd> findAllByAdvancedSearchForm(Integer bcdCdId, Integer bcdPdId, String bcdTypeName) {
+        return mapper.selectAllByAdvancedSearchForm(bcdCdId, bcdPdId, bcdTypeName);
+    }
+
     /** 【一件取得】 */
     @Override
     public BreakdownCd findById(Integer bcdId) {

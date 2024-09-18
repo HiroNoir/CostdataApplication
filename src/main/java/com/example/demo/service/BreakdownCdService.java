@@ -17,6 +17,9 @@ public interface BreakdownCdService {
     /** 【特定取得】 */
     List<BreakdownCd> findAllById(Integer bcdBcoId);
 
+    /** 【詳細検索取得】 */
+    List<BreakdownCd> findAllByAdvancedSearchForm(Integer bcdCdId, Integer bcdPdId, String bcdTypeName);
+
     /** 【一件取得】 */
     BreakdownCd findById(Integer bcdId);
 

@@ -18,6 +18,9 @@ public interface BreakdownCdMapper {
     /** 【特定取得】 */
     List<BreakdownCd> selectAllById(Integer bcdBcoId);
 
+    /** 【詳細検索取得】 */
+    List<BreakdownCd> selectAllByAdvancedSearchForm(Integer bcdCdId, Integer bcdPdId, String bcdTypeName);
+
     /** 【一件取得】 */
     BreakdownCd selectById(Integer bcdId);
 

@@ -308,7 +308,7 @@ public class InformationDbController {
         // 内訳頭紙区分を取得
         Integer targetCoId = breakdownCoService.findById(breakdownCdService.findById(idbBcdId).getBcdBcoId()).getBcoCoId();
         // Mapを取得
-        Map<String, Integer> informationItemlMap = informationItemService.getInformationItemMap(targetCoId);
+        Map<String, Integer> informationItemlMap = informationItemService.getInformationItemMapById(targetCoId);
         // Modelに格納
         model.addAttribute("informationItemlMap", informationItemlMap);
 

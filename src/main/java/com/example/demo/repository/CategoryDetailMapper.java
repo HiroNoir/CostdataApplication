@@ -12,10 +12,13 @@ import com.example.demo.entity.CategoryDetail;
 @Mapper
 public interface CategoryDetailMapper {
 
-    /** 【一件取得】 */
-    CategoryDetail selectById(Integer cdId);
+    /** 【全件取得】 */
+    List<CategoryDetail> selectAll();
 
     /** 【特定取得】 */
     List<CategoryDetail> selectAllById(Integer cdCoId);
+
+    /** 【一件取得】 */
+    CategoryDetail selectById(Integer cdId);
 
 }

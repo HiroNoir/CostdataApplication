@@ -26,9 +26,9 @@ public class InformationItemServiceImpl implements InformationItemService {
     // これにより「@Autowired」を使ったコンストラクタインジェクションの記述は不要となる
     private final InformationItemMapper mapper;
 
-    /** 【Map生成】 */
+    /** 【内訳情報区分設定のMapを生成（特定取得）】 */
     @Override
-    public Map<String, Integer> getInformationItemMap(Integer iiCoId) {
+    public Map<String, Integer> getInformationItemMapById(Integer iiCoId) {
 
         /** データベースから値を取得 */
         List<InformationItem> informationItem = mapper.selectAllById(iiCoId);
