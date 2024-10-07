@@ -20,8 +20,8 @@ public enum ErrorKinds {
     // ログイン中削除チェックエラー
     LOGINCHECK_ERROR,
 
-    // 削除メソッド権限チェックエラー
-    DELETEMETHOD_ERROR,
+    // 削除メソッド権限チェックエラー → 削除メソッド権限はコントローラークラスの@PreAuthorizeで管理することに変更（従業員テーブルのみSecurityConfigによる権限制限）
+    // DELETEMETHOD_ERROR,
 
     // 内訳頭紙登録時の内訳頭紙区分重複チェックエラー
     bcoCoId_DUPLICATE_ERROR,

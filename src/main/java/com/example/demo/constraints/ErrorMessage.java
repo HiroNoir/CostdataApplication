@@ -29,9 +29,9 @@ public class ErrorMessage {
             // ログイン中の従業員削除チェック用エラーメッセージ
             put(ErrorKinds.LOGINCHECK_ERROR,
                     new ArrayList<String>(Arrays.asList("deleteError", "ログイン中のユーザーを削除することは出来ません")));
-            // 削除メソッド権限チェックー用エラーメッセージ
-            put(ErrorKinds.DELETEMETHOD_ERROR,
-                    new ArrayList<String>(Arrays.asList("deleteError", "削除する権限がありませんので削除することは出来ません")));
+            // 削除メソッド権限チェックー用エラーメッセージ → 削除メソッド権限はコントローラークラスの@PreAuthorizeで管理することに変更（従業員テーブルのみSecurityConfigによる権限制限）
+            // put(ErrorKinds.DELETEMETHOD_ERROR,
+            //         new ArrayList<String>(Arrays.asList("deleteError", "削除する権限がありませんので削除することは出来ません")));
             // 内訳頭紙登録時の内訳頭紙区分重複チェック用エラーメッセージ
             put(ErrorKinds.bcoCoId_DUPLICATE_ERROR,
                     new ArrayList<String>(Arrays.asList("bcoCoIdError", "既に登録されているデータです")));

@@ -58,7 +58,7 @@ public class BreakdownCdController {
     // 他テーブルのデータを取得するため、他テーブルを扱うサービインターフェスをDI
     private final ConstructionContractService constructionContractService;
     private final CategoryOutlineService categoryOutlineService;
-    private final BreakdownCoService breakdownCoservice;
+    private final BreakdownCoService breakdownCoSservice;
     private final CategoryDetailService categoryDetailService;
     private final PurposeOutlineService purposeOutlineService;
     private final PurposeDetailService purposeDetailService;
@@ -73,7 +73,7 @@ public class BreakdownCdController {
 
         /** 現在表示している内訳頭紙の各金額をbreakdown_coテーブルより取得 */
         // 対象データを取得
-        BreakdownCo directConstructionPrice = breakdownCoservice.findById(bcdBcoId);
+        BreakdownCo directConstructionPrice = breakdownCoSservice.findById(bcdBcoId);
         // 対象データの有無確認
         if (directConstructionPrice != null) {
             // 対象データがある場合
@@ -108,7 +108,7 @@ public class BreakdownCdController {
         /** 特定画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
         // 対象データを取得
-        BreakdownCo targetBreakdownCo = breakdownCoservice.findById(bcdBcoId);
+        BreakdownCo targetBreakdownCo = breakdownCoSservice.findById(bcdBcoId);
         // 対象データの有無確認
         if (targetBreakdownCo != null) {
             // 対象データがある場合
@@ -118,7 +118,7 @@ public class BreakdownCdController {
             // 対象データの値によりリダイレクト
             if (coId != 1010 && coId != 1020 && coId != 1030 && coId != 1040) {
                 // リダイレクト先のidを取得
-                Integer bcoCcId = breakdownCoservice.findById(bcdBcoId).getBcoCcId();
+                Integer bcoCcId = breakdownCoSservice.findById(bcdBcoId).getBcoCcId();
                 // エラーのフラッシュメッセージをRedirectAttributesに格納し一覧画面へ戻る
                 redirectAttributes.addFlashAttribute("errorMessage",
                         "建築・電気設備・機械設備・昇降機設備以外には種目を登録できないため、内訳頭紙の画面へ遷移しました");
@@ -193,7 +193,7 @@ public class BreakdownCdController {
 
         /** 内訳種目区分設定Mapを取得 */
         // 内訳頭紙区分を取得
-        Integer targetCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
+        Integer targetCoId = breakdownCoSservice.findById(bcdBcoId).getBcoCoId();
         // Mapを取得
         Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMapById(targetCoId);
         // Modelに格納
@@ -207,7 +207,7 @@ public class BreakdownCdController {
         /** 登録画面へ遷移 */
         // GETメソッドでid入力可能のため、URLでidを直入力された場合の、対象データの有無チェックを行う
         // 対象データを取得
-        BreakdownCo targetBreakdownCo = breakdownCoservice.findById(bcdBcoId);
+        BreakdownCo targetBreakdownCo = breakdownCoSservice.findById(bcdBcoId);
         // 対象データの有無確認
         if (targetBreakdownCo != null) {
             // 対象データがある場合
@@ -271,7 +271,7 @@ public class BreakdownCdController {
 
         /** 内訳種目区分設定Mapを取得 */
         // 内訳頭紙区分を取得
-        Integer targetBcoCoId = breakdownCoservice.findById(bcdBcoId).getBcoCoId();
+        Integer targetBcoCoId = breakdownCoSservice.findById(bcdBcoId).getBcoCoId();
         // Mapを取得
         Map<String, Integer> categoryDetailMap = categoryDetailService.getCategoryDetailMapById(targetBcoCoId);
         // Modelに格納
