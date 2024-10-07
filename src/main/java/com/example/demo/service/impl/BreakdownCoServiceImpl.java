@@ -54,8 +54,8 @@ public class BreakdownCoServiceImpl implements BreakdownCoService {
     public ErrorKinds insert(BreakdownCo breakdownCo, LoginUserDetails loginUserDetails) {
 
         /** 内訳頭紙重複チェック */
-        // 対象データを取得
-        BreakdownCo target = mapper.selectById(breakdownCo.getBcoId());
+        // 対象データを取得 ※ここではmapperの一件取得ではなく、金額取得で代用（一件取得はBcoIdによるselect文のため重複が探せない）
+        BreakdownCo target = mapper.priceSelectById(breakdownCo.getBcoCcId(), breakdownCo.getBcoCoId());
         // 対象データの有無確認
         if (target != null) {
             // 重複があるためErrorKindsクラスのbcoCoId_DUPLICATE_ERRORを返す
